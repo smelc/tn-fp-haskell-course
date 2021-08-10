@@ -2,3 +2,4 @@
      https://smelc.github.io/tn-fp-haskell-course/slides/ -->
 
 - [First course](course-01.md)
+- [Second course](course-02.md)
