@@ -13,6 +13,7 @@ executable slides
     other-modules:
       Course01
       Course02
+      Course03
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

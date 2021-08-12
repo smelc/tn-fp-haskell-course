@@ -1,10 +1,18 @@
-# Slides
+## Slides
 
 The content is within `*.md` files.
 
-Utilities:
-
+* `index.md` is the index page of the [online version](https://smelc.github.io/tn-fp-haskell-course/)
 * `check.sh`, to continuously check the code snippets are valid.
-  Requires [entr](https://eradman.com/entrproject/).
-* `build_hs.sh` is called by `check.sh`. There's no need to call this
-  script manually.
+  Requires [entr](https://eradman.com/entrproject/). Calls
+  `build_hs.sh` and `build_java.sh` internally.
+
+# Inspiration
+
+This course has not been written from scratch. It takes inspiration from:
+
+- http://learnyouahaskell.com/chapters
+- Brent Yorgey's course at Penn University
+  - https://www.seas.upenn.edu/~cis194/spring13/lectures.html
+- OCaml course at Université Paris Diderot
+  - https://gaufre.informatique.univ-paris-diderot.fr/letouzey/pf5/tree/master/
