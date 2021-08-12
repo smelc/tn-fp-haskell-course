@@ -1,0 +1,4 @@
+slides/*.java
+slides/app/Course*.hs
+slides/dist-newstyle
+slides/hls
