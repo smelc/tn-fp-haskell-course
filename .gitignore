@@ -1,3 +1,6 @@
+tps/.envrc
+tps/dist-newstyle
+tps/hls
 slides/*.java
 slides/app/Course*.hs
 slides/dist-newstyle

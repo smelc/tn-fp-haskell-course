@@ -1,0 +1,70 @@
+cabal-version:      2.4
+name:               tps
+version:            0.1.0.0
+
+synopsis:           TP1 for Telecom Nancy Functional Programming course
+bug-reports:        https://github.com/smelc/tn-fp-haskell-course
+license:            Unlicense
+author:             Clément Hurlin
+maintainer:         smelc@users.noreply.github.com
+
+common common-all
+    -- LANGUAGE extensions used by modules in this package.
+    default-extensions:
+                        DeriveFoldable
+                        DeriveFunctor
+                        DeriveGeneric
+                        DuplicateRecordFields
+                        GeneralizedNewtypeDeriving
+                        LambdaCase
+                        NamedFieldPuns
+                        OverloadedStrings
+                        RecordWildCards
+                        ScopedTypeVariables
+
+    build-depends:    base ^>=4.14.1.0,
+                      bytestring,
+                      containers,
+                      extra,
+                      generic-random,
+                      ilist,
+                      mtl,
+                      random,
+                      random-shuffle,
+                      process,
+                      QuickCheck,
+                      text,
+                      vector
+    hs-source-dirs:   .
+    default-language: Haskell2010
+    ghc-options:
+      -haddock
+      -Wall
+      -Wno-name-shadowing
+      -Werror
+      -Wwarn=missing-home-modules
+      -Wno-unused-imports
+      -rtsopts
+
+executable TP1.hs
+    import:           common-all
+    main-is:          TP1.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+executable TP2.hs
+    import:           common-all
+    main-is:          TP2.hs
+
+executable TP3.hs
+    import:           common-all
+    main-is:          TP3.hs
+
+executable TP4.hs
+    import:           common-all
+    main-is:          TP4.hs
+
+library
+    import:           common-all
+    exposed-modules:  Scratch
