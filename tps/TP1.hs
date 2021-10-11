@@ -6,6 +6,7 @@ import Debug.Trace
 import GHC.Generics
 import Generic.Random
 import Test.QuickCheck
+import Prelude hiding (and, drop, length, take)
 
 -- | A type for thumb up and thumb down emojis
 data ThumbType = Up | Down
@@ -14,62 +15,53 @@ data ThumbType = Up | Down
 main :: IO ()
 main = do
   putStrLn ("Haskell is " ++ (show Up))
-  -- Once you have written the corresponding functions, uncomment this:
-  -- quickCheck propMyNeg
-  -- quickCheck propMyAnd
-  -- quickCheck propMyFilter
+  quickCheck propNegAnd -- Tests the property 'propNegAnd'
+  quickCheck (propLength :: [Int] -> Bool) -- Specialize function, so that data can be generated
+  quickCheck propSumRecSumFold
 
--- | Define the Boolean type. Don't use 'Bool' as the name to avoid clashing
--- with the Prelude's definition.
--- data MyBool = ...
---   deriving (Eq, Show, Generic) -- to be able to 1/ compare values 2/ print them 3/ generate them
+-- | Write a negation function over Bool: 'neg'
+neg :: Bool -> Bool
+neg _ = undefined
 
--- | Define negation over 'MyBool'
--- myNeg :: MyBool -> MyBool
+-- | Write the conjunction function over Bool: 'and'
+and :: Bool -> Bool -> Bool
+and _ _ = undefined
 
--- | Define conjunction over 'MyBool'
--- myAnd :: MyBool -> MyBool -> MyBool
--- myAnd b1 b2 = ...
+-- | A function stating a property of 'neg' and 'and'
+propNegAnd :: Bool -> Bool
+propNegAnd b = not (and b (neg b))
 
--- | Define a type of list. Here 'a' is the type of elements. As it's a generic
--- list, it should work over all element types.
--- data MyList a = ...
+-- | Write a function computing the length of a list
+length :: [a] -> Int
+length _ = undefined
 
--- | Define a function that returns whether a 'MyList' is empty
--- isEmpty :: MyList a -> MyBool
--- isEmpty l = ...
+-- | write a function that states a property of 'length', for any input
+-- list.
+propLength :: [a] -> Bool
+propLength _ = undefined
 
--- | Define list filtering. Given a list [e0, e1, ..., en]; it returns
--- the sublist of elements that satisfies the predicate given as first argument.
--- For example myFilter myNeg '[MyTrue, MyFalse, MyFalse]' should return
--- '[MyFalse, MyTrue, MyTrue]'.
--- myFilter :: (a -> MyBool) -> MyList a -> MyList a
--- myFilter pred ... = ...
+-- | Write a function taking the first 'n' elements of a list. The function
+-- should be total.
+take :: Int -> [a] -> [a]
+take _ _ = undefined
 
--- Testing
---
--- Once you have implemented the functions above, uncomment the following
--- code and execute your file, it will test your functions automatically.
--- The command line to execute the file is given in the header above.
+-- | Write a function taking the suffix of a list, after the first 'n' elements.
+drop :: Int -> [a] -> [a]
+drop _ _ = undefined
 
-instance Arbitrary MyBool where
-  arbitrary = genericArbitraryU
-  shrink = genericShrink
+-- | Write a recursive function that sums the elements of a list
+sumRec :: [Int] -> Int
+sumRec _ = undefined
 
-leq :: MyBool -> MyBool -> Bool
-leq MyFalse MyTrue = True
-leq MyTrue MyFalse = False
-leq _ _ = True
+-- | Write a non-recursive function that sums the elements of a list, using
+-- the foldr function: https://hoogle.haskell.org/?hoogle=foldr
+sumFold :: [Int] -> Int
+sumFold _ = undefined
 
-propMyNeg :: MyBool -> Bool
-propMyNeg b = myNeg b /= b
+-- | Write a function stating a relation between 'sumRec' and 'sumFold'
+propSumRecSumFold :: [Int] -> Bool
+propSumRecSumFold _ = undefined
 
-propMyAnd :: MyBool -> MyBool -> Bool
-propMyAnd b1 b2 = (myAnd b1 b2 `leq` b1) && (myAnd b1 b2 `leq` b2)
-
-instance Arbitrary a => Arbitrary (MyList a) where
-  arbitrary = ofList <$> arbitrary
-
-propMyFilter :: MyList a -> MyBool
-propMyFilter xs = isEmpty (myFilter (\_ -> False) xs)
-
+-- Then, write a map interface using lists
+-- Define properties between the different members of the API
+-- Test them with quickCheck
