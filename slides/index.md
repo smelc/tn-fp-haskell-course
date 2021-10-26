@@ -20,6 +20,11 @@ within this module: a subset of the evaluation will be dedicated to Functional
 Programming. Evaluation will either concern the lessons above or ask
 to write code akin to the content of the _TPs_.
 
+This course is on GitHub: [smelc/tn-fp-haskell-course](https://github.com/smelc/tn-fp-haskell-course).
+Please suggest improvements and fix typos by doing [merge requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+You can also do the _TPs_ on your own (since there will be no official time for that)
+and create merge requests against the repository, to have me correct your work.
+
 <center>
-This work is funded by my employer: <a href="https://www.tweag.io/">Tweag</a>
+Writing of this course has been funded by my employer: <a href="https://www.tweag.io/">Tweag</a>
 </center>
