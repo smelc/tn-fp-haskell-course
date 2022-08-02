@@ -1,4 +1,5 @@
-tps/.envrc
+**/.envrc
+.direnv
 tps/dist-newstyle
 tps/hls
 slides/*.java
