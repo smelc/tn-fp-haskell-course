@@ -4,11 +4,10 @@ env:
   # Bump this number to invalidate the Github-actions cache
   cache-invalidation-key: 0
   NIX_PATH: nixpkgs=https://github.com/NixOS/nixpkgs/archive/abfd31179174133ab8131139d650297bf4da63b7.tar.gz
-  
 
 jobs:
-  cabal-build:
-    name: cabal build
+  check-build-hs-java:
+    name: Check build for haskell and java
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -30,3 +29,5 @@ jobs:
       run: nix-shell --pure --run "cabal update"
     - name: cabal build with build_hs.sh
       run: nix-shell --pure --run "cd slides && bash build_hs.sh"
+    - name: java build with build_java.sh
+      run: nix-shell --pure --run "cd slides && bash build_java.sh"

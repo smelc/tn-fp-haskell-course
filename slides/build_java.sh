@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 #
 # Generate the .java files here, taking the snippets
 # from the various *.md files as input

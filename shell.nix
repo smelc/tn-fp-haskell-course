@@ -24,5 +24,6 @@ mkShell {
     cabal-install
     nix
     bash
+    jdk
   ];
 }
