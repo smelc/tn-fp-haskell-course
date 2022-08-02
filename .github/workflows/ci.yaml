@@ -27,5 +27,5 @@ jobs:
       run: nix-shell --pure --run "echo '=== Nix dependencies installed ==='"
     - name: Update Cabal's database
       run: nix-shell --pure --run "cabal update"
-    - name: cabal-docspec
+    - name: cabal build with build_hs.sh
       run: nix-shell --pure --run "cd slides && bash build_hs.sh"
