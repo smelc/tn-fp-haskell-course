@@ -25,3 +25,7 @@ Note that it's possible to develop the slides offline,
 as per the instruction on the
 [remark wiki](https://github.com/gnab/remark/wiki#offline-use-without-an-internet-connection).
 But I've never done it.
+
+---
+
+This course is funded by my employer: [Tweag](https://www.tweag.io/)
