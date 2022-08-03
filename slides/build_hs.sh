@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 #
 # Generate the .hs files in app, taking the snippets
 # from the various *.md files as input
