@@ -9,7 +9,7 @@ To reproduce a working environment:
   - Answer `Y` to install IDE tooling (`haskell-language-server`).
   - Answer `N` to install `stack`, since this project uses the simpler `cabal` build tool
 
-  Once it's done, run `ghcup install ghc 8.10.4` and then `ghcup set ghc 8.10.4`
+  Once it's done, run `ghcup install ghc 8.10.7` and then `ghcup set ghc 8.10.7`
   to set the expected compiler version.
 * Run `cabal build`
 * Then install [vscode](https://code.visualstudio.com/) and the

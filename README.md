@@ -26,6 +26,18 @@ as per the instruction on the
 [remark wiki](https://github.com/gnab/remark/wiki#offline-use-without-an-internet-connection).
 But I've never done it.
 
+### Development instruction
+
+- GHC and hls are installed in an isolated manner at the top-level of the repo
+- This requires [ghcup](https://www.haskell.org/ghcup) in `PATH` and that's all
+
+```
+# Populate GHC, this matches PATH_ADD $(pwd)/ghc/bin in .envrc
+ghcup install ghc 8.10.7 --isolate $(pwd)/ghc
+# Populate hls, this matches PATH_ADD $(pwd)/hls/bin in .envrc
+ghcup install hls --isolate $(pwd)/hls
+```
+
 ---
 
 This course is funded by my employer: [Tweag](https://www.tweag.io/)
