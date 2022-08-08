@@ -4,7 +4,11 @@ class: center, middle
 
 ## Lesson 1
 
-![Tweag logo](img/tweag.png) ![TN logo](img/tn.png)
+![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
+
+<br/>
+
+![TN logo](img/tn.png)
 
 <br/>
 
@@ -17,6 +21,10 @@ Clément Hurlin
 
 ```hs
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Course01 where
 
@@ -154,13 +162,16 @@ Java ☕
 - 2019: Java 12 brings more expressive `switch` (pattern matching)
 - 2020: Java 15 brings records and sealed classes, and more pattern matching
 - 2021: Java 16 brings more pattern matching
+- 2021: Java 17 brings guards in patterns
 
 Python 🐍
 
 - 1994: version 1.0 has `lambda`, `map`, `filter`
 - 2000: version 2.0 brings list comprehension
 - 2001: version 2.7 brings `dict` comprehension
+- 2015: version 3.5 brings types hinting
 - 2020: version 3.10 brings pattern matching
+- 2022: version 3.12 brings more types
 
 The same goes for: C#, Javascript, C++
 
@@ -323,20 +334,14 @@ data Driver =
 --
 
 ```java
-interface Version { }        /* Would be shorter with records in Java 14 (2020) */
+/* Requires Java 15 for sealed classes and interfaces */
+public sealed interface Version permits Alpha, Beta, SemVer { }
 
-final class Alpha  implements Version { }
-final class Beta   implements Version { }
+final class Alpha implements Version { }
+final class Beta  implements Version { }
 
-final class SemVer implements Version {
-
-  private final int x; private final int y; private final int z;
-
-  public SemVer(int x, int y, int z) {
-    this.x = x; this.y = y; this.z = z;
-  }
-
-}
+/* Requires Java 14 for records */
+record SemVer(int x, int y, int z) implements Version { }
 ```
 
 ???
@@ -345,23 +350,48 @@ Easy to define new expressions with _algebraic data types_
 
 ---
 
-# What good are expressions?
+# Abstracting: typeclasses
 
-- Expressions can be substituted freely in a pure language
-  - `let a = 0 in a + 3` is equivalent to `0 + 3`
-- Expressions map well to mathematical properties
+<center>
+⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
+</center>
 
-Mathematical properties?
+```hs
+-- | Generic class of containers
+class Contains a b where
+  get :: a -> b
 
-- About Boolean?
-- About lists?
-- About sets?
+-- | 'MkPerson Clément 39'
+data Person = Name String Int
+
+-- | A username like GitHub's @smelc
+data Username = Account String
+
+instance Contains Person String where
+  get (Name firstName _) = firstName
+
+instance Contains Username String where
+  get (Account handle) = "@" ++ handle -- Show GitHub's '@'
+
+toString :: Contains a String => a -> String
+toString (whatever :: a) = get whatever
+```
+
+<!--
+-- | Generic setter for containers
+class With a b where
+  with :: b -> a -> a
+
+instance With Person String where
+  with firstName (Name _ age) = Name firstName age
+-->
 
 ---
 
 # Mathematical properties and testing
 
-- Well-designed APIs enjoy good properties relating their functions
+- Well-designed types and APIs enjoy good properties relating their functions
+- Boolean, lists, sets
 - Arrays: `get`, `set`
 - Maps: `get`, `set`
 - Orderings
