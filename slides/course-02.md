@@ -4,7 +4,11 @@ class: center, middle
 
 ## Lesson 2
 
-![Tweag logo](img/tweag.png) ![TN logo](img/tn.png)
+![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
+
+<br/>
+
+![TN logo](img/tn.png)
 
 <br/>
 
@@ -33,12 +37,13 @@ In large companies you can:
 
 - earn more
 
-  
-
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).
 
 ```hs
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE RecordWildCards #-}
 
@@ -48,6 +53,9 @@ import Prelude hiding (Either, filter, Just, Left, Maybe, Nothing, Right, take)
 ```
 
 ```java
+import java.util.Map;
+import java.util.HashMap;
+
 class Course02 {
 ```
 -->
@@ -84,6 +92,10 @@ True
 ```
 
 - The disequality operator is not `!=`, it's `/=`
+
+???
+
+- Ask for a property of `neg :: Bool -> Bool` 🧱
 
 ---
 
@@ -136,6 +148,39 @@ the same type, but the type itself is abstract.
 2.0                -- Right '1' was inferred of type Float
 ```
 
+???
+
+- Ask for a property of `(+)` 🧱
+
+---
+
+# Types: Int
+
+Building on the previous example:
+
+
+```shell
+> (1 :: Int) + 1
+2                  -- Right '1' was inferred of type Int
+```
+
+<center>
+<i>Type inference</i>
+</center>
+
+Type inference is the process by which the compiler (`ghc`, `javac`, etc.)
+guesses types in your program. Used by the `var` keyword introduced
+in version 10 of Java in 2018.
+
+```java
+static Map<Integer, String> buildStudents() {
+  var /* no type declared! */ idToStudent = new HashMap<Integer, String>();
+  idToStudent.put(1, "Arnold");
+  idToStudent.put(2, "Béatrice");
+  return idToStudent;
+}
+```
+
 ---
 
 # Types: List
@@ -143,10 +188,10 @@ the same type, but the type itself is abstract.
 Lists are built from:
 
 - the empty list `[]`
-- the concatenating operator `:` 
+- the concatenating operator `:`
 
 ```shell
-> :type [] 
+> :type []
 [] :: [a]  # The empty list is polymorphic. In Java terms
            # [] is of type List<T> for all T
 
@@ -182,14 +227,16 @@ take n xs = undefined
 
 ```hs
 take :: Int -> [a] -> [a]
-take n _          | n <= 0 = []
+take n _          | n <= 0 = [] -- The part after the pipe | is a guard
 take _ []                  = []
 take n (x : rest)          = x : take (n - 1) rest
 ```
 
 ???
 
-Note that `n <= 0` is what makes the function total.
+- Note that `n <= 0` is what makes the function total.
+- How would you write a guard in a Java method?
+- Mention that Haskell lists are persistent lists.
 
 --
 
@@ -210,6 +257,57 @@ filter _ []                     = []
 filter p (x : rest) | p x       = x : filter p rest
                     | otherwise = filter p rest
 ```
+
+---
+
+# Abstracting over types
+
+- Abstracting over types is done with typeclasses
+- When a type implements a class, it provides the class' functions
+
+```hs
+-- | A type t that is a collection of elements of type 'a'
+class Collection t where
+  size :: t a -> Int
+  isEmpty :: t a -> Bool
+  isEmpty x = (size x) == 0 -- Default implementation
+  toList :: t a -> [a]
+
+-- | The list type is a collection
+instance Collection [] where
+  size l = case l of
+             [] -> 0
+             _ : xs -> 1 + size xs
+  toList = id
+```
+
+--
+
+```hs
+-- | To require a parameter to implement a class,
+-- mention the class to the left of <=
+printSize :: Collection t => t a -> IO ()
+printSize t = do
+  putStrLn (show (size t))
+```
+
+--
+
+- Is this an open or closed abstraction?
+- What is the ~~type~~ kind of `Collection`?
+
+???
+
+Java:
+
+- Open abstractions: regular classes and interfaces
+- Closed abstractions: sealed classes and interfaces
+
+Subtlety:
+
+- You cannot make a class implement an interface outside its definition
+
+- What properties does `Collection` enjoy? 🧱
 
 ---
 
@@ -257,6 +355,51 @@ safeLast (_ : rest) = safeLast rest
 
 ---
 
+# Abstracting over Maybe
+
+* Let's reuse our `Collection` class from a few slides ago
+
+<!-- exdown-skip -->
+```hs
+-- | A type t that is a collection of elements of type 'a'
+class Collection t where
+  size :: t a -> Int
+  toList :: t a -> [a]
+
+instance Collection Maybe where
+  size = undefined
+  toList = undefined
+```
+
+--
+
+<br/>
+
+* What other function could we add to `Collection`?
+
+--
+
+
+```hs
+-- | A new class 'Mappable', which is an extension of 'Collection':
+-- instances of 'Mappable' are guaranteed to be instances of 'Collection' too.
+class Collection t => Mappable t where
+  map :: (a -> b) -> t a -> t b
+```
+
+???
+
+```hs
+instance Collection Maybe where
+  size = \case Nothing -> 0; Just _ -> 1
+  toList = \case Nothing -> []; Just x -> [x]
+
+instance Mappable [] where
+  map f = \case [] -> []; (x : xs) -> f x : Course02.map f xs
+```
+
+---
+
 # Types: Either
 
 ```hs
@@ -283,35 +426,31 @@ Right 0
 Left "Prelude.read: no parse"  # Not the best error message
 ```
 
----
+--
 
-# Types: tuples
+* Abstracting over `Either`
 
-Tuples differ from lists:
+<!-- exdown-skip -->
+```hs
+instance Collection (Either a) where
+  size _ = undefined
+  isEmpty _ = undefined
+  toList _ = undefined
 
-- Tuples have a fixed length
-- Elements of tuples do not need to be of the same type
-
-```shell
-> :type ("Chris", 42 :: Int)
-("Chris", 42 :: Int) :: ([Char], Int)
-> :type ("Chris", "Pratt", 42 :: Int)
-("Chris", "Pratt", 42 :: Int) :: ([Char], [Char], Int)
-> :type fst
-fst :: (a, b) -> a
-> :type snd
-snd :: (a, b) -> b
-> fst ("0", "1", "2")
-• Couldn't match expected type ‘(a, b0)’
-                  with actual type ‘([Char], [Char], [Char])’
+instance Mappable (Either a) where
+  map f _ = undefined
 ```
 
-To deconstruct a tuple of length > 2:
+???
 
-```shell
-> get_4 (_, _, _, x) = x
-> :type get_4
-get_4 :: (a, b, c, d) -> d
+```hs
+instance Collection (Either a) where
+  size _ = 1
+  isEmpty _ = False
+  toList = \case Left _ -> []; Right b -> [b]
+
+instance Mappable (Either a) where
+  map f = \case Left a -> Left a; Right b -> Right (f b)
 ```
 
 ---
@@ -353,6 +492,99 @@ mkAccount2 email = Account { .. } -- Take fields from enclosing scope
 ```hs
 setBalance :: Int -> Account -> Account
 setBalance n account = account { balance = n } -- functional update
+```
+
+---
+
+# Common abstractions
+
+```hs
+class Semigroup a where
+  -- | Associative binary operation
+  (<>) :: a -> a -> a
+```
+
+<!-- exdown-skip -->
+```hs
+class Semigroup a => Monoid a where
+  -- | Identity of '<>'
+  mempty :: a
+```
+
+- Many things are instances of `Monoid` (loggers, policies, numbers, rights)
+
+--
+
+<br/>
+
+```hs
+-- | Our 'Mappable' made official!
+class Functor where
+  fmap :: (a -> b) -> f a -> f b
+```
+
+- All usual containers are instances of Functor
+
+<br/>
+
+- What properties have these classes? 🧱
+
+???
+
+- Ask for instances of `Semigroup` and `Monoid`
+
+<!-- exdown-skip -->
+```hs
+(<$>) :: Functor f => (a -> b) -> f a -> f b
+```
+
+---
+
+# Recap
+
+- Literal types: `Bool`, `Int`
+- `[a]`, `Maybe a`, `Either a b`
+- Abstracting over types: typeclasses
+- All types have properties 🧱
+
+Not done:
+
+- Tuples and records
+- `IO`
+
+???
+
+- Ask for relations/functions between these types
+
+---
+
+# Types: tuples
+
+Tuples differ from lists:
+
+- Tuples have a fixed length
+- Elements of tuples do not need to be of the same type
+
+```shell
+> :type ("Chris", 42 :: Int)
+("Chris", 42 :: Int) :: ([Char], Int)
+> :type ("Chris", "Pratt", 42 :: Int)
+("Chris", "Pratt", 42 :: Int) :: ([Char], [Char], Int)
+> :type fst
+fst :: (a, b) -> a
+> :type snd
+snd :: (a, b) -> b
+> fst ("0", "1", "2")
+• Couldn't match expected type ‘(a, b0)’
+                  with actual type ‘([Char], [Char], [Char])’
+```
+
+To deconstruct a tuple of length > 2:
+
+```shell
+> get_4 (_, _, _, x) = x
+> :type get_4
+get_4 :: (a, b, c, d) -> d
 ```
 
 ---
@@ -421,19 +653,6 @@ Define functions on your trees:
 - `values :: Tree a -> [a]`
 - `depth :: Tree a -> Int`
 - `fmap :: (a -> b) -> Tree a -> Tree b`
-
----
-
-# Recap
-
-- Literal types: `Bool`, `Int`
-- `[a]`, `Maybe a`, `Either a b`
-- Tuples and records
-- `IO a`
-
-???
-
-- Ask for relations/functions between these types
 
 ---
 
