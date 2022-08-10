@@ -1,3 +1,4 @@
+-- Build me with: cabal build TP3.hs
 -- Execute me with: cabal run -v0 TP3.hs
 
 module Main where

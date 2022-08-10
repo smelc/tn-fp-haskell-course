@@ -1,3 +1,4 @@
+-- Build me with: cabal build TP2.hs
 -- Execute me with: cabal run -v0 TP2.hs
 
 module Main where
@@ -53,9 +54,9 @@ main = do
 -- Exercise:
 --
 -- 1. Define a type for cards
---    - Define a Show instance for this this
+--    - Define a Show instance for this type
 -- 2. Define a type for the part of a player. Make it implement Show.
--- 3. Define a type for the whole board: the two players parts Make it implement Show.
+-- 3. Define a type for the whole board: the two players parts. Make it implement Show.
 -- 4. Write a function making a player play
 -- 5. Write a function playing an entire game
 --    Display the list of boards while the game runs.

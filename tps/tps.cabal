@@ -1,8 +1,8 @@
 cabal-version:      2.4
 name:               tps
-version:            0.1.0.0
+version:            0.2.0.0
 
-synopsis:           TP1 for Telecom Nancy Functional Programming course
+synopsis:           Lab exercises for Telecom Nancy Functional Programming course
 bug-reports:        https://github.com/smelc/tn-fp-haskell-course
 license:            Unlicense
 author:             Clément Hurlin
