@@ -4,9 +4,11 @@ class: center, middle
 
 ## Lesson 4
 
-![Tweag logo](img/tweag.png) ![TN logo](img/tn.png)
+![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
 
 <br/>
+
+![TN logo](img/tn.png)
 
 Clément Hurlin
 
@@ -67,7 +69,7 @@ Genericity in Haskell is twofold:
 # Typeclasses: `EQ`
 
 <center>
-⚠️ The Haskell <code>class</code> keyword has nothing to do with object-oriented classes 💣
+⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
 </center>
 
 ```hs
