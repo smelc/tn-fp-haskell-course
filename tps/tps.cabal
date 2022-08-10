@@ -23,6 +23,7 @@ common common-all
                         ScopedTypeVariables
 
     build-depends:    base ^>=4.14.1.0,
+                      aeson,
                       bytestring,
                       containers,
                       extra,
@@ -31,8 +32,10 @@ common common-all
                       mtl,
                       random,
                       random-shuffle,
+                      req,
                       process,
                       QuickCheck,
+                      scotty,
                       text,
                       vector
     hs-source-dirs:   .
@@ -64,6 +67,10 @@ executable TP3.hs
 executable TP4.hs
     import:           common-all
     main-is:          TP4.hs
+
+executable TP5.hs
+    import:           common-all
+    main-is:          TP5.hs
 
 library
     import:           common-all
