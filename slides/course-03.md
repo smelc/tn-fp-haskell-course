@@ -4,9 +4,11 @@ class: center, middle
 
 ## Lesson 3
 
-![Tweag logo](img/tweag.png) ![TN logo](img/tn.png)
+![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
 
 <br/>
+
+![TN logo](img/tn.png)
 
 Clément Hurlin
 
@@ -16,14 +18,17 @@ Clément Hurlin
      used by exdown (see check.sh).
 
 ```hs
+{-# Language LambdaCase #-}
 {-# Language NamedFieldPuns #-}
 {-# Language ScopedTypeVariables #-}
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
+{-# OPTIONS_GHC -Wno-unused-matches #-}
 
 
 module Course03 where
 
 import Data.Char (isLower)
+import Data.Word
 import Data.Function ((&))
 import Data.List (isInfixOf)
 ```
@@ -378,6 +383,114 @@ dubious accounts =
 
 ---
 
+# Functional toolbox: recursion
+
+To solve problems functionally:
+
+- Recursion: divide a problem into smaller subproblems
+- Fold: iterate over data, transform it along the way
+
+<!-- exdown-skip 6 7 -->
+```hs
+data Tree a = Node a [Tree a]
+
+find :: (a -> Bool) -> Tree a -> Maybe a
+find f t = undefined
+
+map :: (a -> b) -> Tree a -> Tree b
+map f t = undefined
+```
+
+???
+
+```hs
+treeFind :: (a -> Bool) -> Tree a -> Maybe a
+treeFind f (Node x children) =
+  if f x then Just x
+  else firstJust (map (treeFind f) children)
+  where
+    firstJust =
+      \case
+         [] -> Nothing
+         (Just x) : _ -> Just x
+         Nothing : xs -> firstJust xs
+
+instance Functor Tree where
+  fmap f (Node x children) = Node (f x) (map (fmap f) children)
+```
+
+- Ask whether `map` rings a bell. It's `Functor`'s `fmap` from the previous course!
+- Ask about parallelization. Is it easy? Why?
+
+---
+
+# Functional toolbox: folding
+
+```shell
+> :type foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+# Think of type 't' as list
+# Think of the function's second parameter as the accumulator and its
+# return value as an intermediate result.
+```
+
+<!-- exdown-skip 1 2 7 8 -->
+```hs
+wordCount :: [[String]] -> Int
+wordCount files = undefined
+
+-- | 'Word16' is a zero or positive number
+data Operation = Debit Word16 | Credit Word16
+
+balance :: [Operation] -> Word16
+balance = undefined
+```
+
+???
+
+```hs
+wordCount :: [[String]] -> Int
+wordCount files = foldr (\words soFar -> (length words) + soFar) 0 files
+
+balance' :: [Operation] -> Word16
+balance' = foldr (\op soFar -> toInt op + soFar) 0
+  where
+    toInt = \case Debit x -> -x; Credit x -> x
+```
+
+- Ask who knows about map/reduce
+
+---
+
+# Recap
+
+How to build functions from:
+
+- Pattern matching (`case ... of `)
+- Guards (`f x | cond x = ...`)
+
+How to compose functions:
+
+- `(&)`: chain
+- `(<&>)`: chain in presence of wrapping
+- `Functor`, `map`
+
+Functional toolbox:
+
+- Recursion
+- Folding
+
+<!-- - `(>>=)`: chain computations while in a special context -->
+
+---
+
+# Recommended Reading
+
+- http://learnyouahaskell.com/syntax-in-functions
+- http://learnyouahaskell.com/higher-order-functions
+
+---
+
 # More composition
 
 ```shell
@@ -402,6 +515,16 @@ upper :: String -> String
 > applyUpper (Just "foo")
 > applyUpper (Right "foo" :: Either Int String)
 ```
+
+???
+
+If done at this point and time remains:
+
+- Explain `foldr`
+- Explain things defined in terms of `foldr`:
+  - `sum`
+  - `and :: [Bool] -> Bool`
+  - `any :: (a -> Bool) -> [a] -> Bool`
 
 ---
 
@@ -434,38 +557,6 @@ mkEmailSafe user host ext =
               ++ show s
               ++ ". Expected one of: [\"com\", \"fr\"]")
 ```
-
-???
-
-If done at this point and time remains:
-
-- Explain `foldr`
-- Explain things defined in terms of `foldr`:
-  - `sum`
-  - `and :: [Bool] -> Bool`
-  - `any :: (a -> Bool) -> [a] -> Bool`
-
----
-
-# Recap
-
-How to build functions from:
-
-- Pattern matching (`case ... of `)
-- Guards (`f x | cond x = ...`)
-
-How to compose functions:
-
-- `(&)`: chain
-- `(<&>)`: chain in presence of wrapping
-- `(>>=)`: chain computations while in a special context
-
----
-
-# Recommended Reading
-
-- http://learnyouahaskell.com/syntax-in-functions
-- http://learnyouahaskell.com/higher-order-functions
 
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).
