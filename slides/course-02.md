@@ -285,7 +285,7 @@ instance Collection [] where
 
 ```hs
 -- | To require a parameter to implement a class,
--- mention the class to the left of <=
+-- mention the class to the left of >=
 printSize :: Collection t => t a -> IO ()
 printSize t = do
   putStrLn (show (size t))

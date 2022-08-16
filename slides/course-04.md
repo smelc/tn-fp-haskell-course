@@ -66,7 +66,7 @@ Genericity in Haskell is twofold:
 
 ---
 
-# Typeclasses: `EQ`
+# Typeclasses: `Eq`
 
 <center>
 ⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
@@ -76,7 +76,7 @@ Genericity in Haskell is twofold:
 -- | Types whose values can be compared.
 -- Expected to have the following properties:
 -- Reflexivity: @x == x@ is @True@
--- Symmwtry:    @x == y@ is @y == x@
+-- Symmetry:    @x == y@ is @y == x@
 -- etc.
 class Eq a where
   (==) :: a -> a -> Bool
@@ -221,6 +221,12 @@ interface Addable<A> {
   
 }
 ```
+
+---
+
+# Typeclasses vs Java interfaces
+
+Since there is no subtyping, TODO @smelc
 
 ---
 

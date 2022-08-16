@@ -171,7 +171,7 @@ Python 🐍
 - 2001: version 2.7 brings `dict` comprehension
 - 2015: version 3.5 brings types hinting
 - 2020: version 3.10 brings pattern matching
-- 2022: version 3.12 brings more types
+- 2022: version 3.11 brings more types
 
 The same goes for: C#, Javascript, C++
 
@@ -315,7 +315,7 @@ Expressions can be substituted (inlined), makes it easier to:
 
 ---
 
-# Defining Expressions
+# Defining data structures
 
 ```hs
 data Version =

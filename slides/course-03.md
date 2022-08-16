@@ -161,7 +161,7 @@ isSafe _              = True
 
 <!-- exdown-skip 1 2 3 4  -->
 ```hs
--- Where 'show' below comes from, aka toString()
+-- | The 'Show' class, akin to the 'toString()' method in Java
 class Show a where
   -- | Print a value
   show :: a -> String
@@ -277,7 +277,7 @@ Use the definitions as [rewriting rules](https://en.wikipedia.org/wiki/Rewriting
 
 # Let
 
-Contrary to `where`, `let` introduces an order between declarations:
+Contrary to `where`, `let` can be used in the body of functions:
 
 ```hs
 -- | 'mkEmail "clement" "hurlin" "tweag" "io"' returns my email
@@ -298,7 +298,8 @@ Its syntax is: `let varName = expression in expression`
 
 # Composition
 
-Because functions are so central in functional programming, it is crucial combine them easily.
+Because functions are so central in functional programming, it is crucial
+to combine them easily.
 
 ```shell
 > import Data.Function
@@ -306,7 +307,8 @@ Because functions are so central in functional programming, it is crucial combin
 (&) :: a -> (a -> b) -> b
 ```
 
-- `(&)` means it is an operator (like `+`, `-`, etc.), so it is written between its arguments: `x & f`
+- `(&)` means it is an operator (like `+`, `-`, etc.), so it is written between its arguments: `x & f`,
+  in infix position.
 
 ???
 
@@ -363,11 +365,12 @@ data Account = Account {
     name :: Maybe String
   }
 
--- | Given a list of 'Account', returns the ones with more than one
+-- | Given a list of 'Account', returns the emails of the accounts with more than one
 -- million 'balance', 'email' is dubious, and 'name' is omitted.
 dubious :: [Account] -> [String]
 dubious accounts =
-  filter (\Account{balance} -> balance > 1000000) accounts
+  accounts
+    & filter (\Account{balance} -> balance > 1000000)
     & filter (\Account{email} -> "ponzi" `isInfixOf` email)
     & filter (\Account{name} -> case name of Nothing -> True; Just _ -> False)
     & map email
@@ -388,7 +391,7 @@ dubious accounts =
 To solve problems functionally:
 
 - Recursion: divide a problem into smaller subproblems
-- Fold: iterate over data, transform it along the way
+- Fold: iterate over data, accumulate a value along the way
 
 <!-- exdown-skip 6 7 -->
 ```hs
