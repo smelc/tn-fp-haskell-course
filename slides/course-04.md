@@ -230,6 +230,7 @@ Since there is no subtyping (and no concept of _trait object_ or
 _interface object_), we can't build nor work on heterogeneous collections.
 Compare:
 
+[//]: #exdown-skip
 ```hs
 -- Can sum a list of @a@s when @a@ has the 'Num' capability.
 -- But all the items in the list must have the concrete type @a@,
@@ -237,6 +238,7 @@ Compare:
 sumList :: Num a => [a] -> a
 ```
 
+[//]: #exdown-skip
 ```java
 interface Num { ... }
 class NInt implements Num { ... }
