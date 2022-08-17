@@ -226,7 +226,28 @@ interface Addable<A> {
 
 # Typeclasses vs Java interfaces
 
-Since there is no subtyping, TODO @smelc
+Since there is no subtyping (and no concept of _trait object_ or
+_interface object_), we can't build nor work on heterogeneous collections.
+Compare:
+
+[//]: #exdown-skip
+```hs
+-- | Can sum a list of @a@s when @a@ has the 'Num' capability.
+-- But all the items in the list must have the concrete type @a@,
+-- and the returned value will have the same type @a@.
+sumList :: Num a => [a] -> a
+```
+
+[//]: #exdown-skip
+```java
+interface Num { ... }
+class NInt implements Num { ... }
+class NDouble implements Num { ... }
+/** 'nums' can contain some items of concrete type NInt,
+  * and some items of concrete type NDouble at the same time.
+  * The returned value can be either a NInt or NDouble. */
+Num sumList(nums: List<Num>) { }
+```
 
 ---
 
