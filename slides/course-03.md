@@ -365,8 +365,8 @@ data Account = Account {
     name :: Maybe String
   }
 
--- | Given a list of 'Account', returns the emails of the accounts with more than one
--- million 'balance', 'email' is dubious, and 'name' is omitted.
+-- | Given a list of 'Account', returns the emails of the accounts with more
+-- than one million 'balance', 'email' is dubious, and 'name' is omitted.
 dubious :: [Account] -> [String]
 dubious accounts =
   accounts
