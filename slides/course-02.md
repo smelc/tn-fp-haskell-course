@@ -141,7 +141,7 @@ the same type, but the type itself is abstract.
 
 ```bash
 > (1 :: Int) + (1.0 :: Float)
-• Couldn't match expected type ‘Int’ with actual type ‘Float’
+• Couldn‘t match expected type ‘Int’ with actual type ‘Float’
 > (1 :: Int) + 1
 2                  -- Right '1' was inferred of type Int
 > (1 :: Float) + 1
@@ -575,7 +575,7 @@ fst :: (a, b) -> a
 > :type snd
 snd :: (a, b) -> b
 > fst ("0", "1", "2")
-• Couldn't match expected type ‘(a, b0)’
+• Couldn‘t match expected type ‘(a, b0)’
                   with actual type ‘([Char], [Char], [Char])’
 ```
 
