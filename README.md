@@ -14,7 +14,7 @@ folder uses [remark](https://github.com/gnab/remark).
 To display the slides (be it for presenting or for developing them),
 you need to serve the `slides` directory with an http server:
 
-```shell
+```bash
 python3 -m http.server  # in slides/
 # Or use ./run.sh
 ```

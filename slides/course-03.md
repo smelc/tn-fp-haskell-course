@@ -101,7 +101,7 @@ add2 x 0 = x
 
 --
 
-```shell
+```bash
     Pattern match(es) are non-exhaustive
     In an equation for ‘add2’:
         Patterns not matched:
@@ -261,13 +261,13 @@ fromMaybe _ (Just a) = a
 
 Use the definitions as [rewriting rules](https://en.wikipedia.org/wiki/Rewriting#Term_rewriting_systems):
 
-```shell
+```bash
    fromMaybe '?' (safeHead "Clément")
 ```
 
 --
 
-```shell
+```bash
 → fromMaybe '?' (safeHead ('C' : "lément"))
 → fromMaybe '?' (Just 'C')
 → 'C'
@@ -301,7 +301,7 @@ Its syntax is: `let varName = expression in expression`
 Because functions are so central in functional programming, it is crucial
 to combine them easily.
 
-```shell
+```bash
 > import Data.Function
 > :type (&)
 (&) :: a -> (a -> b) -> b
@@ -318,7 +318,7 @@ Ask whether they see the relationship with function application
 
 # Partial application
 
-```shell
+```bash
 > :type map
 map :: (a -> b) -> [a] -> [b]
 > :type show
@@ -331,7 +331,7 @@ show :: Show a => a -> String
 
 </br>
 
-```shell
+```bash
 :type (<)
 (<) :: Ord a => a -> a -> Bool
 ```
@@ -351,7 +351,7 @@ When writing functions:
 
 # Composition
 
-```shell
+```bash
 > :type filter
 filter :: (a -> Bool) -> [a] -> [a]
 > :type map
@@ -429,7 +429,7 @@ instance Functor Tree where
 
 # Functional toolbox: folding
 
-```shell
+```bash
 > :type foldr
 foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 # Think of type 't' as list
@@ -496,7 +496,7 @@ Functional toolbox:
 
 # More composition
 
-```shell
+```bash
 > import Data.Functor
 > :type (<&>)
 (<&>) :: Functor f => f a -> (a -> b) -> f b
@@ -510,7 +510,7 @@ fmap :: Functor f => (a -> b) -> f a -> f b
 
 ???
 
-```shell
+```bash
 > import Data.List.Extra
 > :type upper
 upper :: String -> String
@@ -533,7 +533,7 @@ If done at this point and time remains:
 
 # More composition
 
-```shell
+```bash
 > :type (>>=)
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```

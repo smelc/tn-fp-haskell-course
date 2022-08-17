@@ -73,7 +73,7 @@ data Bool =
 
 [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) - _read–eval–print loop_
 
-```shell
+```bash
 $ cabal repl
 > :type True  # From now on, the > prefix indicates a REPL
 True :: Bool
@@ -86,7 +86,7 @@ True
 - Operators (function with two arguments) are defined enclosed
   with parentheses, but are used without.
 
-```shell
+```bash
 > True /= False
 True
 ```
@@ -102,7 +102,7 @@ True
 # Types: Int
 
 
-```shell
+```bash
 > :type 0
 0 :: Num p => p
 ```
@@ -113,7 +113,7 @@ The Haskell compiler, `GHC` infers the most general type:
 - The type of `0` is any `p` which satisfies some **constraint** `Num`
 - TLDR; when the type of an expression is too general, write the expected type:
 
-```shell
+```bash
 > :type (0 :: Int)
 type (0 :: Int) :: Int
 ```
@@ -124,7 +124,7 @@ type (0 :: Int) :: Int
 
 Operators on `Int`:
 
-```shell
+```bash
 > :type (+)
 (+) :: Num a => a -> a -> a
 ```
@@ -132,14 +132,14 @@ Operators on `Int`:
 `+` is polymorphic in its operands: it requires operands to be of
 the same type, but the type itself is abstract.
 
-```shell
+```bash
 > 1 + "foo"
 • No instance for (Num [Char]) arising from a use of ‘+’
 ```
 
 --
 
-```shell
+```bash
 > (1 :: Int) + (1.0 :: Float)
 • Couldn't match expected type ‘Int’ with actual type ‘Float’
 > (1 :: Int) + 1
@@ -159,7 +159,7 @@ the same type, but the type itself is abstract.
 Building on the previous example:
 
 
-```shell
+```bash
 > (1 :: Int) + 1
 2                  -- Right '1' was inferred of type Int
 ```
@@ -190,7 +190,7 @@ Lists are built from:
 - the empty list `[]`
 - the concatenating operator `:`
 
-```shell
+```bash
 > :type []
 [] :: [a]  # The empty list is polymorphic. In Java terms
            # [] is of type List<T> for all T
@@ -419,7 +419,7 @@ readEither _ = undefined
 ```
 -->
 
-```shell
+```bash
 > (readEither "0") :: Either String Int
 Right 0
 > (readEither "not an int") :: Either String Int
@@ -565,7 +565,7 @@ Tuples differ from lists:
 - Tuples have a fixed length
 - Elements of tuples do not need to be of the same type
 
-```shell
+```bash
 > :type ("Chris", 42 :: Int)
 ("Chris", 42 :: Int) :: ([Char], Int)
 > :type ("Chris", "Pratt", 42 :: Int)
@@ -581,7 +581,7 @@ snd :: (a, b) -> b
 
 To deconstruct a tuple of length > 2:
 
-```shell
+```bash
 > get_4 (_, _, _, x) = x
 > :type get_4
 get_4 :: (a, b, c, d) -> d
@@ -607,7 +607,7 @@ main = do
     putStrLn ("Hey " ++ name ++ ", you rock!")
 ```
 
-```shell
+```bash
 > :type putStrLn
 putStrLn :: String -> IO ()  # Write something to the terminal
 > :type getLine
@@ -628,7 +628,7 @@ main = do
     putStrLn ("Hey " ++ name ++ ", you rock!")
 ```
 
-```shell
+```bash
 > :type putStrLn
 putStrLn :: String -> IO ()
 > :type getLine
