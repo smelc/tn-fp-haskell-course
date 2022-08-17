@@ -188,7 +188,7 @@ static Map<Integer, String> buildStudents() {
 Lists are built from:
 
 - the empty list `[]`
-- the concatenating operator `:`
+- the _cons_ operator `:` (joins a value and a list)
 
 ```bash
 > :type []
