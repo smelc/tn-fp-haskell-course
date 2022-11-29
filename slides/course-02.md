@@ -176,7 +176,7 @@ in version 10 of Java in 2018.
 static Map<Integer, String> buildStudents() {
   var /* no type declared! */ idToStudent = new HashMap<Integer, String>();
   idToStudent.put(1, "Arnold");
-  idToStudent.put(2, "Béatrice");
+  idToStudent.put(2, "Beth");
   return idToStudent;
 }
 ```
