@@ -66,7 +66,7 @@ Why use them:
 ???
 
 - Discuss incomes after graduating from TN
-- Salaire débutant ESN: 31K-38K
+- Salaire débutant ESN: 32K-40K
 - Discuss cryptos:
   - What cryptos do you know?
   - Licorne française crypto: Sorare
