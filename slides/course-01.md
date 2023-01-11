@@ -108,8 +108,6 @@ evens (_ : rest)                = evens rest
   - Primitive values (`int`)
   - Objects
 
-<br/>
-
 Highlight how things are more complicated in Java:
 
 - Need to handle `null`
@@ -361,14 +359,14 @@ Easy to define new expressions with _algebraic data types_
 class Contains a b where
   get :: a -> b
 
--- | 'MkPerson Clément 39'
-data Person = Name String Int
+-- | 'MkPerson "Clément" 39'
+data Person = MkPerson String Int
 
 -- | A username like GitHub's @smelc
 data Username = Account String
 
 instance Contains Person String where
-  get (Name firstName _) = firstName
+  get (MkPerson firstName _) = firstName
 
 instance Contains Username String where
   get (Account handle) = "@" ++ handle -- Show GitHub's '@'

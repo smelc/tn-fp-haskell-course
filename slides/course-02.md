@@ -96,6 +96,9 @@ True
 ???
 
 - Ask for a property of `neg :: Bool -> Bool` 🧱
+- What is the REPL in:
+  - Java? → `jshell`, introduced in Java 9
+  - python? → `python3`, with many more fancier interfaces
 
 ---
 
@@ -151,6 +154,9 @@ the same type, but the type itself is abstract.
 ???
 
 - Ask for a property of `(+)` 🧱
+- Ask how one would do something kinda similar in Java
+  - Coercions
+  - What is the risk? → hidden conversion and precision loss + unboxing
 
 ---
 
@@ -201,6 +207,11 @@ Lists are built from:
 
 ⚠️  The `[]` notation is used both in expressions, such as `[0, 1]` and
 in types, such as `[Int]` (list of `Int`s). ⚠️
+
+???
+
+- What's nice about having a finite set of constructors?
+  - Pattern matching! Being exhaustive in data handling.
 
 --
 
@@ -427,6 +438,8 @@ Left "Prelude.read: no parse"  # Not the best error message
 ```
 
 --
+
+**Cette fin de slide naze, parceque la syntaxe `Collection (Either a)` apparaît trop bizarre**
 
 * Abstracting over `Either`
 
