@@ -553,6 +553,54 @@ class Functor where
 
 ---
 
+# Combining abstractions
+
+```hs
+class Bank x where
+  -- | Get credit of account
+  getBalance :: x -> String -> Maybe Int
+  -- | Does account exist?
+  isAccount :: x -> String -> Bool
+```
+
+- What property does the `Bank` class have? 🧱
+- What would `BankAdmin` look like?
+
+--
+
+```hs
+class Bank x => BankAdmin x where
+  -- | Create a new account
+  createAccount :: x -> String -> IO ()
+```
+
+- Create stack of abstractions by using `=>` constraints
+
+--
+
+```hs
+-- How does this function highlight the API design shortcoming?
+totalGetBalance :: BankAdmin x => x -> String -> IO Int
+totalGetBalance bank name =
+  case getBalance bank name of
+    Just account -> return account
+    Nothing -> do
+      createAccount bank name
+      totalGetBalance bank name
+```
+
+???
+
+- `isJust (getBalance s) ==> isAccount s`
+- What is the flaw of `createAccount`? Can it fail?
+- Can you combine abstractions like this in Java/python?
+  - Not really
+- Cite a usual combination case in REST APIs
+  - Reader API (`GET`)
+  - Writer API (`POST`)
+
+---
+
 # Recap
 
 - Literal types: `Bool`, `Int`

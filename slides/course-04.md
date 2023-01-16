@@ -184,6 +184,11 @@ data Version =
 * Java 15 (2020) has this for _record_ classes
 * Works for a number of classes: `Enum`, `Bounded`, `Functor`, `Writer`, etc.
 
+???
+
+- Mention that IDEs do that
+- Ask them what editors they use and why
+
 ---
 
 # Typeclasses vs Java interfaces

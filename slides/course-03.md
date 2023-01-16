@@ -191,6 +191,11 @@ lastv v1 v2 =
 
 - Remove the `_` catch all, look at the error message
 - What is the type of `error`?
+- How would you do `last` in Java/python?
+  - With a `case`/`if`, `elif`, ..., `else`
+  - What is the flaw?
+    - If you want to apply something to the result of the `case`
+    - breaks `final`ity
 
 ---
 
@@ -204,43 +209,6 @@ sign 0             = Zero
 sign n | n < 0     = Negative
        | otherwise = Positive
 ```
-
----
-
-# Where
-
-```hs
--- | @initials "Clément" "Hurlin"@ returns "CH"
-initials :: String -> String -> String
-initials firstname lastname =
-  [extract firstname, extract lastname]
-  where
-    -- extract returns the initial or '?'
-    extract :: String -> Char
-    extract name = fromMaybe '?' (safeHead name)
-    -- fromMaybe takes the value from a Maybe, or use the default
-    fromMaybe :: a -> Maybe a -> a
-    fromMaybe a Nothing  = a
-    fromMaybe _ (Just a) = a
-    -- Returns the first element of a list, or 'Nothing'
-    safeHead :: String -> Maybe Char
-    safeHead []      = Nothing
-    safeHead (x : _) = Just x
-```
-
-- The order in the `where` clause does not matter
-- It is idiomatic to have a small function body and a long
-  `where` clause
-
-???
-
-Ask for the generalization of the type of `safeHead`
-
-Indentation matters 😢:
-
-- Nested expressions should be intended
-- function body is intended w.r.t. the function name
-- members of the `where` clause are intended from the `where`
 
 ---
 
@@ -272,27 +240,6 @@ Use the definitions as [rewriting rules](https://en.wikipedia.org/wiki/Rewriting
 → fromMaybe '?' (Just 'C')
 → 'C'
 ```
-
----
-
-# Let
-
-Contrary to `where`, `let` can be used in the body of functions:
-
-```hs
--- | 'mkEmail "clement" "hurlin" "tweag" "io"' returns my email
-mkEmail firstName lastName domain ext =
-  let left = firstName ++ "." ++ lastName in
-  let right = domain ++ "." ++ ext in
-  left ++ "@" ++ right
-```
-
-Its syntax is: `let varName = expression in expression`
-
-???
-
-- What is the type of `mkEmail`?
-  - How does inference work?
 
 ---
 
@@ -491,6 +438,64 @@ Functional toolbox:
 
 - http://learnyouahaskell.com/syntax-in-functions
 - http://learnyouahaskell.com/higher-order-functions
+
+---
+
+# Where
+
+```hs
+-- | @initials "Clément" "Hurlin"@ returns "CH"
+initials :: String -> String -> String
+initials firstname lastname =
+  [extract firstname, extract lastname]
+  where
+    -- extract returns the initial or '?'
+    extract :: String -> Char
+    extract name = fromMaybe '?' (safeHead name)
+    -- fromMaybe takes the value from a Maybe, or use the default
+    fromMaybe :: a -> Maybe a -> a
+    fromMaybe a Nothing  = a
+    fromMaybe _ (Just a) = a
+    -- Returns the first element of a list, or 'Nothing'
+    safeHead :: String -> Maybe Char
+    safeHead []      = Nothing
+    safeHead (x : _) = Just x
+```
+
+- The order in the `where` clause does not matter
+- It is idiomatic to have a small function body and a long
+  `where` clause
+
+???
+
+Ask for the generalization of the type of `safeHead`
+
+Indentation matters 😢:
+
+- Nested expressions should be intended
+- function body is intended w.r.t. the function name
+- members of the `where` clause are intended from the `where`
+
+---
+
+# Let
+
+Contrary to `where`, `let` can be used in the body of functions:
+
+```hs
+-- | 'mkEmail "clement" "hurlin" "tweag" "io"' returns my email
+mkEmail firstName lastName domain ext =
+  let left = firstName ++ "." ++ lastName in
+  let right = domain ++ "." ++ ext in
+  left ++ "@" ++ right
+```
+
+Its syntax is: `let varName = expression in expression`
+
+???
+
+- What is the type of `mkEmail`?
+  - How does inference work?
 
 ---
 
