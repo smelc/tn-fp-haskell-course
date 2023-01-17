@@ -92,22 +92,22 @@ Define:
 ```hs
 instance Eq Bool where
   (==) a b = undefined
+```
 
+--
+
+<!-- exdown-skip 4 5 -->
+```hs
 instance Eq a => Eq (Maybe a) where
-  (==) a b = undefined
+  (==) _a _b = undefined
+
+instance Eq a => Eq [a] where
+  (==) _xs _ys = undefined
 ```
 
 ???
 
 - Discuss `equals` and `hashCode` in Java
-
-<!-- exdown-skip  -->
-```hs
-instance Eq a => Eq [a] where
-  (==) = undefined
-```
-
-???
 
 ```hs
 instance Eq a => Eq [a] where -- Build bigger instances from smaller ones
@@ -359,7 +359,6 @@ class Functor f where
 - What does `fmap` do?
 - Give instances:
   - `Maybe a`
-  - `Either a b`
   - `[a]`
 
 ---
@@ -407,6 +406,8 @@ Typeclasses:
 
 - Choose runtime behavior based on static types (/= dynamic dispatching)
 - Leverage the compiler's generation capabilities
+- Build APIs and features bottom up:
+  - from small values, to more structured values.
 
 ---
 

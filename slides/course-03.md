@@ -279,11 +279,10 @@ show :: Show a => a -> String
 </br>
 
 ```bash
-:type (<)
-(<) :: Ord a => a -> a -> Bool
+map2 :: [a] -> (a -> b) -> [b]
 ```
 
-- What is the type of `(<) 3`?
+- What is `map2`? How would you explain it to a coworker?
 
 --
 
@@ -340,20 +339,22 @@ To solve problems functionally:
 - Recursion: divide a problem into smaller subproblems
 - Fold: iterate over data, accumulate a value along the way
 
-<!-- exdown-skip 6 7 -->
+<!-- exdown-skip 1 3 4 -->
 ```hs
-data Tree a = Node a [Tree a]
-
-find :: (a -> Bool) -> Tree a -> Maybe a
-find f t = undefined
+data Tree a = ...
 
 map :: (a -> b) -> Tree a -> Tree b
 map f t = undefined
+
+find :: (a -> Bool) -> Tree a -> Maybe a
+find f t = undefined
 ```
 
 ???
 
 ```hs
+data Tree a = Node a [Tree a]  -- Discuss alternatives
+
 treeFind :: (a -> Bool) -> Tree a -> Maybe a
 treeFind f (Node x children) =
   if f x then Just x
