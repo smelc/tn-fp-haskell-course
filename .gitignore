@@ -1,8 +1,6 @@
 .direnv
 .venv
-ghc
-hls
-tps/dist-newstyle
+bin
+dist-newstyle
 slides/*.java
-slides/app/Course*.hs
-slides/dist-newstyle
+slides/Course*.hs

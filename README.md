@@ -28,15 +28,23 @@ But I've never done it.
 
 ### Development instruction
 
-- GHC and hls are installed in an isolated manner at the top-level of the repo
+- The Haskell compiler (GHC) is installed in an isolated manner, in `bin/ghc` (see below)
 - This requires [ghcup](https://www.haskell.org/ghcup) in `PATH` and that's all
+- When started from this directory, the [vscode Haskell extension](https://github.com/haskell/vscode-haskell)
+  will install the required [language server](https://github.com/haskell/haskell-language-server) on its own,
+  so nothing to do here.
 
 ```
-# Populate GHC, this matches PATH_ADD $(pwd)/ghc/bin in .envrc
-ghcup install ghc 8.10.7 --isolate $(pwd)/ghc
-# Populate hls, this matches PATH_ADD $(pwd)/hls/bin in .envrc
-ghcup install hls --isolate $(pwd)/hls
+mkdir -p bin/ghc
+# Instal cabal, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
+ghcup install cabal --isolate $(pwd)/bin/cabal
+# Populate GHC, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
+# Note that GHC's version number is also in .github/workflows/haskell.yml
+ghcup install ghc 9.4.7 --isolate $(pwd)/bin/ghc
 ```
+
+Because there is a [cabal.project](./cabal.project) file that pins the set of packages to a specific
+timestamp, this project is highly reproducible.
 
 ---
 
