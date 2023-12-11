@@ -28,6 +28,10 @@ But I've never done it.
 
 ### Development instruction
 
+These instructions are more [hermetic](https://bazel.build/basics/hermeticity) than
+the ones in [tps](./tps/README.md). This is intentional. If you are here to do the _travaux pratiques_,
+use the instructions in [tps](./tps/README.md).
+
 - The Haskell compiler (GHC) is installed in an isolated manner, in `bin/ghc` (see below)
 - This requires [ghcup](https://www.haskell.org/ghcup) in `PATH` and that's all
 - When started from this directory, the [vscode Haskell extension](https://github.com/haskell/vscode-haskell)

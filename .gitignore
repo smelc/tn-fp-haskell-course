@@ -3,4 +3,3 @@
 bin
 dist-newstyle
 slides/*.java
-slides/Course*.hs
