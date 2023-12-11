@@ -3,7 +3,7 @@
 # Continously build the *.hs files extract from
 # snippets of the *.md files
 
-ls *.md *.cabal | grep course | entr "./build_hs.sh" &
+ls *.md | grep course | entr "./extract_hs.sh && cabal build" &
 
 declare -r HS_CHECKER_PID="$!"
 

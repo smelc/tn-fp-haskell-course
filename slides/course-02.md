@@ -405,8 +405,8 @@ instance Collection Maybe where
   size = \case Nothing -> 0; Just _ -> 1
   toList = \case Nothing -> []; Just x -> [x]
 
-instance Mappable [] where
-  map f = \case [] -> []; (x : xs) -> f x : Course02.map f xs
+instance Mappable Maybe where
+  map _f = undefined
 ```
 
 ---
@@ -435,35 +435,6 @@ readEither _ = undefined
 Right 0
 > (readEither "not an int") :: Either String Int
 Left "Prelude.read: no parse"  # Not the best error message
-```
-
---
-
-**Cette fin de slide naze, parceque la syntaxe `Collection (Either a)` apparaît trop bizarre**
-
-* Abstracting over `Either`
-
-<!-- exdown-skip -->
-```hs
-instance Collection (Either a) where
-  size _ = undefined
-  isEmpty _ = undefined
-  toList _ = undefined
-
-instance Mappable (Either a) where
-  map f _ = undefined
-```
-
-???
-
-```hs
-instance Collection (Either a) where
-  size _ = 1
-  isEmpty _ = False
-  toList = \case Left _ -> []; Right b -> [b]
-
-instance Mappable (Either a) where
-  map f = \case Left a -> Left a; Right b -> Right (f b)
 ```
 
 ---
@@ -505,6 +476,25 @@ mkAccount2 email = Account { .. } -- Take fields from enclosing scope
 ```hs
 setBalance :: Int -> Account -> Account
 setBalance n account = account { balance = n } -- functional update
+```
+
+---
+
+# Abstracting over a record: `Interval`
+
+```hs
+data Interval a = Interval {
+  start :: a,
+  end :: a
+}
+
+instance Collection Interval where
+  size _ = undefined
+  isEmpty _ = undefined
+  toList _ = undefined
+
+instance Mappable Interval where
+  map _f _ = undefined
 ```
 
 ---

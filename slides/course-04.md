@@ -365,6 +365,8 @@ class Functor f where
 
 # Be lazy, rely on the compiler
 
+From course 2:
+
 ```hs
 data Interval a = Interval {
     start :: a,
@@ -373,7 +375,6 @@ data Interval a = Interval {
   deriving Functor
 ```
 
-- What can this type represent?
 - Write `Functor Interval`
 
 ---

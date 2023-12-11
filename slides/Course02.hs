@@ -61,8 +61,8 @@ instance Collection Maybe where
   size = \case Nothing -> 0; Just _ -> 1
   toList = \case Nothing -> []; Just x -> [x]
 
-instance Mappable [] where
-  map f = \case [] -> []; (x : xs) -> f x : Course02.map f xs
+instance Mappable Maybe where
+  map _f = undefined
 
 data Either a b =
     -- | The left case, commonly used as the error case
@@ -75,14 +75,6 @@ data Either a b =
 readEither :: Read a => String -> Either String a
 
 readEither _ = undefined
-
-instance Collection (Either a) where
-  size _ = 1
-  isEmpty _ = False
-  toList = \case Left _ -> []; Right b -> [b]
-
-instance Mappable (Either a) where
-  map f = \case Left a -> Left a; Right b -> Right (f b)
 
 data Account = Account {
     balance :: Int,
@@ -104,6 +96,19 @@ mkAccount2 email = Account { .. } -- Take fields from enclosing scope
 
 setBalance :: Int -> Account -> Account
 setBalance n account = account { balance = n } -- functional update
+
+data Interval a = Interval {
+  start :: a,
+  end :: a
+}
+
+instance Collection Interval where
+  size _ = undefined
+  isEmpty _ = undefined
+  toList _ = undefined
+
+instance Mappable Interval where
+  map _f _ = undefined
 
 class Semigroup a where
   -- | Associative binary operation

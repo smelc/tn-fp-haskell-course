@@ -82,9 +82,9 @@ data Account = Account {
 dubious :: [Account] -> [String]
 dubious accounts =
   accounts
-    & filter (\Account{balance} -> balance > 1000000)
-    & filter (\Account{email} -> "ponzi" `isInfixOf` email)
-    & filter (\Account{name} -> case name of Nothing -> True; Just _ -> False)
+    & filter (\account -> account.balance > 1000000)
+    & filter (\account -> "ponzi" `isInfixOf` account.email)
+    & filter (\account -> case account.name of Nothing -> True; Just _ -> False)
     & map email
 
 
