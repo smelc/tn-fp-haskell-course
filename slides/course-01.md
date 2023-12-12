@@ -4,11 +4,7 @@ class: center, middle
 
 ## Lesson 1
 
-![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
-
-<br/>
-
-![TN logo](img/tn.png)
+<img src="img/tweag-by-mc.png"/ height="96">![TN logo](img/tn.png)
 
 <br/>
 
@@ -53,15 +49,17 @@ Why use them:
 
 - Used in financial institutions: _earn more money_
   - BNP Paribas - Haskell
-  - [Cardano](https://cardano.org/) - Haskell
+  - [Cardano](https://cardano.org/) - Haskell, apply here: [https://apply.workable.com/io-global](https://apply.workable.com/io-global)
   - [Tezos](https://tezos.com/) - OCaml
   - Trading companies:
      - [Morgan Stanley](https://www.morganstanley.com/)
      - [Jane Street](https://www.janestreet.com/) - OCaml
+  - [Mercury](https://mercury.com/) - Haskell
+  - [Swan](https://fr.swan.io/) - Scala
 - _Work on interesting projects_:
   - European Space Agency 🚀
   - Tesla - Haskell
-  - [Kitty Hawk](https://kittyhawk.aero/) - Haskell
+  - [Trip Shot](https://www.tripshot.com/) - Haskell
 
 ???
 

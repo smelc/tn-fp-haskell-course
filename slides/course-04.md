@@ -4,11 +4,9 @@ class: center, middle
 
 ## Lesson 4
 
-![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
+<img src="img/tweag-by-mc.png"/ height="96">![TN logo](img/tn.png)
 
 <br/>
-
-![TN logo](img/tn.png)
 
 Clément Hurlin
 

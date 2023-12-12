@@ -4,11 +4,7 @@ class: center, middle
 
 ## Lesson 2
 
-![Tweag logo](img/tweag.png) ![Modus logo](img/modus-create.png)
-
-<br/>
-
-![TN logo](img/tn.png)
+<img src="img/tweag-by-mc.png"/ height="96">![TN logo](img/tn.png)
 
 <br/>
 
