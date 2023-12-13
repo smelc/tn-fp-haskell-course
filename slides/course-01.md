@@ -49,13 +49,10 @@ Why use them:
 
 - Used in financial institutions: _earn more money_
   - BNP Paribas - Haskell
-  - [Cardano](https://cardano.org/) - Haskell, apply here: [https://apply.workable.com/io-global](https://apply.workable.com/io-global)
   - [Tezos](https://tezos.com/) - OCaml
   - Trading companies:
      - [Morgan Stanley](https://www.morganstanley.com/)
      - [Jane Street](https://www.janestreet.com/) - OCaml
-  - [Mercury](https://mercury.com/) - Haskell
-  - [Swan](https://fr.swan.io/) - Scala
 - _Work on interesting projects_:
   - European Space Agency 🚀
   - Tesla - Haskell
@@ -65,9 +62,27 @@ Why use them:
 
 - Discuss incomes after graduating from TN
 - Salaire débutant ESN: 32K-40K
-- Discuss cryptos:
-  - What cryptos do you know?
-  - Licorne française crypto: Sorare
+
+---
+
+# Why functional programming?
+
+💯 My personal recommendations 😍
+
+- [Cardano](https://cardano.org/), Haskell: [https://apply.workable.com/io-global](https://apply.workable.com/io-global)
+- [Mercury](https://mercury.com/), Haskell: [https://mercury.com/jobs](https://mercury.com/jobs)
+- [Swan](https://fr.swan.io/), Scala: [https://www.welcometothejungle.com/fr/companies/swan/jobs](https://www.welcometothejungle.com/fr/companies/swan/jobs)
+
+</br>
+</br>
+
+<center>
+Those teams are at the top of their craft 💪
+</center>
+</br>
+<center>
+You will learn a lot working there
+</center>
 
 ---
 
