@@ -8,7 +8,7 @@ class: center, middle
 
 <br/>
 
-Clément Hurlin
+Clément Hurlin, Director of Engineering, Tweag
 
 [https://github.com/smelc/tn-fp-haskell-course]([https://github.com/smelc/tn-fp-haskell-course)
 
@@ -84,6 +84,12 @@ Those teams are at the top of their craft 💪
 You will learn a lot working there
 </center>
 
+???
+
+- Explain why there are many banking systems in here:
+  - GC okay
+  - Care about correctness
+
 ---
 
 # Why functional programming?
@@ -125,6 +131,9 @@ Highlight how things are more complicated in Java:
 
 - Need to handle `null`
 - Alternative implementations possible: in place change
+- Should the result be immutable?
+
+- Discuss different kind of lists
 
 ---
 
@@ -256,6 +265,7 @@ reverse (x : rest) = (reverse rest) ++ [x] -- Call reverse within reverse
 ???
 
 - Discuss whether they know map/reduce
+- Discuss heap problem/tail call optimization
 
 ---
 
@@ -326,7 +336,7 @@ Expressions can be freely extracted into variables or substituted (inlined), whi
 
 ---
 
-# Defining data structures
+# Algebraic Data Types
 
 ```hs
 data Version =
@@ -357,7 +367,7 @@ record SemVer(int x, int y, int z) implements Version { }
 
 ???
 
-Easy to define new expressions with _algebraic data types_
+- Also called _sum_ types
 
 ---
 
@@ -387,6 +397,13 @@ instance Contains Username String where
 toString :: Contains a String => a -> String
 toString (whatever :: a) = get whatever
 ```
+
+???
+
+- Explain typeclasses are open abstractions
+  - You can define them far away from the type's definition
+- Ask what's the problem?
+  - Conflicting definitions are possible
 
 <!--
 -- | Generic setter for containers
