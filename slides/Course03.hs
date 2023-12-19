@@ -1,9 +1,5 @@
-{-# Language LambdaCase #-}
-{-# Language NamedFieldPuns #-}
-{-# Language ScopedTypeVariables #-}
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
 {-# OPTIONS_GHC -Wno-unused-matches #-}
-
 
 module Course03 where
 

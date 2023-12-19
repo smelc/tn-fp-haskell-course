@@ -1,8 +1,4 @@
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 
 module Course01 where
 

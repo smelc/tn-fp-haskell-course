@@ -17,10 +17,6 @@ Clément Hurlin, Director of Engineering, Tweag
 
 ```hs
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 
 module Course01 where
 
@@ -249,6 +245,8 @@ Instead of loops, functional programs use:
   return result;
 }
 ```
+
+--
 
 <center>
 ⚠️ The Haskell <code>-></code> syntax is unrelated to Java lambdas 💣

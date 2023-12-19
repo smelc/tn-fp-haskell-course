@@ -16,9 +16,6 @@ Clément Hurlin
      used by exdown (see check.sh).
 
 ```hs
-{-# Language DeriveFunctor #-}
-{-# Language MultiParamTypeClasses #-}
-
 module Course04 where
 
 import Data.Word

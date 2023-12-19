@@ -37,11 +37,6 @@ In large companies you can:
      used by exdown (see check.sh).
 
 ```hs
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE RecordWildCards #-}
 
 module Course02 where
 

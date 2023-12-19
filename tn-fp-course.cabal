@@ -34,15 +34,20 @@ common common-all
                        -Wno-unused-imports
                        -Werror
                        -Wwarn=missing-home-modules
-    default-extensions: DataKinds
-                        DeriveGeneric
-                        DuplicateRecordFields
-                        NamedFieldPuns
-                        LambdaCase
-                        OverloadedRecordDot
-                        OverloadedStrings
-                        ScopedTypeVariables
-                        TypeApplications
+     default-extensions: DataKinds
+                         DeriveGeneric
+                         DeriveFunctor
+                         DuplicateRecordFields
+                         FlexibleContexts
+                         FlexibleInstances
+                         MultiParamTypeClasses
+                         NamedFieldPuns
+                         LambdaCase
+                         OverloadedRecordDot
+                         OverloadedStrings
+                         RecordWildCards
+                         ScopedTypeVariables
+                         TypeApplications
 
 library slides
     import:           common-all

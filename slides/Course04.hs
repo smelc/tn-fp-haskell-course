@@ -1,6 +1,3 @@
-{-# Language DeriveFunctor #-}
-{-# Language MultiParamTypeClasses #-}
-
 module Course04 where
 
 import Data.Word

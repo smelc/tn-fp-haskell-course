@@ -1,8 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE RecordWildCards #-}
 
 module Course02 where
 
@@ -81,9 +76,6 @@ data Account = Account {
     email :: String,
     name :: Maybe String
   }
-
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE RecordWildCards #-}
 
 mkAccount :: String -> Account
 mkAccount email = Account { balance = 0, email, name = Nothing }
