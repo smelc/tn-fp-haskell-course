@@ -120,15 +120,6 @@ class Bank x => BankAdmin x where
   -- | Create a new account
   createAccount :: x -> String -> IO ()
 
--- How does this function highlight the API design shortcoming?
-totalGetBalance :: BankAdmin x => x -> String -> IO Int
-totalGetBalance bank name =
-  case getBalance bank name of
-    Just account -> return account
-    Nothing -> do
-      createAccount bank name
-      totalGetBalance bank name
-
 -- http://learnyouahaskell.com/input-and-output
 
 main :: IO () -- The program entry point, always

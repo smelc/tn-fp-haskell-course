@@ -293,11 +293,6 @@ printSize t = do
   putStrLn (show (size t))
 ```
 
---
-
-- Is this an open or closed abstraction?
-- What is the ~~type~~ kind of `Collection`?
-
 ???
 
 Java:
@@ -307,7 +302,7 @@ Java:
 
 Subtlety:
 
-- You cannot make a class implement an interface outside its definition
+- In Java, you cannot make a class implement an interface outside its definition
 
 - What properties does `Collection` enjoy? 🧱
 
@@ -319,7 +314,11 @@ Subtlety:
 data Maybe a = -- Like Optional in Java
     Nothing
   | Just a
+```
 
+`Maybe` is used to model computation that can fail:
+
+```hs
 -- | Returns the first element of a list, if any
 safeHead :: [a] -> Maybe a
 safeHead []      = Nothing
@@ -376,8 +375,6 @@ instance Collection Maybe where
 --
 
 <br/>
-
-* What other function could we add to `Collection`?
 
 --
 
@@ -444,14 +441,10 @@ data Account = Account {
 
 - Distinguish the type (left `Account`) from the value constructor (right `Account`)
 - Talk about field names being functions
-- Mention `{-# LANGUAGE DuplicateRecordFields #-}`
 
 --
 
 ```hs
-{-# LANGUAGE NamedFieldPuns #-}
-{-# LANGUAGE RecordWildCards #-}
-
 mkAccount :: String -> Account
 mkAccount email = Account { balance = 0, email, name = Nothing }
 
@@ -557,19 +550,6 @@ class Bank x => BankAdmin x where
 
 - Create stack of abstractions by using `=>` constraints
 
---
-
-```hs
--- How does this function highlight the API design shortcoming?
-totalGetBalance :: BankAdmin x => x -> String -> IO Int
-totalGetBalance bank name =
-  case getBalance bank name of
-    Just account -> return account
-    Nothing -> do
-      createAccount bank name
-      totalGetBalance bank name
-```
-
 ???
 
 - `isJust (getBalance s) ==> isAccount s`
@@ -582,6 +562,18 @@ totalGetBalance bank name =
 
 ---
 
+# Types : Tree
+
+- How would you define a tree containing values of type `a`?
+
+Define functions on your trees:
+
+- `values :: Tree a -> [a]`
+- `depth :: Tree a -> Int`
+- `fmap :: (a -> b) -> Tree a -> Tree b`
+
+---
+
 # Recap
 
 - Literal types: `Bool`, `Int`
@@ -591,7 +583,7 @@ totalGetBalance bank name =
 
 Not done:
 
-- Tuples and records
+- Tuples
 - `IO`
 
 ???
@@ -683,18 +675,6 @@ Expressions in a `do` statement of type `IO a`:
 - Must be of the form:
   - `x <- someIO`, where `x :: a` and `someIO :: IO a`
   - `y`, where `y :: IO ()`
-
----
-
-# Types : Tree
-
-- How would you define a tree containing values of type `a`?
-
-Define functions on your trees:
-
-- `values :: Tree a -> [a]`
-- `depth :: Tree a -> Int`
-- `fmap :: (a -> b) -> Tree a -> Tree b`
 
 ---
 
