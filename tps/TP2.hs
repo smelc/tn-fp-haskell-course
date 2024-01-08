@@ -1,5 +1,6 @@
 -- Build me with: cabal build TP2.hs
 -- Execute me with: cabal run -v0 TP2.hs
+-- Load me in the REPL with: cabal repl TP2.hs, then use :r to reload the code upon changing
 
 module Main where
 

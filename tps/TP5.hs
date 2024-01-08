@@ -1,5 +1,6 @@
 -- Build me with: cabal build TP5.hs
 -- Execute me with: cabal run -v0 TP5.hs
+-- Load me in the REPL with: cabal repl TP5.hs, then use :r to reload the code upon changing
 --
 -- This lab exercice uses the following library:
 --
