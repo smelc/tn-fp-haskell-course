@@ -26,6 +26,7 @@ common common-all
                      , process
                      , QuickCheck
                      , scotty
+                     , split
                      , text
                      , vector
      ghc-options:      -Wall
