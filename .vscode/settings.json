@@ -1,0 +1,4 @@
+{
+  "haskell.manageHLS": "GHCup",
+  "haskell.plugin.hlint.diagnosticsOn": false
+}
