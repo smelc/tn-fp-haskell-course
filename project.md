@@ -4,6 +4,8 @@
 
 14 février avant minuit par mail : thomas.bagrel@tweag.io
 
+Le projet est à réaliser en binône ou seul, au choix.
+
 ## Objectif
 
 Écrire un programme "réaliste" en Haskell, en utilisant les concepts vus en cours. La clarté et lisibilité du code, la production d'un code correct, et l'organisation du projet seront mise en avant dans l'évaluation par rapport à un code débordant de features mais avec des bugs/edge case non gérés.
@@ -93,7 +95,7 @@ Si vous réalisez le bonus, merci de l'indiquer dans le fichier `README.md` du p
 
 ## Rendu
 
-Un dossier compressé au format `<nom>-<prenom>-projet-haskell.zip` contenant :
+Un dossier compressé au format `<nom1>[-<nom2>]-projet-haskell.zip` contenant :
 
 - les sources Haskell du projet (code dans un dossier `src`, fichiers de projets/tooling à la racine de l'archive);
 - un fichier `README.md` à la racine également, décrivant le projet, comment le compiler, comment l'exécuter, et précisant tout choix particulier ou choix d'architecture (notamment pour les options de ligne de commande) réalisé. Un document long n'est pas attendu, le but est simplement de lever toute incertitude qui ne pourrait pas être facilement expliquée dans les commentaires ou déduite du code source. N'hésitez pas à préciser les difficultés rencontrées, les bugs connus, les features non implémentées, etc. ;
