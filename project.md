@@ -47,7 +47,7 @@ Au format décimal ou en notation scientifique, tel que lu par la fonction [`rea
 
 ### Symbole
 
-Composés de la plus longue séquence d'octets à partir du point de lecture qui n'inclue aucun des caractères suivants : `'('` (parenthèse ouvrante), `')'` (parenthèse fermante), `'"'` (_double quote_), `'\\'` (_backslash_ simple). Tous les autres caractères sont autorisés. Un symbole ne peut pas être de longueur 0.
+Composés de la plus longue séquence d'octets à partir du point de lecture qui n'inclue aucun des caractères suivants : `'('` (parenthèse ouvrante), `')'` (parenthèse fermante), `'"'` (_double quote_), `'\\'` (_backslash_ simple) ; et qui n'est pas un entier ou flottant valide. Tous les autres caractères sont autorisés. Un symbole ne peut pas être de longueur 0.
 
 ### Liste
 
