@@ -67,7 +67,7 @@ Le parsing des S-expressions pourra être réalisée au besoin via une librairie
 - Les entiers et flottants seront mappés vers des _numbers_ en JSON.
 - Concernant les symboles :
   - Les symboles `true` et `false` seront mappées vers les booléens `true` et `false` en JSON.
-  - Le symboles `null` sera mappé vers la valeur `null` en JSON.
+  - Le symbole `null` sera mappé vers la valeur `null` en JSON.
   - Les autres symboles `<symbole>` seront mappés vers un dictionnaire `{ "symbol": "<symbole>" }` en JSON.
 
 Des librairies telles que [`json`](https://hackage.haskell.org/package/json-0.9/candidate/docs/Text-JSON.html) ou [`aeson`](https://hackage.haskell.org/package/aeson-2.2.1.0/docs/Data-Aeson.html) pourront être utilisés au besoin, sans impact sur la notation.
@@ -79,7 +79,7 @@ L'API HTTP peut être implémentée en utilisant le framework [Scotty](https://h
 - avec un code `200 OK` et le document JSON correspondant au résultat de la conversion si celle-ci s'est bien passée ;
 - avec un code `400 Bad Request` et un document JSON (potentiellement, juste une chaîne) correspondant à l'erreur si la S-expression n'est pas valide.
 
-L'exécutable devra prendre en argument un numéro de port sur lequel écouter (et potentiellement une adresse de `bind`, typiquement `127.0.0.1` pour n'écouter qu'en local ou `0.0.0.0` pour écouter sur toutes les interfaces). Ces arguments pourront être passés en option de la ligne de commande (avec valeurs par défaut), en paramètre obligatoire, via des variables d'environnement, ou via un fichier de configuration, au choix (il faudra seulement indiqué l'option retenue et l'usage attendu dans le `README.md` du projet).
+L'exécutable devra prendre en argument un numéro de port sur lequel écouter (et potentiellement une adresse de `bind`, typiquement `127.0.0.1` pour n'écouter qu'en local ou `0.0.0.0` pour écouter sur toutes les interfaces). Ces arguments pourront être passés en option de la ligne de commande (avec valeurs par défaut), en paramètre obligatoire, via des variables d'environnement, ou via un fichier de configuration, au choix (il faudra seulement indiquer l'option retenue et l'usage attendu dans le `README.md` du projet).
 
 ## Bonus : interface UI web
 
