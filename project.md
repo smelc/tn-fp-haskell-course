@@ -1,5 +1,9 @@
 # Projet Programmation fonctionnelle en Haskell
 
+## Rendu
+
+14 février avant minuit par mail : thomas.bagrel@tweag.io
+
 ## Objectif
 
 Écrire un programme "réaliste" en Haskell, en utilisant les concepts vus en cours. La clarté et lisibilité du code, la production d'un code correct, et l'organisation du projet seront mise en avant dans l'évaluation par rapport à un code débordant de features mais avec des bugs/edge case non gérés.
