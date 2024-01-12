@@ -28,6 +28,7 @@ common common-all
                      , scotty
                      , split
                      , text
+                     , utf8-string
                      , vector
      ghc-options:      -Wall
                        -Wunticked-promoted-constructors

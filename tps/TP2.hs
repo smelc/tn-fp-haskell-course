@@ -66,3 +66,5 @@ main = do
 -- https://hackage.haskell.org/package/random-1.2.1/docs/System-Random.html#v:random
 -- Use mkStdGen to obtain a value that satisfies the constraint "RandomGen g":
 -- https://hackage.haskell.org/package/random-1.2.1/docs/System-Random.html#t:StdGen
+--
+-- Use https://hoogle.haskell.org/ to find the functions you need

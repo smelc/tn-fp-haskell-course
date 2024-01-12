@@ -35,3 +35,5 @@ main = do
 --    the URL passes the filter. Write tests.
 -- 5/ Generalize your filter: allow them to be whitelist, i.e. an URL
 --    passes the filter only if matches the filter. Write tests.
+--
+-- Use https://hoogle.haskell.org/ to find the functions you need

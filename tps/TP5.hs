@@ -16,8 +16,9 @@
 --
 -- Goals:
 --
--- 1. Set the environment variable "SMELC_PAT" to the token given by me:
---    export SMELC_PAT="..." in the terminal where you will run 'cabal' commands.
+-- 1. Set the environment variable "GITHUB_PAT" to a token for your GitHub account, as explained here:
+--    https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
+--    export GITHUB_PAT="..." in the terminal where you will run 'cabal' commands.
 -- 2. Execute 'cabal run -v0 TP5.hs'. Visit localhost:3000 in a web browser.
 --    Observe that the title 'Hello' is printed.
 -- 3. Modify data passed to the call 'html "..."' in the main function below,
@@ -36,76 +37,72 @@
 --    Display the list of commits hashes in the webserver, below the repository's title.
 --    Take inspiration from the previous steps. Possibly use https://app.quicktype.io/
 --
--- Advice: use https://hoogle.haskell.org/ to find the functions you need
---
+-- Use https://hoogle.haskell.org/ to find the functions you need and
+-- if you need string conversions, get inspiration from https://gist.github.com/dino-/28b09c465c756c44b2c91d777408e166
 {-# LANGUAGE DataKinds #-}
 
 module Main where
 
-import Data.Aeson
-import Web.Scotty
-import GHC.Base (build)
-import Network.HTTP.Req
-import qualified Network.HTTP.Req as Req
-import qualified Data.ByteString.Char8 as Bs
-import Control.Monad.IO.Class
-import System.Environment
-import Data.Maybe (fromMaybe)
-import System.Exit
-import qualified Data.Text as T
-import qualified Data.Text.Lazy as L
-import GHC.Generics
-
-authUsername :: Bs.ByteString
-authUsername = "smelc"
+import           Control.Monad.IO.Class
+import           Data.Aeson
+import qualified Data.ByteString        as BS
+import           Data.Maybe             (fromMaybe)
+import qualified Data.Text              as T
+import qualified Data.Text.Encoding     as T
+import qualified Data.Text.Lazy         as TL
+import           GHC.Base               (build)
+import           GHC.Generics
+import           Network.HTTP.Req
+import qualified Network.HTTP.Req       as Req
+import           System.Environment
+import           System.Exit
+import           Web.Scotty
 
 -- | Subset of the data returned by the endpoint api.github.com/users/USER/repos
 -- See https://docs.github.com/en/rest/repos/repos#list-repositories-for-a-user
 data Repo = Repo {
-    name :: T.Text
+    name :: String
   } deriving (Show, Generic)
 
 instance ToJSON Repo -- Automatically generate a json->Repo parser
 instance FromJSON Repo -- Automatically generate a Repo->json serializer
 
--- | The 'req' 'Option' for authenticating to GitHub
-optionsFor :: Bs.ByteString -> (Option 'Https)
-optionsFor pat =
-  (Req.header "User-Agent" authUsername) <>
-      (basicAuth authUsername pat)
+yourGitHubHandle :: BS.ByteString
+yourGitHubHandle = "smelc" -- Put your GitHub handle here, for example mine is "smelc"
 
--- authPassword :: B.ByteString
--- authPassword is obtained by reading the SMELC_PAT environment variable
--- (see main below)
+-- | The 'req' 'Option' for authenticating to GitHub
+optionsFor :: BS.ByteString -> BS.ByteString -> (Option 'Https)
+optionsFor pat user =
+  (Req.header "User-Agent" user ) <> (basicAuth user pat)
 
 -- | Prints to standard output the GitHub repositories of 'user'.
 -- 'pat' stands for 'Personal access token'. It is used to authenticate to GitHub.
-printUserRepositories :: Bs.ByteString -> T.Text -> IO ()
+printUserRepositories :: BS.ByteString -> BS.ByteString -> IO ()
 printUserRepositories pat user = runReq defaultHttpConfig $ do
-  let opts = optionsFor pat
-  bs <- req GET (https "api.github.com" /: "users" /: user /: "repos") NoReqBody bsResponse opts
-  liftIO $ Bs.putStrLn (responseBody bs)
+  let opts = optionsFor pat user
+  bs <- req GET (https "api.github.com" /: "users" /: T.decodeUtf8 user /: "repos") NoReqBody bsResponse opts
+  liftIO $ BS.putStr (responseBody bs)
 
 -- | Returns the GitHub repositories of 'user'.
 -- 'pat' stands for 'Personal access token'. It is used to authenticate to GitHub.
-getUserRepositories :: Bs.ByteString -> T.Text -> IO [Repo]
+getUserRepositories :: BS.ByteString -> BS.ByteString -> IO [Repo]
 getUserRepositories pat user = runReq defaultHttpConfig $ do
-  let opts = optionsFor pat
-  response <- req GET (https "api.github.com" /: "users" /: user /: "repos") NoReqBody jsonResponse opts
+  let opts = optionsFor pat user
+  response <- req GET (https "api.github.com" /: "users" /: "smelc" /: "repos") NoReqBody jsonResponse opts
   return (responseBody response)
 
 main :: IO ()
 main = do
-  accessToken <- lookupEnv "SMELC_PAT"
+  accessToken <- lookupEnv "GITHUB_PAT"
   case accessToken of
     Nothing -> do
-      putStrLn "SMELC_PAT environment variable should be specified"
+      putStrLn "GITHUB_PAT environment variable should be specified, please create one as follows: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic"
       exitWith $ ExitFailure 1
     Just accessToken -> do
-      let accessToken' = Bs.pack accessToken
+      let accessToken' :: BS.ByteString = T.encodeUtf8 . T.pack $ accessToken
       putStrLn ("Starting server on: localhost:" ++ show port)
-      _ <- printUserRepositories accessToken' "smelc" -- This is the line generating a lot of output, you can comment it
-      repos <- getUserRepositories accessToken' "smelc"
+      _ <- printUserRepositories accessToken' yourGitHubHandle -- This is the line generating a lot of output, you can comment it
+      repos <- getUserRepositories accessToken' yourGitHubHandle
       putStrLn $ show repos
       scotty port $
         get "/" $

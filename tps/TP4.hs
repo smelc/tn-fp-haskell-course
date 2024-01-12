@@ -28,6 +28,8 @@ import Test.QuickCheck
 -- For example, pyEval "2 * 3" returns "6"
 -- For 'readProcess' documentation, see:
 -- https://hackage.haskell.org/package/process-1.6.13.2/docs/System-Process.html#v:readProcess
+--
+-- Use https://hoogle.haskell.org/ to find the functions you need
 pyEval :: String -> IO String
 pyEval expr = do
   readProcess "python3" ["-c", "print(" ++ expr ++ ", end='')"] ""
