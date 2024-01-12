@@ -2,6 +2,10 @@
 -- Execute me with: cabal run -v0 TP1.hs
 -- Load me in the REPL with: cabal repl TP1.hs, then use :r to reload the code upon changing
 
+--
+-- In this file, you need to replace the @undefined@ calls by real code
+--
+
 module Main where
 
 import Debug.Trace
@@ -64,6 +68,14 @@ sumFold _ = undefined
 propSumRecSumFold :: [Int] -> Bool
 propSumRecSumFold _ = undefined
 
--- Then, write a map interface using lists
--- Define properties between the different members of the API
--- Test them with quickCheck
+-- | Write the fmap instance for 'Maybe'
+fmapMaybe :: (a -> b) -> (Maybe a) -> (Maybe b)
+fmapMaybe _f = undefined
+
+-- | Write a property of 'fmapMaybe' that is true for all functions
+fmapMaybeProp1 :: (a -> b) -> Bool
+fmapMaybeProp1 = undefined
+
+-- | Write a property of 'fmapMaybe' that is true for any @Maybe a@ fvalue
+fmapMaybeProp2 :: Maybe a -> Bool
+fmapMaybeProp2 = undefined
