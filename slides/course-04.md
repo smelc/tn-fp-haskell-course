@@ -396,6 +396,74 @@ frequency :: [(Int, Gen a)] -> Gen a
 
 ---
 
+# `newtype`
+
+```hs
+-- | @makeURL "http" "google.fr" "search/advanced"@ returns
+-- @"http://www.google.fr/search/advanced"@
+makeURL :: String -> String -> String -> String
+makeURL = undefined
+```
+
+<center>
+  What's error prone about this function for callers?
+</center>
+
+--
+
+```hs
+newtype Protocol = Protocol String
+
+newtype Hostname = Hostname String
+
+newtype Segments = Segments [String]
+
+makeURL' :: Protocol -> Hostname -> Segments -> String
+makeURL' = undefined
+```
+
+`newtype`:
+* Cost-free (runtime) disambiguation 💪
+* ⚠️ It's just names! ⚠️
+
+---
+
+# Phantom Types
+
+```hs
+data User = User { name :: String, avatar :: FilePath, id :: Int }
+
+-- | @authenticate user password@ tries to authenticate @user@ with @password@
+authenticate :: User -> String -> Bool
+authenticate = undefined
+```
+
+<center>
+  How to model that a user is authenticated to the system?
+</center>
+
+--
+
+```hs
+data Guest
+data Authenticated
+
+-- @type@ defines aliases (shortcuts)
+type UserWithAuthStatus a = User
+
+authenticate' :: User -> String -> UserWithAuthStatus Authenticated
+authenticate' = undefined
+```
+
+--
+
+Phantom types:
+
+* Use type parameters as markers to distinguish data
+* Could you do that in Java?
+
+---
+
 # Recap
 
 Typeclasses:
@@ -409,9 +477,15 @@ Typeclasses:
 
 # Recommended reading
 
-- http://learnyouahaskell.com/types-and-typeclasses#typeclasses-101
+- https://learnyouahaskell.github.io/types-and-typeclasses.html#typeclasses-101
 - http://book.realworldhaskell.org/read/using-typeclasses.html
 - https://wiki.haskell.org/Typeclassopedia
+
+---
+
+# Type Applications
+
+TODO for next year
 
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).

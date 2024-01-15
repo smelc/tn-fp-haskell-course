@@ -431,8 +431,8 @@ Functional toolbox:
 
 # Recommended Reading
 
-- http://learnyouahaskell.com/syntax-in-functions
-- http://learnyouahaskell.com/higher-order-functions
+- https://learnyouahaskell.github.io/syntax-in-functions.html
+- https://learnyouahaskell.github.io/higher-order-functions.html
 
 ---
 
@@ -531,7 +531,7 @@ If done at this point and time remains:
 
 ---
 
-# More composition
+# More composition: monads
 
 ```bash
 > :type (>>=)
@@ -546,6 +546,36 @@ mkEmailSafe user host ext =
   checkExt ext
   >>= \(extension :: String) ->
   Right (username ++ "@" ++ host ++ "." ++ extension)
+  where
+    checkUsername :: String -> Either String String
+    checkUsername s =
+      if all isLower s
+        then Right s
+        else Left ("Username should be lowercase, but found: " ++ s)
+    checkExt :: String -> Either String String
+    checkExt "com" = Right "com"
+    checkExt "fr" = Right "fr"
+    checkExt s =
+      Left ("Unexpected extension: "
+              ++ show s
+              ++ ". Expected one of: [\"com\", \"fr\"]")
+```
+
+---
+
+# User friendly monads: the `do` notation
+
+```bash
+> :type (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+```
+
+```hs
+mkEmailSafe' :: String -> String -> String -> Either String String
+mkEmailSafe' user host ext = do
+  username <- checkUsername user
+  extension <- checkExt ext
+  pure (username ++ "@" ++ host ++ "." ++ extension)
   where
     checkUsername :: String -> Either String String
     checkUsername s =

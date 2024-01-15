@@ -3,8 +3,9 @@
 -- Load me in the REPL with: cabal repl TP1.hs, then use :r to reload the code upon changing
 
 --
--- In this file, you need to replace the @undefined@ calls by real code
+-- In this file, you need to replace the @undefined@ calls by real code.
 --
+-- Resource for the syntax of functions: https://learnyouahaskell.github.io/syntax-in-functions.html
 
 module Main where
 

@@ -109,3 +109,14 @@ main = do
           html "<h1>Hello</h1>"
   where
     port :: Int = 3000
+
+data User = User { name :: String, avatar :: FilePath, id :: Int }
+
+-- | @authenticate user password@ tries to authenticate @user@ with @password@
+authenticate :: User -> String -> UserWithAuthStatus Authenticated
+authenticate = undefined
+
+data Guest
+data Authenticated
+
+type UserWithAuthStatus a = User

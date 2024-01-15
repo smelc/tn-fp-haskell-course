@@ -446,6 +446,7 @@ Property-based testing:
 
 # Recommended Reading
 
+- https://learnyouahaskell.github.io/chapters.html
 - http://book.realworldhaskell.org/read/getting-started.html
 
 <!-- Machinery for making the snippets valid, not shown, only

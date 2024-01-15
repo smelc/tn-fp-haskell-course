@@ -85,3 +85,32 @@ data Interval a = Interval {
   }
   deriving Functor
 
+-- | @makeURL "http" "google.fr" "search/advanced"@ returns
+-- @"http://www.google.fr/search/advanced"@
+makeURL :: String -> String -> String -> String
+makeURL = undefined
+
+newtype Protocol = Protocol String
+
+newtype Hostname = Hostname String
+
+newtype Segments = Segments [String]
+
+makeURL' :: Protocol -> Hostname -> Segments -> String
+makeURL' = undefined
+
+data User = User { name :: String, avatar :: FilePath, id :: Int }
+
+-- | @authenticate user password@ tries to authenticate @user@ with @password@
+authenticate :: User -> String -> Bool
+authenticate = undefined
+
+data Guest
+data Authenticated
+
+-- @type@ defines aliases (shortcuts)
+type UserWithAuthStatus a = User
+
+authenticate' :: User -> String -> UserWithAuthStatus Authenticated
+authenticate' = undefined
+
