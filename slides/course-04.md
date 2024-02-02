@@ -18,6 +18,7 @@ Clément Hurlin
 ```hs
 module Course04 where
 
+import Control.Monad.IO.Class
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 ```
@@ -192,12 +193,29 @@ Typeclasses bear similarities with Java interfaces, but:
 
 - When a Java class is defined, all its interfaces must be declared. Typeclasses,
   however, don't have to be defined with the type.
-- Typeclasses are more general because they support multiple parameters:
+- Typeclasses are more general because they support multiple type parameters
 
 ```hs
--- | Values that are initialized from a single parameter.
-class Empty a b where
-  empty :: a -> b
+class (MonadIO m) => MonadLogger m where
+  log :: String -> m ()
+
+-- | Generic REST GET interface
+class REST a b where
+  eval :: (MonadIO m, MonadLogger m) => a -> m b
+```
+
+--
+
+```hs
+data PR = PR {
+  owner :: String,
+  repo :: String,
+  number :: Int
+}
+
+-- | Instance checking that a PR CI is green
+instance REST PR Bool where
+  eval = undefined
 ```
 
 ---
@@ -351,7 +369,6 @@ class Functor f where
   fmap :: (a -> b) -> f a -> f b
 ```
 
-- What does `fmap` do?
 - Give instances:
   - `Maybe a`
   - `[a]`

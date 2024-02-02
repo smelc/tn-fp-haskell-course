@@ -1,5 +1,6 @@
 module Course04 where
 
+import Control.Monad.IO.Class
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 
@@ -50,9 +51,21 @@ data Version =
     -- | Version number of the form "x.y.z"
   | SemVer Int Int Int
 
--- | Values that are initialized from a single parameter.
-class Empty a b where
-  empty :: a -> b
+class (MonadIO m) => MonadLogger m where
+  log :: String -> m ()
+
+-- | Generic REST GET interface
+class REST a b where
+  eval :: (MonadIO m, MonadLogger m) => a -> m b
+
+data PR = PR {
+  owner :: String,
+  repo :: String,
+  number :: Int
+}
+
+instance REST PR Bool where
+  eval = undefined
 
 data BankAction =
     -- | Une dépense
