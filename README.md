@@ -1,7 +1,7 @@
 ## Course on functional programming - Haskell
 
-This course is given at [Telecom Nancy](https://smelc.github.io/tn-fp-haskell-course/slides/)
-at the end of 2021 in _3A_.
+This course was given at [Telecom Nancy](https://smelc.github.io/tn-fp-haskell-course/slides/)
+at the end of 2021, 2022, and 2023 in _3A_.
 
 ### Online version
 
@@ -39,7 +39,7 @@ use the instructions in [tps](./tps/README.md).
   so nothing to do here.
 
 ```
-mkdir -p bin/ghc
+mkdir -p bin/{cabal,ghc}
 # Instal cabal, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
 ghcup install cabal --isolate $(pwd)/bin/cabal
 # Populate GHC, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
