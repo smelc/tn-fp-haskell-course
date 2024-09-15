@@ -54,4 +54,4 @@ To validate code snippets within slides, see [slides/README.md](slides/README.md
 
 ---
 
-This course is funded by my employer: [Tweag](https://www.tweag.io/)
+This course is funded by my employer: [Modus Create](https://moduscreate.com/)
