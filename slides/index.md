@@ -7,6 +7,7 @@ Here is the list of lessons:
 1. [Types](course-02.md)
 1. [Functions](course-03.md)
 1. [Polymorphism, typeclasses](course-04.md)
+1. [Monads and more](course-05.md)
 
 And the list of TPs (_travaux pratiques_):
 

@@ -500,10 +500,6 @@ Typeclasses:
 
 ---
 
-# Type Applications
-
-TODO for next year
-
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).
 
