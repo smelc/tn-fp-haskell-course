@@ -45,6 +45,7 @@ Why use them:
 
 - Used in financial institutions: _earn more money_
   - BNP Paribas - Haskell
+  - [Standard Chartered](https://www.sc.com/) - Haskell
   - [Tezos](https://tezos.com/) - OCaml
   - Trading companies:
      - [Morgan Stanley](https://www.morganstanley.com/)
@@ -68,6 +69,7 @@ Why use them:
 - [Cardano](https://cardano.org/), Haskell: [https://apply.workable.com/io-global](https://apply.workable.com/io-global)
 - [Mercury](https://mercury.com/), Haskell: [https://mercury.com/jobs](https://mercury.com/jobs)
 - [Swan](https://fr.swan.io/), Scala: [https://www.welcometothejungle.com/fr/companies/swan/jobs](https://www.welcometothejungle.com/fr/companies/swan/jobs)
+- [Flowie](https://www.get-flowie.com/) - Scala
 
 </br>
 </br>
@@ -177,17 +179,17 @@ Java ☕
 - 2018: Java 10 brings local variable type inference
 - 2019: Java 12 brings more expressive `switch` (pattern matching)
 - 2020: Java 15 brings records and sealed classes, and more pattern matching
-- 2021: Java 16 brings more pattern matching
-- 2021: Java 17 brings guards in patterns
+- 2021 - 2024: Java 16, 17, 19, and 20 all bring more expressive pattern matching
 
 Python 🐍
 
-- 1994: version 1.0 has `lambda`, `map`, `filter`
+<!-- - 1994: version 1.0 has `lambda`, `map`, `filter` -->
 - 2000: version 2.0 brings list comprehension
-- 2001: version 2.7 brings `dict` comprehension
+<!-- - 2001: version 2.7 brings `dict` comprehension -->
 - 2015: version 3.5 brings types hinting
 - 2020: version 3.10 brings pattern matching
 - 2022: version 3.11 brings more types
+- 2023: version 3.12 improve ergonomics for type parameters syntax and generic types
 
 The same goes for: C#, Javascript, C++
 
