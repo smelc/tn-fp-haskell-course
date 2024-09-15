@@ -71,17 +71,17 @@ readEither :: Read a => String -> Either String a
 
 readEither _ = undefined
 
-data Account = Account {
+data Account = MkAccount {
     balance :: Int,
     email :: String,
     name :: Maybe String
   }
 
 mkAccount :: String -> Account
-mkAccount email = Account { balance = 0, email, name = Nothing }
+mkAccount email = MkAccount { balance = 0, email, name = Nothing }
 
 mkAccount2 :: String -> Account
-mkAccount2 email = Account { .. } -- Take fields from enclosing scope
+mkAccount2 email = MkAccount { .. } -- Take fields from enclosing scope
   where
     balance = 0
     name = Nothing

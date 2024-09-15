@@ -67,7 +67,7 @@ fromMaybe :: a -> Maybe a -> a
 fromMaybe a Nothing  = a
 fromMaybe _ (Just a) = a
 
-data Account = Account {
+data Account = MkAccount {
     balance :: Int,
     email :: String,
     name :: Maybe String

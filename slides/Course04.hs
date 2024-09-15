@@ -58,12 +58,13 @@ class (MonadIO m) => MonadLogger m where
 class REST a b where
   eval :: (MonadIO m, MonadLogger m) => a -> m b
 
-data PR = PR {
+data PR = MkPR {
   owner :: String,
   repo :: String,
   number :: Int
 }
 
+-- | Instance checking that a PR CI is green
 instance REST PR Bool where
   eval = undefined
 
@@ -86,13 +87,13 @@ instance Semigroup BankAction where
 -- Only >= 0 number of votes makes sense
 type Nat = Word16
 
-data Reactions = Reactions {
+data Reactions = MkReactions {
     hearts :: Nat,
     thumbsUp :: Nat,
     thumbsDown :: Nat
   }
 
-data Interval a = Interval {
+data Interval a = MkInterval {
     start :: a,
     end :: a
   }
@@ -103,16 +104,16 @@ data Interval a = Interval {
 makeURL :: String -> String -> String -> String
 makeURL = undefined
 
-newtype Protocol = Protocol String
+newtype Protocol = MkProtocol String
 
-newtype Hostname = Hostname String
+newtype Hostname = MkHostname String
 
-newtype Segments = Segments [String]
+newtype Segments = MkSegments [String]
 
 makeURL' :: Protocol -> Hostname -> Segments -> String
 makeURL' = undefined
 
-data User = User { name :: String, avatar :: FilePath, id :: Int }
+data User = MkUser { name :: String, avatar :: FilePath, id :: Int }
 
 -- | @authenticate user password@ tries to authenticate @user@ with @password@
 authenticate :: User -> String -> Bool

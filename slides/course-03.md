@@ -299,7 +299,7 @@ map :: (a -> b) -> [a] -> [b]
 ```
 
 ```hs
-data Account = Account {
+data Account = MkAccount {
     balance :: Int,
     email :: String,
     name :: Maybe String
