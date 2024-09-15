@@ -9,7 +9,7 @@ Visit [https://smelc.github.io/tn-fp-haskell-course/slides/](https://smelc.githu
 
 ### Offline version, for writing the slides
 
-The [slides](https://github.com/smelc/tn-fp-haskell-course/blob/master/slides)
+The [slides](slides)
 folder uses [remark](https://github.com/gnab/remark).
 To display the slides (be it for presenting or for developing them),
 you need to serve the `slides` directory with an http server:
@@ -49,6 +49,8 @@ ghcup install ghc 9.4.7 --isolate $(pwd)/bin/ghc
 
 Because there is a [cabal.project](./cabal.project) file that pins the set of packages to a specific
 timestamp, this project is highly reproducible.
+
+To validate code snippets within slides, see [slides/README.md](slides/README.md).
 
 ---
 

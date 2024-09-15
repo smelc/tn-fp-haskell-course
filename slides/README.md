@@ -3,9 +3,19 @@
 The content is within `*.md` files.
 
 * `index.md` is the index page of the [online version](https://smelc.github.io/tn-fp-haskell-course/)
-* `check.sh`, to continuously check the code snippets are valid.
-  Requires [entr](https://eradman.com/entrproject/). Calls
-  `build_hs.sh` and `build_java.sh` internally.
+
+To check that code snippets are valid, run the following from the repo's top-level:
+
+```shell
+cd slides && ./extract_hs.sh; cd -
+cabal build all
+```
+
+and for Java files:
+
+```shell
+cd slides && ./build_java.sh; cd -
+```
 
 # Inspiration
 
