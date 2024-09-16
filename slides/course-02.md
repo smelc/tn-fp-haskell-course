@@ -274,7 +274,11 @@ class Collection t where
   isEmpty :: t a -> Bool
   isEmpty x = (size x) == 0 -- Default implementation
   toList :: t a -> [a]
+```
 
+--
+
+```hs
 -- | The list type is a collection
 instance Collection [] where
   size l = case l of

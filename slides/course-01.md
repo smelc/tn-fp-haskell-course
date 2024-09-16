@@ -58,7 +58,7 @@ Why use them:
 ???
 
 - Discuss incomes after graduating from TN
-- Salaire débutant ESN: 32K-40K
+- Salaire débutant ESN: 35K-40K
 
 ---
 
