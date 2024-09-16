@@ -7,7 +7,7 @@ import Prelude hiding (reverse)
 -- Haskell
 evens []                        = []
 evens (x : rest) | x mod 2 == 0 = x : evens rest
-evens (_ : rest)                = evens rest
+                 | otherwise    = evens rest
 
 -- | The :: notation reads "has type". It is the equivalent of a Java signature.
 -- In Java it would be 'static public List<A> reverse(List<A> elems)'

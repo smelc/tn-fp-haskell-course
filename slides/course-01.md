@@ -110,13 +110,11 @@ List<Integer> evens(List<Integer> xs) {
 }
 ```
 
---
-
 ```hs
 -- Haskell
 evens []                        = []
 evens (x : rest) | x mod 2 == 0 = x : evens rest
-evens (_ : rest)                = evens rest
+                 | otherwise    = evens rest
 ```
 
 ???
@@ -248,8 +246,6 @@ Instead of loops, functional programs use:
 }
 ```
 
---
-
 <center>
 ⚠️ The Haskell <code>-></code> syntax is unrelated to Java lambdas 💣
 </center>
@@ -294,8 +290,6 @@ toLengths xs = map length xs
 toLengths2 :: [String] -> [Int]
 toLengths2 = map length -- Alternative implementation, partial application
 ```
-
---
 
 ```java
 List<Integer> toLengthsJava8(List<String> xs) {
