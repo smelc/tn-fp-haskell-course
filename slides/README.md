@@ -7,8 +7,7 @@ The content is within `*.md` files.
 To check that code snippets are valid, run the following from the repo's top-level:
 
 ```shell
-cd slides && ./extract_hs.sh; cd -
-cabal build all
+cd slides && ./extract_hs.sh; cd -; cabal build all
 ```
 
 and for Java files:

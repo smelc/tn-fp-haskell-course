@@ -221,7 +221,7 @@ type String = [Char] -- defines a type alias
 ```hs
 -- take n, applied to a list xs, returns the prefix of xs of length n,
 -- or xs itself if n >= length xs.
-take :: Int -> String -> String
+take :: Int -> [a] -> [a]
 take n xs = undefined
 ```
 
@@ -510,7 +510,7 @@ class Semigroup a => Monoid a where
 
 ```hs
 -- | Our 'Mappable' made official!
-class Functor where
+class Functor f where
   fmap :: (a -> b) -> f a -> f b
 ```
 

@@ -107,7 +107,7 @@ class Semigroup a where
   (<>) :: a -> a -> a
 
 -- | Our 'Mappable' made official!
-class Functor where
+class Functor f where
   fmap :: (a -> b) -> f a -> f b
 
 class Bank x where
