@@ -117,6 +117,13 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
   where
     toInt = \case Debit x -> -x; Credit x -> x
 
+class Functor f => Applicative f where
+  -- | Wraps a function in the functor
+  pure :: a -> f a
+
+  -- |
+  (<*>) :: f (a -> b) -> f a -> f b
+
 -- | @initials "Clément" "Hurlin"@ returns "CH"
 initials :: String -> String -> String
 initials firstname lastname =

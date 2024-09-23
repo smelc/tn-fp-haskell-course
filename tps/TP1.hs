@@ -73,10 +73,11 @@ propSumRecSumFold _ = undefined
 fmapMaybe :: (a -> b) -> (Maybe a) -> (Maybe b)
 fmapMaybe _f = undefined
 
--- | Write a property of 'fmapMaybe' that is true for all functions
-fmapMaybeProp1 :: (a -> b) -> Bool
-fmapMaybeProp1 = undefined
+-- | Write a property of 'fmapMaybe' that is true for all functions and
+-- all maybes
+fmapMaybeProp :: (a -> b) -> Maybe a -> Bool
+fmapMaybeProp = undefined
 
--- | Write a property of 'fmapMaybe' that is true for any @Maybe a@ fvalue
-fmapMaybeProp2 :: Maybe a -> Bool
-fmapMaybeProp2 = undefined
+-- -- | Write a property of 'fmapMaybe' that is true for any @Maybe a@ fvalue
+-- fmapMaybeProp2 :: Maybe a -> Bool
+-- fmapMaybeProp2 = undefined

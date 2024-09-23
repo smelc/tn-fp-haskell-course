@@ -407,6 +407,77 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
 
 ---
 
+# Composition on steroids
+
+<!-- exdown-skip -->
+```hs
+(<$>) :: Functor f => (a -> b) -> f a -> f b
+```
+
+Let's test that in the repl:
+
+<!-- exdown-skip -->
+```hs
+> ((+) 1) <$> (Just (42 :: Int))
+```
+
+--
+
+<!-- exdown-skip -->
+```hs
+> ((+) 1) <$> ([0, 1, 2, 3] :: [Int])
+```
+
+<br/>
+
+Let's combine functions:
+
+<!-- exdown-skip -->
+```hs
+(.) :: (b -> c) -> (a -> b) -> a -> c
+```
+
+--
+
+<!-- exdown-skip -->
+```hs
+> :type (show . ((+) (1 :: Int)))
+```
+
+<!-- exdown-skip -->
+```hs
+> (show . ((+) 1)) <$> ([0, 1, 2, 3] :: [Int])
+```
+
+???
+
+* Remember how cool it was to chain `&` before (`accounts & filter ...`)
+
+---
+
+# `Applicative`
+
+<!-- exdown-skip -->
+```hs
+class Functor f => Applicative f where
+  -- | Wraps a function in the functor
+  pure :: a -> f a
+
+  -- | Sequential application
+  (<*>) :: f (a -> b) -> f a -> f b
+```
+
+<!-- exdown-skip -->
+```hs
+> :type (++)
+String -> String -> String
+> (++) <$> Just "John" <*> Just "Travolta"
+> :type ((++) <$> Just "John")
+Maybe (String -> String)
+```
+
+---
+
 # Recap
 
 How to build functions from:
@@ -417,8 +488,8 @@ How to build functions from:
 How to compose functions:
 
 - `(&)`: chain
-- `(<&>)`: chain in presence of wrapping
-- `Functor`, `map`
+- `(<&>)` and `(<*>)`: chain in presence of wrapping
+- `Functor`, `map`, `Applicative`
 
 Functional toolbox:
 
