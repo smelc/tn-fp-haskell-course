@@ -15,7 +15,7 @@ import Debug.Trace
 import GHC.Generics
 import Generic.Random
 import Test.QuickCheck
-import Prelude hiding (and, drop, length, take)
+import Prelude hiding (and, drop, length, not, take, not)
 
 -- | A type for thumb up and thumb down emojis
 data ThumbType = Up | Down
@@ -38,7 +38,7 @@ and _ _ = undefined
 
 -- | A function stating a property of 'neg' and 'and'
 propNegAnd :: Bool -> Bool
-propNegAnd b = not (and b (neg b))
+propNegAnd b = neg (and b (neg b))
 
 -- | Write a function computing the length of a list
 length :: [a] -> Int
@@ -75,11 +75,6 @@ propSumRecSumFold _ = undefined
 fmapMaybe :: (a -> b) -> (Maybe a) -> (Maybe b)
 fmapMaybe _f = undefined
 
--- | Write a property of 'fmapMaybe' that is true for all functions and
--- all maybes
-fmapMaybeProp :: (a -> b) -> Maybe a -> Bool
-fmapMaybeProp = undefined
-
--- -- | Write a property of 'fmapMaybe' that is true for any @Maybe a@ fvalue
--- fmapMaybeProp2 :: Maybe a -> Bool
--- fmapMaybeProp2 = undefined
+-- | Write the map instance for 'List'. Don't use the standard library's 'map' function
+fmapMaybeList :: (a -> b) -> [a] -> [b]
+fmapMaybeList = undefined
