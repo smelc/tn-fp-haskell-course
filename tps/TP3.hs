@@ -2,6 +2,8 @@
 -- Execute me with: cabal run -v0 TP3.hs
 -- Load me in the REPL with: cabal repl TP3.hs, then use :r to reload the code upon changing
 
+{- HLINT ignore -}
+
 module Main where
 
 import Debug.Trace

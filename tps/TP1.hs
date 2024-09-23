@@ -7,6 +7,8 @@
 --
 -- Resource for the syntax of functions: https://learnyouahaskell.github.io/syntax-in-functions.html
 
+{- HLINT ignore -}
+
 module Main where
 
 import Debug.Trace
