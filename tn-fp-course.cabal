@@ -60,6 +60,7 @@ library slides
                       Course02
                       Course03
                       Course04
+                      Course05
 
 executable TP1.hs
     import:           common-all

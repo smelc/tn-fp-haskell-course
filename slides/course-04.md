@@ -369,7 +369,25 @@ class Functor f where
   fmap :: (a -> b) -> f a -> f b
 ```
 
-- Give instances:
+```bash
+> import Data.List.Extra
+> :type upper
+upper :: String -> String
+> applyUpper = fmap upper
+> :type applyUpper
+applyUpper :: Functor f => f String -> f String
+```
+
+--
+
+```bash
+> applyUpper (Just "foo")
+> applyUpper (Right "foo" :: Either Int String)
+```
+
+--
+
+- Instances we've seen before:
   - `Maybe a`
   - `[a]`
 

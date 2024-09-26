@@ -117,13 +117,6 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
   where
     toInt = \case Debit x -> -x; Credit x -> x
 
-class Functor f => Applicative f where
-  -- | Wraps a function in the functor
-  pure :: a -> f a
-
-  -- |
-  (<*>) :: f (a -> b) -> f a -> f b
-
 -- | @initials "Clément" "Hurlin"@ returns "CH"
 initials :: String -> String -> String
 initials firstname lastname =
@@ -146,44 +139,4 @@ mkEmail firstName lastName domain ext =
   let left = firstName ++ "." ++ lastName in
   let right = domain ++ "." ++ ext in
   left ++ "@" ++ right
-
-mkEmailSafe :: String -> String -> String -> Either String String
-mkEmailSafe user host ext =
-  checkUsername user
-  >>= \(username :: String) ->
-  checkExt ext
-  >>= \(extension :: String) ->
-  Right (username ++ "@" ++ host ++ "." ++ extension)
-  where
-    checkUsername :: String -> Either String String
-    checkUsername s =
-      if all isLower s
-        then Right s
-        else Left ("Username should be lowercase, but found: " ++ s)
-    checkExt :: String -> Either String String
-    checkExt "com" = Right "com"
-    checkExt "fr" = Right "fr"
-    checkExt s =
-      Left ("Unexpected extension: "
-              ++ show s
-              ++ ". Expected one of: [\"com\", \"fr\"]")
-
-mkEmailSafe' :: String -> String -> String -> Either String String
-mkEmailSafe' user host ext = do
-  username <- checkUsername user
-  extension <- checkExt ext
-  pure (username ++ "@" ++ host ++ "." ++ extension)
-  where
-    checkUsername :: String -> Either String String
-    checkUsername s =
-      if all isLower s
-        then Right s
-        else Left ("Username should be lowercase, but found: " ++ s)
-    checkExt :: String -> Either String String
-    checkExt "com" = Right "com"
-    checkExt "fr" = Right "fr"
-    checkExt s =
-      Left ("Unexpected extension: "
-              ++ show s
-              ++ ". Expected one of: [\"com\", \"fr\"]")
 
