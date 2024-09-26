@@ -28,5 +28,9 @@ You can also do the _TPs_ on your own (since there will be no official time for 
 and create merge requests against the repository, to have me correct your work.
 
 <center>
-Writing of this course has been funded by my employer: <a href="https://www.tweag.io/">Tweag</a>
+  This course is funded by my employer: [Modus Create](https://moduscreate.com/)
 </center>
+
+<p align="center">
+  <a href="https://moduscreate.com/"><img src="slides/img/modus-create.png" height="114"/></a>
+</p>

@@ -1,3 +1,5 @@
+[![Haskell build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml)
+
 ## Course on functional programming - Haskell
 
 This course was/is being given at [Telecom Nancy](https://smelc.github.io/tn-fp-haskell-course/slides/)
@@ -29,8 +31,8 @@ But I've never done it.
 ### Development instruction
 
 These instructions are more [hermetic](https://bazel.build/basics/hermeticity) than
-the ones in [tps](./tps/README.md). This is intentional. If you are here to do the _travaux pratiques_,
-use the instructions in [tps](./tps/README.md).
+the ones in [tps](./tps/README.md). This is intentional. ⚠️ If you are here to do the _travaux pratiques_,
+use the instructions in [tps](./tps/README.md) ⬅️
 
 - The Haskell compiler (GHC) is installed in an isolated manner, in `bin/ghc` (see below)
 - This requires [ghcup](https://www.haskell.org/ghcup) in `PATH` and that's all
@@ -56,3 +58,7 @@ To validate code snippets within slides, see [slides/README.md](slides/README.md
 ---
 
 This course is funded by my employer: [Modus Create](https://moduscreate.com/)
+
+<p align="center">
+  <a href="https://moduscreate.com/"><img src="slides/img/modus-create.png" height="114"/></a>
+</p>
