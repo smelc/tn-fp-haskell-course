@@ -9,8 +9,10 @@ To reproduce a working environment, from the repository root, do:
   - Answer `Y` to install IDE tooling (`haskell-language-server`).
   - Answer `N` to install `stack`, since this project uses the simpler
     [cabal](https://www.haskell.org/cabal/) build tool
-
-  Once it's done, run `ghcup install ghc 9.4.7` and then `ghcup set ghc 9.4.7`
+* Install the [System requirements](https://www.haskell.org/ghcup/install/#system-requirements).
+  If you are on Linux, this is something like `sudo apt install build-essential curl libffi-dev etc..`
+  (see the link for the exact list of packages to install).
+* Run `ghcup install ghc 9.4.7` and then `ghcup set ghc 9.4.7`
   to set the expected compiler version.
 * Run `cabal build all`. This will take a while as this repository depends on a number
   of fat libraries. Brew some coffee meanwhile.
