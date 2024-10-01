@@ -48,11 +48,8 @@ main = do
 --
 -- with the knight having 2 hitpoints and 2 attacks, and the soldier having 1 hitpoint
 -- and 1 attack. In this scenario, when player 1 attacks, the left knight
--- contributes two to the score while the right soldier kills its opponent.
---
--- The game has three possible cards: the knight, the soldier and the
--- sorceress. The sorceress gives +1hp and +1attack to its allies. When the game
--- starts, each player starts with two copies of each cards.
+-- contributes two to the score while the right soldier kills its opponent (there
+-- are only two cards: knight and soldier)
 --
 -- Exercise:
 --
