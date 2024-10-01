@@ -237,6 +237,86 @@ Use the definitions as [rewriting rules](https://en.wikipedia.org/wiki/Rewriting
 
 ---
 
+# Functional toolbox: recursion
+
+To solve problems functionally:
+
+- Recursion: divide a problem into smaller subproblems
+- Fold: iterate over data, accumulate a value along the way
+
+<!-- exdown-skip 1 3 4 -->
+```hs
+data Tree a = ...
+
+map :: (a -> b) -> Tree a -> Tree b
+map f t = undefined
+
+find :: (a -> Bool) -> Tree a -> Maybe a
+find f t = undefined
+```
+
+???
+
+```hs
+data Tree a = Node a [Tree a]  -- Discuss alternatives
+
+treeFind :: (a -> Bool) -> Tree a -> Maybe a
+treeFind f (Node x children) =
+  if f x then Just x
+  else firstJust (map (treeFind f) children)
+  where
+    firstJust =
+      \case
+         [] -> Nothing
+         (Just x) : _ -> Just x
+         Nothing : xs -> firstJust xs
+
+instance Functor Tree where
+  fmap f (Node x children) = Node (f x) (map (fmap f) children)
+```
+
+- Ask whether `map` rings a bell. It's `Functor`'s `fmap` from the previous course!
+- Ask about parallelization. Is it easy? Why?
+
+---
+
+# Functional toolbox: folding
+
+```bash
+> :type foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+```
+
+<!-- exdown-skip 1 2 7 8 -->
+```hs
+wordCount :: [[String]] -> Int
+wordCount files = undefined
+
+-- | 'Word16' is a zero or positive number
+data Operation = Debit Word16 | Credit Word16
+
+balance :: [Operation] -> Word16
+balance = undefined
+```
+
+???
+
+```hs
+wordCount :: [[String]] -> Int
+wordCount files = foldr (\words soFar -> (length words) + soFar) 0 files
+
+balance' :: [Operation] -> Word16
+balance' = foldr (\op soFar -> toInt op + soFar) 0
+  where
+    toInt = \case Debit x -> -x; Credit x -> x
+```
+
+- Ask who knows about map/reduce
+
+---
+
+---
+
 # Composition
 
 Because functions are so central in functional programming, it is crucial
@@ -324,89 +404,6 @@ dubious accounts =
   `dubious`?
   - Would you rather have 3 loops or one loop?
 
----
-
-# Functional toolbox: recursion
-
-To solve problems functionally:
-
-- Recursion: divide a problem into smaller subproblems
-- Fold: iterate over data, accumulate a value along the way
-
-<!-- exdown-skip 1 3 4 -->
-```hs
-data Tree a = ...
-
-map :: (a -> b) -> Tree a -> Tree b
-map f t = undefined
-
-find :: (a -> Bool) -> Tree a -> Maybe a
-find f t = undefined
-```
-
-???
-
-```hs
-data Tree a = Node a [Tree a]  -- Discuss alternatives
-
-treeFind :: (a -> Bool) -> Tree a -> Maybe a
-treeFind f (Node x children) =
-  if f x then Just x
-  else firstJust (map (treeFind f) children)
-  where
-    firstJust =
-      \case
-         [] -> Nothing
-         (Just x) : _ -> Just x
-         Nothing : xs -> firstJust xs
-
-instance Functor Tree where
-  fmap f (Node x children) = Node (f x) (map (fmap f) children)
-```
-
-- Ask whether `map` rings a bell. It's `Functor`'s `fmap` from the previous course!
-- Ask about parallelization. Is it easy? Why?
-
----
-
-# Functional toolbox: folding
-
-```bash
-> :type foldr
-foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
-# Think of type 't' as list
-# Think of the function's second parameter as the accumulator and its
-# return value as an intermediate result.
-```
-
-<!-- exdown-skip 1 2 7 8 -->
-```hs
-wordCount :: [[String]] -> Int
-wordCount files = undefined
-
--- | 'Word16' is a zero or positive number
-data Operation = Debit Word16 | Credit Word16
-
-balance :: [Operation] -> Word16
-balance = undefined
-```
-
-???
-
-```hs
-wordCount :: [[String]] -> Int
-wordCount files = foldr (\words soFar -> (length words) + soFar) 0 files
-
-balance' :: [Operation] -> Word16
-balance' = foldr (\op soFar -> toInt op + soFar) 0
-  where
-    toInt = \case Debit x -> -x; Credit x -> x
-```
-
-- Ask who knows about map/reduce
-
----
-
 # Composition on steroids
 
 <!-- exdown-skip -->
@@ -460,12 +457,14 @@ Let's combine functions:
 <!-- exdown-skip -->
 ```hs
 class Functor f => Applicative f where
-  -- | Wraps a function in the functor
   pure :: a -> f a
 
-  -- | Sequential application
   (<*>) :: f (a -> b) -> f a -> f b
 ```
+
+* TODO next year: this didn't flow really well.
+* Use https://youtu.be/8oVHISjS3wI?t=311 as inspiration
+
 
 <!-- exdown-skip -->
 ```hs

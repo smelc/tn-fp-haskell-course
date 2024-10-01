@@ -429,6 +429,11 @@ elements :: [a] -> Gen a
 frequency :: [(Int, Gen a)] -> Gen a
 ```
 
+???
+
+* Show `class Testable` on Hoogle
+
+
 ---
 
 # `newtype`
