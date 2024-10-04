@@ -15,6 +15,7 @@ common common-all
                      , bytestring
                      , containers
                      , extra
+                     , filepath
                      , generic-random
                      , http-conduit
                      , ilist
