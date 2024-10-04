@@ -484,18 +484,16 @@ How to build functions from:
 - Pattern matching (`case ... of `)
 - Guards (`f x | cond x = ...`)
 
-How to compose functions:
-
-- `(&)`: chain
-- `(<&>)` and `(<*>)`: chain in presence of wrapping
-- `Functor`, `map`, `Applicative`
-
 Functional toolbox:
 
 - Recursion
 - Folding
 
-<!-- - `(>>=)`: chain computations while in a special context -->
+How to compose functions:
+
+- `(&)`: chain
+- `(<&>)` and `(<*>)`: chain in presence of wrapping
+- `Functor`, Applicative`
 
 ---
 
