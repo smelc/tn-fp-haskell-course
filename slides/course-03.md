@@ -462,9 +462,25 @@ class Functor f => Applicative f where
   (<*>) :: f (a -> b) -> f a -> f b
 ```
 
+* `<*>` is function application generalized
+  * To an arbitrary context `f`
+
+```bash
+> pure (+) <*> Just 1 <*> Just 2
+Just 3
+> pure (+) <*> Nothing <*> Just 2
+Nothing
+```
+
+--
+
+```bash
+> (+) <$> Nothing <*> Just 2
+Nothing
+```
+
 * TODO next year: this didn't flow really well.
 * Use https://youtu.be/8oVHISjS3wI?t=311 as inspiration
-
 
 <!-- exdown-skip -->
 ```hs
@@ -493,7 +509,7 @@ How to compose functions:
 
 - `(&)`: chain
 - `(<&>)` and `(<*>)`: chain in presence of wrapping
-- `Functor`, Applicative`
+- `Functor`, `Applicative`
 
 ---
 
@@ -501,6 +517,7 @@ How to compose functions:
 
 - https://learnyouahaskell.github.io/syntax-in-functions.html
 - https://learnyouahaskell.github.io/higher-order-functions.html
+- https://youtu.be/8oVHISjS3wI
 
 ---
 

@@ -67,22 +67,6 @@ fromMaybe :: a -> Maybe a -> a
 fromMaybe a Nothing  = a
 fromMaybe _ (Just a) = a
 
-data Account = MkAccount {
-    balance :: Int,
-    email :: String,
-    name :: Maybe String
-  }
-
--- | Given a list of 'Account', returns the emails of the accounts with more
--- than one million 'balance', 'email' is dubious, and 'name' is omitted.
-dubious :: [Account] -> [String]
-dubious accounts =
-  accounts
-    & filter (\account -> account.balance > 1000000)
-    & filter (\account -> "ponzi" `isInfixOf` account.email)
-    & filter (\account -> case account.name of Nothing -> True; Just _ -> False)
-    & map email
-
 
 
 find :: (a -> Bool) -> Tree a -> Maybe a
@@ -116,6 +100,22 @@ balance' :: [Operation] -> Word16
 balance' = foldr (\op soFar -> toInt op + soFar) 0
   where
     toInt = \case Debit x -> -x; Credit x -> x
+
+data Account = MkAccount {
+    balance :: Int,
+    email :: String,
+    name :: Maybe String
+  }
+
+-- | Given a list of 'Account', returns the emails of the accounts with more
+-- than one million 'balance', 'email' is dubious, and 'name' is omitted.
+dubious :: [Account] -> [String]
+dubious accounts =
+  accounts
+    & filter (\account -> account.balance > 1000000)
+    & filter (\account -> "ponzi" `isInfixOf` account.email)
+    & filter (\account -> case account.name of Nothing -> True; Just _ -> False)
+    & map email
 
 -- | @initials "Clément" "Hurlin"@ returns "CH"
 initials :: String -> String -> String
