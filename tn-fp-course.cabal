@@ -43,6 +43,7 @@ common common-all
                          DuplicateRecordFields
                          FlexibleContexts
                          FlexibleInstances
+                         FunctionalDependencies
                          MultiParamTypeClasses
                          NamedFieldPuns
                          LambdaCase

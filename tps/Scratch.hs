@@ -1,10 +1,14 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE AllowAmbiguousTypes #-}
+{-# OPTIONS_GHC -Wno-noncanonical-monad-instances #-}
+{-# LANGUAGE InstanceSigs #-}
 -- | Module for live trial and error
 module Scratch where
 
 import Data.Char
+import Data.List.Split
 import Data.Word
+import Control.Monad.Writer
 
 class Collection t where
   size :: t a -> Int
@@ -53,10 +57,100 @@ wordCount :: [[String]] -> Int
 wordCount files =
   foldr (\words soFar -> (length words) + soFar) 0 files
 
-
 data Operation = Debit Word16 | Credit Word16
 
 balance' :: [Operation] -> Word16
 balance' = foldr (\op soFar -> toInt op + soFar) 0
   where
     toInt = \case Debit x -> -x; Credit x -> x
+
+-- | A hostname like @lemonde.fr@ or @google.com@
+data Url = Url String Ext
+
+-- | Type representing the extension of an URL
+data Ext = Com | Fr
+
+data UrlParsingError = DotError | NonASCII | WrongExt
+
+parseUrl :: String -> Either UrlParsingError Url
+parseUrl input =
+  splitUrl input
+  >>= \(hostStr :: String, extStr :: String) ->
+  checkHost hostStr
+  >>= \host ->
+  checkExt extStr
+  >>= \ext ->
+  Right (Url host ext)
+
+monadicParseUrl :: String -> Either UrlParsingError Url
+monadicParseUrl input = do
+  (hostStr :: String, extStr :: String) <- splitUrl input
+  host <- checkHost hostStr
+  ext <- checkExt extStr
+  pure (Url host ext)
+
+splitUrl :: String -> Either UrlParsingError (String, String)
+splitUrl input =
+  case splitOn "." input of
+    host : ext : [] -> Right (host, ext)
+    _ -> Left DotError
+
+checkHost :: String -> Either UrlParsingError String
+checkHost host | all isAscii host = pure host
+               | otherwise = Left NonASCII
+
+checkExt :: String -> Either UrlParsingError Ext
+checkExt "com" = Right Com
+checkExt "fr"  = Right Fr
+checkExt _     = Left WrongExt
+
+data MyMaybe a = MyNothing | MyJust a
+  deriving Functor
+
+instance Applicative MyMaybe where
+  pure :: a -> MyMaybe a
+  pure = MyJust
+
+  (<*>) :: MyMaybe (a -> b) -> MyMaybe a -> MyMaybe b
+  (<*>) mf x =
+    case (mf, x) of
+      (MyNothing, _) -> MyNothing
+      (_, MyNothing) -> MyNothing
+      (MyJust f, MyJust x) -> MyJust $ f x
+
+instance Monad MyMaybe where
+  return :: a -> MyMaybe a
+  return = MyJust
+
+  (>>=) :: MyMaybe a -> (a -> MyMaybe b) -> MyMaybe b
+  (>>=) m f =
+    case m of
+      MyNothing -> MyNothing
+      MyJust x -> f x
+
+data MyEither a b = MyLeft a | MyRight b
+
+instance Functor (MyEither a) where
+  fmap _ (MyLeft x) = MyLeft x
+  fmap f (MyRight x) = MyRight (f x)
+
+instance Applicative (MyEither a) where
+  pure = MyRight
+  (MyLeft x) <*> _ = MyLeft x
+  (MyRight f) <*> x = fmap f x
+
+instance Monad (MyEither a) where
+  return :: b -> MyEither a b
+  return = MyRight
+
+  (>>=) :: MyEither a b -> (b -> MyEither a c) -> MyEither a c
+  (MyLeft x) >>= _ = MyLeft x
+  (MyRight x) >>= f = f x
+
+monadWriterExample :: MonadWriter String m => m (Maybe Int)
+monadWriterExample = do
+  a <- pure (Just 1) -- Could be an IO action
+  tell "Producing a"
+  b <- pure $ Nothing
+  tell "Producing b"
+  return $ (+) <$> a <*> b

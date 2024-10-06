@@ -20,6 +20,7 @@ module Course05 where
 
 import Control.Monad.IO.Class
 import Data.Char
+import Data.List.Split
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 ```
@@ -54,30 +55,53 @@ In this course:
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
+<!-- exdown-skip 19 20 21 -->
 ```hs
-mkEmailSafe :: String -> String -> String -> Either String String
-mkEmailSafe user host ext =
-  checkUsername user
-  >>= \(username :: String) ->
-  checkExt ext
-  >>= \(extension :: String) ->
-  Right (username ++ "@" ++ host ++ "." ++ extension)
+-- | A hostname like @lemonde.fr@ or @google.com@
+data Url = Url String Ext
 
-checkUsername :: String -> Either String String
-checkUsername s | all isLower s = Right s
-                | otherwise     = Left ("Username should be lowercase, but found: " ++ s)
-checkExt :: String -> Either String String
-checkExt =
-  \case
-    "com" -> Right "com"
-    "fr"  -> Right "fr"
-    s     -> Left ("Unexpected extension: "
-                     ++ show s
-                     ++ ". Expected one of: [\"com\", \"fr\"]")
+-- | Type representing the extension of an URL
+data Ext = Com | Fr
+
+data UrlParsingError = DotError | NonASCII | WrongExt
+
+parseUrl :: String -> Either UrlParsingError Url
+parseUrl input =
+  splitUrl input
+  >>= \(hostStr :: String, extStr :: String) ->
+  checkHost hostStr
+  >>= \(host :: String) ->
+  checkExt extStr
+  >>= \(ext  :: Ext) ->
+  Right (Url host ext)
+
+splitUrl  :: String -> Either UrlParsingError (String, String)
+checkHost :: String -> Either UrlParsingError String
+checkExt  :: String -> Either UrlParsingError Ext
 ```
+
+???
+
+```hs
+splitUrl :: String -> Either UrlParsingError (String, String)
+splitUrl input =
+  case splitOn "." input of
+    host : ext : [] -> Right (host, ext)
+    _ -> Left DotError
+
+checkHost :: String -> Either UrlParsingError String
+checkHost host | all isAscii host = pure host
+               | otherwise = Left NonASCII
+
+checkExt :: String -> Either UrlParsingError Ext
+checkExt "com" = Right Com
+checkExt "fr"  = Right Fr
+checkExt _     = Left WrongExt
+```
+
 ---
 
-# User friendly monads: the `do` notation
+# Monads in production: `do`
 
 ```bash
 > :type (>>=)
@@ -85,11 +109,131 @@ checkExt =
 ```
 
 ```hs
-mkEmailSafe' :: String -> String -> String -> Either String String
-mkEmailSafe' user host ext = do
-  username <- checkUsername user
-  extension <- checkExt ext
-  pure (username ++ "@" ++ host ++ "." ++ extension)
+monadicParseUrl :: String -> Either UrlParsingError Url
+monadicParseUrl input = do
+  (hostStr, extStr) <- splitUrl input
+  host <- checkHost hostStr
+  ext  <- checkExt extStr
+  pure (Url host ext)
+```
+
+Compare with:
+
+<!-- exdown-skip -->
+```hs
+parseUrl :: String -> Either UrlParsingError Url
+parseUrl input =
+  splitUrl input
+  >>= \(hostStr, extStr) ->
+  checkHost hostStr
+  >>= \host ->
+  checkExt extStr
+  >>= \ext ->
+  Right (Url host ext)
+```
+
+---
+
+# Monads: deciphering
+
+<!-- exdown-skip -->
+```hs
+class Applicative m where
+  pure :: a -> m a
+
+  <*> :: f (a -> b) -> f a -> f b
+
+class Applicative m => Monad m where
+  (>>=) :: m a -> (a -> m b) -> m b
+```
+
+1. `>>=` is about sequencing
+  1. First compute `m a`
+  2. Then use `a`, compute `m b`
+1. `a` is generic ➡️ the computation can be anything really (pairs, lists, etc.)
+1. `pure` brings a value to the monad
+
+--
+
+<br/>
+
+<center>
+<b>Generic</b> model of computation
+
+<br/>
+<br/>
+
+Plug monadic code with <code>pure</code> code
+</center>
+
+---
+
+# Monads: Simple Applications
+
+* Computations that may fail
+  * Like pretty much any `IO` operation!
+
+<!-- exdown-skip -->
+```hs
+instance Monad Maybe where
+  (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+  (>>=) m f = undefined
+```
+
+--
+
+<!-- exdown-skip -->
+```hs
+instance Monad (Either a) where
+  (>>=) :: Either a b -> (b -> Either a c) -> Either a c
+  >>= e f = undefined
+```
+
+???
+
+<!-- exdown-skip -->
+```hs
+instance Monad Maybe where
+  (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+  (>>=) m f =
+    case m of
+      Nothing -> Nothing
+      Just x -> f x
+
+instance Monad (Either a) where
+  return :: b -> Either a b
+  return = Right
+
+  (>>=) :: Either a b -> (b -> Either a c) -> Either a c
+  (Left x) >>= _ = Left x
+  (Right x) >>= f = f x
+```
+
+---
+
+# Monads, Advanced Applications: `mtl`
+
+* `MonadWriter`: accumulate state
+
+```hs
+class (Monoid w, Monad m) => MonadWriter w m | m -> w where
+
+  -- | Produce the output w
+  tell :: w -> m ()
+
+  -- Other functions, omitted
+```
+
+<br/>
+
+```hs
+writerExample :: MonadWriter String m => m (Maybe Int)
+writerExample = do
+  a <- pure (Just 1) -- Could be an IO action
+  tell "Producing a"
+  b <- pure Nothing
+  tell "Producing b"
+  return $ (+) <$> a <*> b
 ```
 
 ---
@@ -106,9 +250,24 @@ TBD
 
 # Recommended reading
 
-TBD
+* [MonadWriter](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Writer-CPS.html#t:MonadWriter)
+* [MonadState](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-State-Class.html#t:MonadState)
 
 ---
+
+# Monads, Advanced Applications: `mtl`
+
+* `MonadState`: pass state around
+
+```hs
+class Monad m => MonadState s m | m -> s where
+  -- | Return the state
+  get :: m s
+  -- | Update the state
+  put :: s -> m ()
+  -- | Embed an action into the monad
+  state :: (s -> (a, s)) -> m a
+```
 
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).
