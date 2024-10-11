@@ -160,16 +160,16 @@ monadWriterExample = do
 data Expr t where
   IntExpr :: Int -> Expr Int
   BoolExpr :: Bool -> Expr Bool
-  Pair :: Expr a -> Expr b -> Expr (a, b)
-  IfThenElse :: Expr Bool -> Expr a -> Expr a -> Expr a
+  PairExpr :: Expr a -> Expr b -> Expr (a, b)
+  IfThenElseExpr :: Expr Bool -> Expr a -> Expr a -> Expr a
 
 
 eval :: Expr a -> a
 eval = \case
   IntExpr x -> x
   BoolExpr x -> x
-  Pair a b -> (eval a, eval b)
-  IfThenElse cond a b -> if eval cond then eval a else eval b
+  PairExpr a b -> (eval a, eval b)
+  IfThenElseExpr cond a b -> if eval cond then eval a else eval b
 
 -- data Expr a b =
 --     IntExpr Int
