@@ -2,6 +2,8 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
 {-# OPTIONS_GHC -Wno-noncanonical-monad-instances #-}
 {-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE TypeFamilies #-}
 -- | Module for live trial and error
 module Scratch where
 
@@ -154,3 +156,42 @@ monadWriterExample = do
   b <- pure $ Nothing
   tell "Producing b"
   return $ (+) <$> a <*> b
+
+data Expr t where
+  IntExpr :: Int -> Expr Int
+  BoolExpr :: Bool -> Expr Bool
+  Pair :: Expr a -> Expr b -> Expr (a, b)
+  IfThenElse :: Expr Bool -> Expr a -> Expr a -> Expr a
+
+
+eval :: Expr a -> a
+eval = \case
+  IntExpr x -> x
+  BoolExpr x -> x
+  Pair a b -> (eval a, eval b)
+  IfThenElse cond a b -> if eval cond then eval a else eval b
+
+-- data Expr a b =
+--     IntExpr Int
+--   | BoolExpr Bool
+--   | PairExpr a b
+--   | IfThenElseExpr Bool (Expr a b) (Expr a b)
+
+data Mix = MkMix { file :: FilePath, hash :: Int }
+
+-- Phantom types
+data File
+data Hash
+
+data Role a where
+  FileRole :: Role File
+  HashRole :: Role Hash
+
+type family DataKind a where
+  DataKind File = FilePath
+  DataKind Hash = Int
+
+getData :: Mix -> Role a -> DataKind a
+getData mix = \case
+  FileRole -> mix.file
+  HashRole -> mix.hash

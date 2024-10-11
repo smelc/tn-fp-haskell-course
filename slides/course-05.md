@@ -156,14 +156,8 @@ class Applicative m => Monad m where
 --
 
 <br/>
-
 <center>
-<b>Generic</b> model of computation
-
-<br/>
-<br/>
-
-Plug monadic code with <code>pure</code> code
+  <b>Generic</b> model of interruptible computation
 </center>
 
 ---
@@ -233,25 +227,107 @@ writerExample = do
   tell "Producing a"
   b <- pure Nothing
   tell "Producing b"
-  return $ (+) <$> a <*> b
+  let r = (+) <$> a <*> b
+  return r
 ```
+
+---
+
+# Generalized Algebraic Datatypes (GADTs)
+
+The problem:
+
+<!-- exdown-skip -->
+```hs
+data Expr a b =
+    IntExpr Int
+  | BoolExpr Bool
+  | PairExpr a b
+  | IfThenElseExpr Bool (Expr a b) (Expr a b)
+
+eval :: Expr a b -> ?
+```
+
+<center>
+🤮
+</center>
+
+--
+
+GADTs to the rescue!
+
+<!-- exdown-skip: 7 -->
+```hs
+data Expr t where
+  IntExpr :: Int -> Expr Int
+  BoolExpr :: Bool -> Expr Bool
+  Pair :: Expr a -> Expr b -> Expr (a, b)
+  IfThenElse :: Expr Bool -> Expr a -> Expr a -> Expr a
+
+eval :: Expr a -> a
+```
+
+<center>
+😎
+</center>
 
 ---
 
 # Type Families
 
+* Type families are type-level functions
+* Functions that takes types as inputs and produce types
+
+<center>
+Type families' main usage is to work with GADTs
+</center>
+
+--
+
+```hs
+data Mix = MkMix { file :: FilePath, hash :: Int }
+
+-- Phantom types
+data File
+data Hash
+
+data Role a where
+  FileRole :: Role File
+  HashRole :: Role Hash
+
+type family DataKind a where
+  DataKind File = FilePath
+  DataKind Hash = Int
+
+-- | @getData m r@ can return either a value of type @FilePath@
+--   or a value of type @Int@!
+getData :: Mix -> Role a -> DataKind a
+getData mix = \case
+  FileRole -> mix.file
+  HashRole -> mix.hash
+```
+
 ---
 
 # Recap
 
-TBD
+* Monads
+  * Generic sequencing operation, supporting interruption
+  * Safely bring back sequencing programming to functional programming 👑
+* GADTs
+  * Existential types within data constructors
+  * Fine-grained typing of different constructors
+* Type families
+  * Uniform treatment of non-uniform types
 
 ---
 
 # Recommended reading
 
-* [MonadWriter](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Writer-CPS.html#t:MonadWriter)
-* [MonadState](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-State-Class.html#t:MonadState)
+* On Hackage:
+  * [MonadWriter](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-Writer-CPS.html#t:MonadWriter)
+  * [MonadState](https://hackage.haskell.org/package/mtl-2.3.1/docs/Control-Monad-State-Class.html#t:MonadState)
+* Type families: https://serokell.io/blog/type-families-haskell
 
 ---
 

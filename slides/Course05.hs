@@ -56,11 +56,33 @@ class (Monoid w, Monad m) => MonadWriter w m | m -> w where
 
 writerExample :: MonadWriter String m => m (Maybe Int)
 writerExample = do
-  a <- pure $ Just 1 -- Could be an IO action
-  tell ("Producing a" :: String)
-  b <- pure $ Just 2
+  a <- pure (Just 1) -- Could be an IO action
+  tell "Producing a"
+  b <- pure Nothing
   tell "Producing b"
-  return $ (+) <$> a <*> b
+  let r = (+) <$> a <*> b
+  return r
+
+data Mix = MkMix { file :: FilePath, hash :: Int }
+
+-- Phantom types
+data File
+data Hash
+
+data Role a where
+  FileRole :: Role File
+  HashRole :: Role Hash
+
+type family DataKind a where
+  DataKind File = FilePath
+  DataKind Hash = Int
+
+-- | @getData m r@ can return either a value of type @FilePath@
+--   or a value of type @Int@!
+getData :: Mix -> Role a -> DataKind a
+getData mix = \case
+  FileRole -> mix.file
+  HashRole -> mix.hash
 
 class Monad m => MonadState s m | m -> s where
   -- | Return the state

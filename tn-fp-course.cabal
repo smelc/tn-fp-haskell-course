@@ -44,6 +44,7 @@ common common-all
                          FlexibleContexts
                          FlexibleInstances
                          FunctionalDependencies
+                         GADTs
                          MultiParamTypeClasses
                          NamedFieldPuns
                          LambdaCase
@@ -52,6 +53,7 @@ common common-all
                          RecordWildCards
                          ScopedTypeVariables
                          TypeApplications
+                         TypeFamilies
 
 library slides
     import:           common-all
