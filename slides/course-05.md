@@ -157,7 +157,7 @@ class Applicative m => Monad m where
 
 <br/>
 <center>
-  <b>Generic</b> model of interruptible computation
+  <b>Generic</b> model of interruptible sequential computation
 </center>
 
 ---
@@ -180,7 +180,7 @@ instance Monad Maybe where
 ```hs
 instance Monad (Either a) where
   (>>=) :: Either a b -> (b -> Either a c) -> Either a c
-  >>= e f = undefined
+  (>>=) e f = undefined
 ```
 
 ???
