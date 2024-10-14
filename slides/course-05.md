@@ -41,7 +41,7 @@ class Course05 {
 In this course:
 
 <center>
-  Mastering the Type System
+  Monads, GADTs and Type Families
 </center>
 
 <br/>
