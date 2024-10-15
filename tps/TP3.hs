@@ -18,8 +18,8 @@ main = do
 -- 1/ Define a type representing URLs you can enter in a browser address bar,
 --    i.e. strings of the form:
 --    - http://www.google.fr
---    - google.fr
---    - reddit.com/r/haskell
+--    - https://github.com/dmjio/miso/pulls
+--    - http://reddit.com/r/haskell
 -- 2/ Write a parser from String to your URL type. Its return type must be
 --    Either String MyType. The 'Left' case is the error message. Write tests.
 -- 3/ We now want to do URL filtering, to grant/forbid access to an URL
@@ -38,4 +38,5 @@ main = do
 -- 5/ Generalize your filter: allow them to be whitelist, i.e. an URL
 --    passes the filter only if matches the filter. Write tests.
 --
--- Use https://hoogle.haskell.org/ to find the functions you need
+-- Use https://hoogle.haskell.org/ to find the functions you need, for example splitOn:
+-- https://hackage.haskell.org/package/split-0.2.5/docs/Data-List-Split.html#v:splitOn
