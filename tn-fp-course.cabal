@@ -45,6 +45,7 @@ common common-all
                          FlexibleInstances
                          FunctionalDependencies
                          GADTs
+                         InstanceSigs
                          MultiParamTypeClasses
                          NamedFieldPuns
                          LambdaCase
