@@ -39,7 +39,7 @@ Dans la grammaire ci-dessus :
 - `Boolean` dénote les identifiants spéciaux `true` et `false`.
 - `String` dénote une chaîne de caractères, c'est-à-dire une séquence de caractères telle que :
   - Le premier et le dernier caractères sont des guillemets `"`.
-  - Tous les caractères au milieu, s'il y en a, sont soit des caractères (ASCII) simples (`a`, `0`), soit des caractères échapés commençant par `\` et suivi de :
+  - Tous les caractères au milieu, s'il y en a, sont soit des caractères (ASCII) simples (p.e. `a`, `0`), soit des caractères échapés commençant par `\` et suivi de :
     - soit `"`, pour permettre d'écrire des guillemets à l'intérieur;
     - soit `n`, pour mettre un retour à la ligne;
     - soit `\`, pour permettre d'écrire des `\` à l'intérieur des chaînes de caractères;
@@ -59,7 +59,7 @@ Les opérateurs `+`, `-`, `*`, `=`, `&&`, `||` devront respecter les priorités 
 | `+`, `-`  | Gauche        | 4        |
 | `=`       | -             | 3        |
 | `&&`      | Gauche        | 2        |
-| `\|\|`      | Gauche        | 1        |
+| `\|\|`    | Gauche        | 1        |
 
 Plus la priorité est haute, plus l'opérateur sera prioritaire lors du parsing.
 Par exemple, `!x = y && z` devra être reconnue comme si parenthésée comme `(((!(x)) = (y)) && (z))`.
@@ -136,7 +136,7 @@ Il est possible, au choix :
 > Attention à bien remplacer `executeBlock` par le nom de votre fonction d'exécution pour les blocks (de type `MonadInterpreter m => m ()`),
 > et `emptyContext` par la représentation d'un contexte vide (sans association de variables).
 
-> [!NOTE]
+> [!IMPORTANT]
 > Vous aurez besoin d'ajouter `{-# LANGUAGE ConstraintKinds, FlexibleContexts #-}` au début de votre fichier (avant la déclaration du module).
 > Cela vous permettra d'écrire le type `MonadInterpreter`, sans quoi le compilateur Haskell vous renverra des erreurs.
 
@@ -150,8 +150,15 @@ Voici plusieurs axes d'améliorations/extensions possibles pour MiniC :
 - Dans le langage proposé, il n'y a pas de boucles.
   Vous pouvez ajouter une boucle `'while' Expression '{' Block '}'` qui exécutera le block tant que la valeur de l'expression est `true`.
   Ne vous préoccupez pas de la terminaison, si vous écrivez `while true { print 0; };`, la sortie standard doit inclure une infinité de `0` (jusqu'à <kbd>Ctrl</kbd>+<kbd>C</kbd> en tout cas).
-- MiniC n'inclut pas d'instruction permettant de faire crasher le programme dans des circonstances extrêmes.
+- MiniC n'inclut pas d'instruction permettant d'arrêter le programme dans des circonstances extrêmes.
   Vous pourrez ajouter une instruction `'panic' String` qui fait quitter le programme immédiatement avec la chaîne associée comme erreur (potentiellement préfixée par `panic:`).
+- Ajouter un opérateur `/` représentant la division euclidienne sur les entiers.
+  Cet opérateur doit avoir la même priorité opératoire que la multiplication.
+  Attention au cas de division par zéro.
+
+> [!IMPORTANT]
+> N'essayez pas de faire tous les bonus!
+> Cela ne vous apportera pas forcément plus de points que si vous en aviez fait moins.
 
 ## Rendu
 
