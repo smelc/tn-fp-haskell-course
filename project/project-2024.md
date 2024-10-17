@@ -18,16 +18,9 @@ Des idées pour aller plus loin sont proposées, mais non obligatoires.
 
 MiniC est un petit langage de programmation impérative dérivé de C, dont voici la syntaxe :
 ```
-SwitchCases ⩴ ε
-            | '|' 'default' ':' Block
-            | '|' 'case' Number (',' Number)* ':' '{' Block '}' SwitchCases
-
 Expression ⩴ Number | Identifier | Boolean | String
-           | Expression '+' Expression | Expression '-' Expression | Expression '*' Expression
-           | Expression '=' Expression | Expression '&&' Expression | Expression '||' Expression | `!` Expression
-           | '(' Expression ')'
 
-Statement ⩴ 'skip' | Identifier ':=' Expression | 'if' Expression 'then' '{' Block '}' 'else' '{' Block '}' | 'switch' Expression SwitchCases | 'print' Expression
+Statement ⩴ 'skip' | Identifier ':=' Expression | 'if' Expression 'then' '{' Block '}' 'else' '{' Block '}' | 'print' Expression
 
 Block ⩴ ε | Statement ';' Block
 ```
@@ -39,43 +32,12 @@ Dans la grammaire ci-dessus :
 - `Boolean` dénote les identifiants spéciaux `true` et `false`.
 - `String` dénote une chaîne de caractères, c'est-à-dire une séquence de caractères telle que :
   - Le premier et le dernier caractères sont des guillemets `"`.
-  - Tous les caractères au milieu, s'il y en a, sont soit des caractères (ASCII) simples (p.e. `a`, `0`), soit des caractères échapés commençant par `\` et suivi de :
-    - soit `"`, pour permettre d'écrire des guillemets à l'intérieur;
-    - soit `n`, pour mettre un retour à la ligne;
-    - soit `\`, pour permettre d'écrire des `\` à l'intérieur des chaînes de caractères;
-    - soit `t`, pour une tabulation;
-    Tout autre caractère échappé doit être invalide syntaxiquement.
+  - Tous les caractères au milieu, s'il y en a, sont soit des caractères (ASCII) simples (p.e. `a`, `0`).
 - `Identifier` dénote la plus longue séquence non vide de caractères, telle que le premier caractère est alphabétique et les caractères suivants sont soit alphanumériques soit `_`.
   Il n'est pas demandé de gérer une unique casse (`snake_case`, `camelCase`, …).
   Attention, les mots-clés de la grammaire (`if`, `switch`, …) ainsi que les booléens ne doivent pas être reconnus comme des identifiants.
   Ainsi, il ne doit pas être possible d'écrire `true := 0`.
-  De même, `switchx` doit être reconnu comme un identifiant, et non comme le mot-clé `switch` suivant de l'identifiant `x`.
-
-Les opérateurs `+`, `-`, `*`, `=`, `&&`, `||` devront respecter les priorités opératoires et associativités suivantes :
-| Opérateur | Associativité | Priorité |
-|:---------:|:-------------:|:--------:|
-| `!`       | -             | 6        |
-| `*`       | Gauche        | 5        |
-| `+`, `-`  | Gauche        | 4        |
-| `=`       | -             | 3        |
-| `&&`      | Gauche        | 2        |
-| `\|\|`    | Gauche        | 1        |
-
-Plus la priorité est haute, plus l'opérateur sera prioritaire lors du parsing.
-Par exemple, `!x = y && z` devra être reconnue comme si parenthésée comme `(((!(x)) = (y)) && (z))`.
-
-### Sémantique semi-formelle des expressions 
-
-Les expressions de MiniC suivent la sémantique usuelle des langages de programmation similaires.
-En particulier :
-- `e₁ + e₂`, `e₁ - e₂` et `e₁ * e₂` dénotent respectivement l'addition, la soustraction et la multiplication.
-  - Si `e₁` et `e₂` s'évaluent en des entiers, les opérations sont celles sur des entiers.
-  - Si `e₁` et `e₂` s'évaluent en des chaînes de caractères, seule l'addition est définie comme la concaténation.
-  - Dans tous les autres cas, une erreur devra être levée.
-- `e₁ = e₂` dénote le test d'égalité. `e₁` et `e₂` doivent s'évaluer à des valeurs du même type (booléen, chaîne ou entier).
-- `e₁ && e₂`, `e₁ || e₂` et `! e₁` dénotent respectivement la conjonction, la disjonction et la négation de booléens.
-  Les opérateurs `&&` et `||` respectent le *short-circuiting* : si `e₁` s'évalue à `true` (resp. `false`), alors `e₁ || e₂` (resp. `e₁ && e₂`) n'évaluent pas `e₂` et renvoient `true` (resp. `false`).
-  Si `e₁` ou `e₂` s'évalue en un entier ou une chaîne de caractères, une erreur devra être levée.
+  De même, `ifx` doit être reconnu comme un identifiant, et non comme le mot-clé `if` suivant de l'identifiant `x`.
 
 ### Sémantique semi-formelle des instructions
 
@@ -84,11 +46,6 @@ Tout comme les expressions, les instructions suivent la sémantique usuelle de C
 - `x := e` assigne à `x` la valeur de `e`, si évaluer `e` ne lève pas d'erreur.
 - `if e then B₁ else B₂` exécute `B₁` si la valeur de `e` est `true`, sinon `B₂` si la valeur de `e` est `false`.
   Si `e` ne s'évalue pas à un booléen, une erreur doit être levée.
-- `switch e | case i₁: B₁ | … | case iₙ: Bₙ | (default: B)?` exécute une des branches en fonction de la valeur de `e`.
-  Si `e` ne s'évalue pas à un entier, une erreur doit être levée.
-  Si la valeur de `e` correspond à une branche, i.e. que la valeur de `e` est égale à un entier `iₖ` (pour `1 ≤ k ≤ n`), alors le block `Bₖ` doit être exécutée.
-  Si la valeur de `e` ne correspond à aucune branche, et qu'une branche `default` est présente, alors celle-ci doit être exécutée.
-  S'il n'y a pas non plus de branche `default`, l'instruction `switch` ne fait rien.
 - `print e` affiche la valeur de `e` sur la sortie standard.
 
 ### Parsing de MiniC
@@ -152,9 +109,6 @@ Voici plusieurs axes d'améliorations/extensions possibles pour MiniC :
   Ne vous préoccupez pas de la terminaison, si vous écrivez `while true { print 0; };`, la sortie standard doit inclure une infinité de `0` (jusqu'à <kbd>Ctrl</kbd>+<kbd>C</kbd> en tout cas).
 - MiniC n'inclut pas d'instruction permettant d'arrêter le programme dans des circonstances extrêmes.
   Vous pourrez ajouter une instruction `'panic' String` qui fait quitter le programme immédiatement avec la chaîne associée comme erreur (potentiellement préfixée par `panic:`).
-- Ajouter un opérateur `/` représentant la division euclidienne sur les entiers.
-  Cet opérateur doit avoir la même priorité opératoire que la multiplication.
-  Attention au cas de division par zéro.
 
 > [!IMPORTANT]
 > N'essayez pas de faire tous les bonus!
