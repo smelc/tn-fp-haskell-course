@@ -37,7 +37,8 @@ common common-all
                        -Wno-unused-imports
                        -Werror
                        -Wwarn=missing-home-modules
-     default-extensions: DataKinds
+     default-extensions: ConstraintKinds
+                         DataKinds
                          DeriveGeneric
                          DeriveFunctor
                          DuplicateRecordFields
