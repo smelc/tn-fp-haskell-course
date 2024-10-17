@@ -20,7 +20,7 @@ MiniC est un petit langage de programmation impérative dérivé de C, dont voic
 ```
 Expression ⩴ Number | Identifier | Boolean | String
 
-Statement ⩴ 'skip' | Identifier ':=' Expression | 'if' Expression 'then' '{' Block '}' 'else' '{' Block '}' | 'print' Expression
+Statement ⩴ 'skip' | Identifier ':=' Expression | 'if' Expression 'then' '{' Block '}' ('else' '{' Block '}')? | 'print' Expression
 
 Block ⩴ ε | Statement ';' Block
 ```
