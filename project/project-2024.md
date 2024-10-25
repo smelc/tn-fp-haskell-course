@@ -2,7 +2,9 @@
 
 ## Rendu
 
--- Date à fixer
+Rendu par mail avant le 13 décembre 2024.
+
+Le projet peut-être réalisé seul ou en binôme.
 
 ## Objectif
 
