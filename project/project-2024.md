@@ -107,13 +107,13 @@ Ne vous embêtez pas à essayer d'afficher des erreurs avec le code source origi
 
 Voici plusieurs axes d'améliorations/extensions possibles pour MiniC :
 - Dans le langage proposé, il n'y a pas de boucles.
-  Vous pouvez ajouter une boucle `'while' Expression '{' Block '}'` qui exécutera le block tant que la valeur de l'expression est `true`.
+  Vous pouvez ajouter une boucle `'while' Expression '{' Block '}'` qui exécutera le block tant que la valeur de l'expression est `true` (attention aux erreurs sur les autres types de valeurs).
   Ne vous préoccupez pas de la terminaison, si vous écrivez `while true { print 0; };`, la sortie standard doit inclure une infinité de `0` (jusqu'à <kbd>Ctrl</kbd>+<kbd>C</kbd> en tout cas).
 - MiniC n'inclut pas d'instruction permettant d'arrêter le programme dans des circonstances extrêmes.
   Vous pourrez ajouter une instruction `'panic' String` qui fait quitter le programme immédiatement avec la chaîne associée comme erreur (potentiellement préfixée par `panic:`).
 
 > [!IMPORTANT]
-> N'essayez pas de faire tous les bonus!
+> N'essayez pas forcément de faire tous les bonus!
 > Cela ne vous apportera pas forcément plus de points que si vous en aviez fait moins.
 
 ## Rendu
@@ -129,11 +129,19 @@ Une archive Zip dont le nom respecte le format `<nom1>-[<nom2>-]projet-haskell.z
 - tout autre fichier potentiel que vous pensez pertinents quant à la correction.
 
 > [!NOTE]
-> Veillez à bien documenter votre code, idéalement en anglais!
+> Veillez à bien documenter votre code, idéalement en anglais! Cela fait partie de la note finale.
 
 ## Notation
 
+La notation est basée sur les critères suivants :
+- respect des consignes sur 1 point (gratuit) ;
+- organisation du code (utilisation des monades/types adéquats, correcte utilisation des modules, etc.) sur 4 points ;
+- clarté et lisibilité du code (nommage correct, documentation, formatage, etc.) sur 4 points ;
+- parsing du langage sur 5 points ;
+- implémentation de l'interpréteur sur 6 points ;
+- (bonus) boucle `while` sur 1 point, instruction `panic` sur 2 points.
 
+Le nombre de points peut varier dans la notation finale, mais la répartition de chacun des points au dessus restera la même.
 
 ## Des questions ?
 
