@@ -2,7 +2,7 @@
 
 ## Rendu
 
-Rendu par mail avant le 13 décembre 2024.
+Rendu par mail avant le 13 décembre 2024, par mail au ghilain.bergeron@inria.fr. Mettez aussi clement.hurlin@gmail.com en CC.
 
 Le projet peut-être réalisé seul ou en binôme.
 
