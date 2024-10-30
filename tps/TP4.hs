@@ -31,6 +31,9 @@ import Test.QuickCheck
 -- For 'readProcess' documentation, see:
 -- https://hackage.haskell.org/package/process-1.6.13.2/docs/System-Process.html#v:readProcess
 --
+-- Use 'monadicIO' to use 'pyEval' in a QuickCheck property:
+-- https://hackage.haskell.org/package/QuickCheck-2.15.0.1/docs/Test-QuickCheck-Monadic.html#v:monadicIO
+--
 -- Use https://hoogle.haskell.org/ to find the functions you need
 pyEval :: String -> IO String
 pyEval expr = do
