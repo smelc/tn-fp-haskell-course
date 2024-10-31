@@ -68,6 +68,11 @@ library slides
                       Course04
                       Course05
 
+library
+    import:           common-all
+    hs-source-dirs:   tps
+    exposed-modules:  Scratch
+
 executable TP1.hs
     import:           common-all
     main-is:          TP1.hs
@@ -93,7 +98,9 @@ executable TP5.hs
     main-is:          TP5.hs
     hs-source-dirs:   tps
 
-library
-    import:           common-all
-    hs-source-dirs:   tps
-    exposed-modules:  Scratch
+-- Remove the comments below to enable the TP6!
+-- executable TP6.hs
+--    import:           common-all
+--    build-depends:    gloss
+--    main-is:          TP6.hs
+--    hs-source-dirs:   tps
