@@ -1,4 +1,7 @@
 {
   "haskell.manageHLS": "GHCup",
-  "haskell.plugin.hlint.diagnosticsOn": false
+  "haskell.plugin.hlint.diagnosticsOn": false,
+  "code-runner.executorMap": {
+    "haskell": "cabal run -v0 $fileName",
+  }
 }
