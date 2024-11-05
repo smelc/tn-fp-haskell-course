@@ -24,8 +24,8 @@
 -- 3. Modify data passed to the call 'html "..."' in the main function below,
 --    so that the list of repositories is displayed instead. For this,
 --    read the field 'name' of the type 'Repo' returned by 'getUserRepositories'
---    /!\ The 'Repo' type uses type T.Text while 'html' requires L.text /!\
---    /!\ Use L.fromStrict to convert between the two /!\
+--    /!\ The 'Repo' type uses type T.Text while 'html' requires TL.Text /!\
+--    /!\ Use TL.fromStrict to convert between the two /!\
 -- 4. Augment the 'Repo' type so that the json fields "private" and "description"
 --    are extracted from the GitHub API call. Look at the output of this
 --    program to see the json, find these fields, use appropriate types.
