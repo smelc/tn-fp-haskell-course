@@ -67,6 +67,8 @@ data Repo = Repo {
 instance ToJSON Repo -- Automatically generate a json->Repo parser
 instance FromJSON Repo -- Automatically generate a Repo->json serializer
 
+-- TODO smelc, ask to use the JSON functions in the repl
+
 yourGitHubHandle :: BS.ByteString
 yourGitHubHandle = "smelc" -- Put your GitHub handle here, for example mine is "smelc"
 
