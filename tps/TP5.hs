@@ -88,7 +88,7 @@ printUserRepositories pat user = runReq defaultHttpConfig $ do
 getUserRepositories :: BS.ByteString -> BS.ByteString -> IO [Repo]
 getUserRepositories pat user = runReq defaultHttpConfig $ do
   let opts = optionsFor pat user
-  response <- req GET (https "api.github.com" /: "users" /: "smelc" /: "repos") NoReqBody jsonResponse opts
+  response <- req GET (https "api.github.com" /: "users" /: T.decodeUtf8 user /: "repos") NoReqBody jsonResponse opts
   return (responseBody response)
 
 main :: IO ()
