@@ -35,8 +35,6 @@ main = do
 --    Write a type for filters
 -- 4/ Write a function that taskes an URL and a filter, and returns whether
 --    the URL passes the filter. Write tests.
--- 5/ Generalize your filter: allow them to be whitelist, i.e. an URL
---    passes the filter only if matches the filter. Write tests.
 --
 -- Use https://hoogle.haskell.org/ to find the functions you need, for example splitOn:
 -- https://hackage.haskell.org/package/split-0.2.5/docs/Data-List-Split.html#v:splitOn
