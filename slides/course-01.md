@@ -4,11 +4,11 @@ class: center, middle
 
 ## Lesson 1
 
-<img src="img/modus-create.png" height="96">![TN logo](img/tn.png)
+<img src="img/tweag_logo_black.png" height="64">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![TN logo](img/tn.png)
 
 <br/>
 
-Clément Hurlin, Director of Engineering, Modus Create
+Clément Hurlin, Director of Engineering, Tweag
 
 [https://github.com/smelc/tn-fp-haskell-course]([https://github.com/smelc/tn-fp-haskell-course)
 

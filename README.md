@@ -60,8 +60,4 @@ To validate code snippets within slides, see [slides/README.md](slides/README.md
 
 ---
 
-This course is funded by my employer: [Modus Create](https://moduscreate.com/)
-
-<p align="center">
-  <a href="https://moduscreate.com/"><img src="slides/img/modus-create.png" height="114"/></a>
-</p>
+This course is funded by my employer: <a href="https://tweag.io/">Tweag</a>

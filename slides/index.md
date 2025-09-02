@@ -25,8 +25,8 @@ to write code akin to the content of the _TPs_.
 This course is on GitHub: [smelc/tn-fp-haskell-course](https://github.com/smelc/tn-fp-haskell-course).
 Please suggest improvements and fix typos by doing [merge requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-This course is funded by my employer: [Modus Create](https://moduscreate.com/)
+This course is funded by my employer: [Tweag](https://tweag.io/)
 
 <p align="center">
-  <a href="https://moduscreate.com/"><img src="img/modus-create.png" height="114"/></a>
+  <a href="https://tweag.io/"><img src="img/tweag_logo_black.png" height="68"/></a>
 </p>
