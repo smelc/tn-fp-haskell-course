@@ -3,7 +3,7 @@
 ## Course on functional programming - Haskell
 
 This course was/is being given at [Telecom Nancy](https://smelc.github.io/tn-fp-haskell-course/slides/)
-in 2021, 2022, 2023, and 2024 in _3A_.
+in 2021, 2022, 2023, 2024, and 2025 in _3A_.
 
 If you have attended this course, please join the [Telecom Nancy Functional Alumnis](https://www.linkedin.com/groups/13114697/) LinkedIn group 👈
 which I use to post job ads in companies I work with.
