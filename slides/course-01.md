@@ -175,9 +175,8 @@ Java ☕
 
 - 2014: Java 8 brings _streams_, _lambdas_, _Optional_, etc.
 - 2018: Java 10 brings local variable type inference
-- 2019: Java 12 brings more expressive `switch` (pattern matching)
 - 2020: Java 15 brings records and sealed classes, and more pattern matching
-- 2021 - 2024: Java 16, 17, 19, and 20 all bring more expressive pattern matching
+- 2019 - 2025: Java 12, 16, 17, 19, 20, and 21 improve pattern matching
 
 Python 🐍
 
@@ -186,8 +185,9 @@ Python 🐍
 <!-- - 2001: version 2.7 brings `dict` comprehension -->
 - 2015: version 3.5 brings types hinting
 - 2020: version 3.10 brings pattern matching
-- 2022: version 3.11 brings more types
-- 2023: version 3.12 improve ergonomics for type parameters syntax and generic types
+<!-- - 2022: version 3.11 brings more types -->
+- 2023: version 3.12 improves ergonomics for type parameters syntax and generic types
+- 2024: version 3.13 brings readonly-type for `dict` and type narrowing
 
 The same goes for: C#, Javascript, C++
 
@@ -428,6 +428,7 @@ Property-based testing:
 
 - Discuss the difference between arrays and lists
   - Discuss the temporal properties difference
+  - Discuss the importance of "culture générale" during interviews
 
 ---
 
@@ -436,7 +437,7 @@ Property-based testing:
 - **Expressions** are the basic blocks
 - Types are expressive
 - Makes testing easier
-- Makes decoupling easier
+- Makes decoupling easier (inversion of dependencies)
 
 ---
 
