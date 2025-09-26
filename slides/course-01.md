@@ -320,14 +320,6 @@ mult3 x y z = result
     xy = x * y
 ```
 
---
-
-Expressions can be freely extracted into variables or substituted (inlined), which makes it easier to:
-
-- Move code around (refactoring)
-- Change existing code (scope is easier to understand)
-- Reason about code
-
 ---
 
 # Algebraic Data Types
