@@ -471,23 +471,60 @@ Just 3
 Nothing
 ```
 
---
+---
 
-```bash
-> (+) <$> Nothing <*> Just 2
-Nothing
+# `Applicative`
+
+<!-- exdown-skip -->
+```hs
+class Functor f => Applicative f where
+  pure :: a -> f a
+
+  (<*>) :: f (a -> b) -> f a -> f b
+
+  -- Inherited from @Functor f@ constraint
+  (<$>) :: Functor f => (a -> b) -> f a -> f b
 ```
 
-* TODO next year: this didn't flow really well.
-* Use https://youtu.be/8oVHISjS3wI?t=311 as inspiration
+--
+
+Combining `<*>` and `<$>` lifts `pure` under the hood:
+
+
+```bash
+> pure (+) <*> Just 1 <*> Just 2
+Just 3
+> (+) <$> Just 1 <*> Just 2
+Just 3
+```
+
+---
+
+# `Applicative`
+
+<!-- exdown-skip -->
+```hs
+class Functor f => Applicative f where
+  pure :: a -> f a
+
+  (<*>) :: f (a -> b) -> f a -> f b
+
+  -- Inherited from @Functor f@ constraint
+  (<$>) :: Functor f => (a -> b) -> f a -> f b
+```
+
+Tying it all together, we have container-agnostic transformations:
 
 <!-- exdown-skip -->
 ```hs
 > :type (++)
 String -> String -> String
-> (++) <$> Just "John" <*> Just "Travolta"
-> :type ((++) <$> Just "John")
+> :type ((++) <$> Just "Philippe")
 Maybe (String -> String)
+> (++) <$> Just "Philippe" <*> Just " Katerine"
+Just "Philippe Katerine"
+> (++) <$> ["Philippe"] <*> [" Katerine"]
+["Philippe Katerine"]
 ```
 
 ---
@@ -517,6 +554,7 @@ How to compose functions:
 - https://learnyouahaskell.github.io/syntax-in-functions.html
 - https://learnyouahaskell.github.io/higher-order-functions.html
 - https://youtu.be/8oVHISjS3wI
+- [Graham Hutton](https://youtu.be/8oVHISjS3wI?t=311)'s course on applicative functors
 
 ---
 
