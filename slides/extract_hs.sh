@@ -13,6 +13,7 @@ do
   hs_module_name=${hs_module_name^}  # Put first character uppercase
   f_hs="${hs_module_name}.hs"
   rm -Rf "$f_hs"
+  echo "$EXDOWN -f hs $f > $f_hs"
   $EXDOWN -f hs $f > "$f_hs" || exit 1  # exdown is https://github.com/smelc/exdown
   echo "Written $f_hs"
 done
