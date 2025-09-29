@@ -125,6 +125,6 @@ data Authenticated
 -- @type@ defines aliases (shortcuts)
 type UserWithAuthStatus a = User
 
-authenticate' :: User -> String -> UserWithAuthStatus Authenticated
+authenticate' :: User -> String -> Either String (UserWithAuthStatus Authenticated)
 authenticate' = undefined
 

@@ -28,6 +28,11 @@ jobs:
           git clone https://github.com/smelc/exdown
           EXDOWN=exdown/exdown.py ./extract_hs.sh
 
+      - name: Check versioned Course*.hs files are up to date
+        working-directory: slides
+        run: |
+          ./check_golden_diff.sh
+
       - name: Set up GHC ${{ matrix.ghc-version }}
         uses: haskell-actions/setup@v2
         id: setup
