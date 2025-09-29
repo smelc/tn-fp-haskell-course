@@ -51,7 +51,7 @@ data Version =
     -- | Version number of the form "x.y.z"
   | SemVer Int Int Int
 
-class (MonadIO m) => MonadLogger m where
+class MonadIO m => MonadLogger m where
   log :: String -> m ()
 
 -- | Generic REST GET interface
@@ -125,6 +125,8 @@ data Authenticated
 -- @type@ defines aliases (shortcuts)
 type UserWithAuthStatus a = User
 
-authenticate' :: User -> String -> Either String (UserWithAuthStatus Authenticated)
+authenticate' :: User
+              -> String
+              -> Either String (UserWithAuthStatus Authenticated)
 authenticate' = undefined
 

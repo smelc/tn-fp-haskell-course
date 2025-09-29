@@ -451,7 +451,7 @@ Let's combine functions:
 
 ---
 
-# `Applicative`
+# Applicative
 
 <!-- exdown-skip -->
 ```hs
@@ -473,7 +473,7 @@ Nothing
 
 ---
 
-# `Applicative`
+# Applicative
 
 <!-- exdown-skip -->
 ```hs
@@ -500,7 +500,7 @@ Just 3
 
 ---
 
-# `Applicative`
+# Applicative
 
 <!-- exdown-skip -->
 ```hs
@@ -553,8 +553,8 @@ How to compose functions:
 
 - https://learnyouahaskell.github.io/syntax-in-functions.html
 - https://learnyouahaskell.github.io/higher-order-functions.html
-- https://youtu.be/8oVHISjS3wI
-- [Graham Hutton](https://youtu.be/8oVHISjS3wI?t=311)'s course on applicative functors
+- Graham Hutton's course at Universty of Nottingham: https://youtu.be/8oVHISjS3wI
+  - I really like [this section](https://youtu.be/8oVHISjS3wI?t=311) on `Applicative`
 
 ---
 

@@ -191,12 +191,11 @@ data Version =
 
 Typeclasses bear similarities with Java interfaces, but:
 
-- When a Java class is defined, all its interfaces must be declared. Typeclasses,
-  however, don't have to be defined with the type.
-- Typeclasses are more general because they support multiple type parameters
+- When a Java class is defined, all its interfaces must be declared.
+- Typeclasses, however, don't have to be defined with the type.
 
 ```hs
-class (MonadIO m) => MonadLogger m where
+class MonadIO m => MonadLogger m where
   log :: String -> m ()
 
 -- | Generic REST GET interface
@@ -491,7 +490,9 @@ data Authenticated
 -- @type@ defines aliases (shortcuts)
 type UserWithAuthStatus a = User
 
-authenticate' :: User -> String -> Either String (UserWithAuthStatus Authenticated)
+authenticate' :: User
+              -> String
+              -> Either String (UserWithAuthStatus Authenticated)
 authenticate' = undefined
 ```
 
