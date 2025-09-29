@@ -314,26 +314,6 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
 
 ---
 
-# Composition
-
-Because functions are so central in functional programming, it is crucial
-to combine them easily.
-
-```bash
-> import Data.Function
-> :type (&)
-(&) :: a -> (a -> b) -> b
-```
-
-- `(&)` means it is an operator (like `+`, `-`, etc.), so it is written between its arguments: `x & f`,
-  in infix position.
-
-???
-
-Ask whether they see the relationship with function application
-
----
-
 # Partial application
 
 ```bash
@@ -363,6 +343,26 @@ When writing functions:
 <center>
 - Order arguments so that partial application makes sense
 </center>
+
+---
+
+# Composition
+
+Because functions are so central in functional programming, it is crucial
+to combine them easily.
+
+```bash
+> import Data.Function
+> :type (&)
+(&) :: a -> (a -> b) -> b
+```
+
+- `(&)` means it is an operator (like `+`, `-`, etc.), so it is written between its arguments: `x & f`,
+  in infix position.
+
+???
+
+Ask whether they see the relationship with function application
 
 ---
 
