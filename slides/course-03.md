@@ -287,7 +287,7 @@ instance Functor Tree where
 foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
 ```
 
-<!-- exdown-skip 1 2 7 8 -->
+<!-- exdown-skip 1 2 6 7 -->
 ```hs
 wordCount :: [[String]] -> Int
 wordCount files = undefined

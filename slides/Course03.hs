@@ -49,7 +49,7 @@ lastv v1 v2 =
     (Beta, SemVer _ _ _) -> v2
     (SemVer x1 _ _, SemVer x2 _ _)   | x1 < x2             -> v2
     (SemVer x1 y1 _, SemVer x2 y2 _) | x1 == x2 && y1 < y2 -> v2
-    _ -> error "I'm too lazy"
+    _ -> error "TODO"
 
 data Sign = Negative | Zero | Positive
 
@@ -89,14 +89,13 @@ instance Functor Tree where
   fmap f (Node x children) = Node (f x) (map (fmap f) children)
 
 
--- | 'Word16' is a zero or positive number
-data Operation = Debit Word16 | Credit Word16
+data Operation = Debit Int | Credit Int
 
 
 wordCount :: [[String]] -> Int
 wordCount files = foldr (\words soFar -> (length words) + soFar) 0 files
 
-balance' :: [Operation] -> Word16
+balance' :: [Operation] -> Int
 balance' = foldr (\op soFar -> toInt op + soFar) 0
   where
     toInt = \case Debit x -> -x; Credit x -> x
