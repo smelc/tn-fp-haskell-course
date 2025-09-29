@@ -1,0 +1,27 @@
+name: shellcheck
+# This pipeline runs shellcheck on all files with extension .sh,
+# except the ones listed in .github/workflows/shellcheck-exceptions.txt.
+
+on:
+  push:
+  merge_group:
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Shellcheck
+        run: |
+          for file in $(git ls-files "*.sh")
+          do
+            if grep -q "$file" ".github/workflows/shellcheck-exceptions.txt"
+            then
+              echo "⚠️ $file is ignored from shellcheck's verifications. Please consider fixing it."
+            else
+              echo "shellcheck \"$file\""
+              shellcheck "$file"
+            fi
+          done

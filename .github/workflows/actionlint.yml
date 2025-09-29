@@ -21,7 +21,7 @@ jobs:
         run: |
           # We want space splitting
           # shellcheck disable=SC2086
-          for file in $(git ls-files .github/workflows/*)
+          for file in $(git ls-files .github/workflows/*.yml)
           do
             echo "Checking $file"
             ${{ steps.get_actionlint.outputs.executable }} -color $file || exit 1

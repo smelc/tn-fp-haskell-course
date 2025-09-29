@@ -7,13 +7,13 @@ set -e
 
 EXDOWN="${EXDOWN:-exdown.py}"
 
-for f in $(ls *.md | grep course)
+for f in course*.md
 do
-  hs_module_name=$(echo $f | tr -d '-' | sed 's/\.md$//')
+  hs_module_name=$(echo "$f" | tr -d '-' | sed 's/\.md$//')
   hs_module_name=${hs_module_name^}  # Put first character uppercase
   f_hs="${hs_module_name}.hs"
   rm -Rf "$f_hs"
   echo "$EXDOWN -f hs $f > $f_hs"
-  $EXDOWN -f hs $f > "$f_hs" || exit 1  # exdown is https://github.com/smelc/exdown
+  $EXDOWN -f hs "$f" > "$f_hs" || exit 1  # exdown is https://github.com/smelc/exdown
   echo "Written $f_hs"
 done
