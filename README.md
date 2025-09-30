@@ -1,4 +1,6 @@
-[![Haskell build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml)
+[![Haskell build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml) 
+[![shellcheck](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml) 
+[![actionlint](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml)
 
 ## Course on functional programming - Haskell
 
