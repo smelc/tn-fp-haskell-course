@@ -158,7 +158,7 @@ Puis quelques tests.
 Et enfin les fonctions d'encodage et de décodage.
 
 > [!IMPORTANT]
-> Les fonctions d'encodage et de décodage doivent être inverses l'une de l'autre, c'est-à-dire que pour un arbre quelconque $T$ et une chaîne $S$, il faut que $\operatorname{decode}^{\mathit{Huffman}}_T(\operatorname{encode}^{\mathit{Huffman}}_T(S)) = S$ (ou autrement dit $\operatorname{decode}^{\mathit{Huffman}}_T \circ \operatorname{encode}^{\mathit{Huffman}}_T = \operatorname{id}$).
+> Les fonctions d'encodage et de décodage doivent être inverses l'une de l'autre, c'est-à-dire que pour un arbre quelconque $T$ et une chaîne $S$, il faut que $\mathrm{decode}^{\mathit{Huffman}}_T(\mathrm{encode}^{\mathit{Huffman}}_T(S)) = S$ (ou autrement dit $\mathrm{decode}^{\mathit{Huffman}}_T \circ \mathrm{encode}^{\mathit{Huffman}}_T = \mathrm{id}$).
 > Il pourrait s'agir d'un de vos tests !
 
 ### La transformée de Burrows-Wheeler
@@ -280,7 +280,7 @@ Attention à bien sauvegarder l'indice du texte de départ, pour la fonction d'e
 
 > [!IMPORTANT]
 > Les fonctions d'encodage et de décodage doivent être inverses l'une de l'autre ! 
-> Autrement dit, pour toute séquence $S$, il faut que $\operatorname{decode}^{\mathit{BWT}}(\operatorname{encode}^{\mathit{BWT}}(S)) = S$.
+> Autrement dit, pour toute séquence $S$, il faut que $\mathrm{decode}^{\mathit{BWT}}(\mathrm{encode}^{\mathit{BWT}}(S)) = S$.
 
 ### Bonus 
 
