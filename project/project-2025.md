@@ -10,7 +10,7 @@ Le projet peut être réalisé seul ou en binôme (recommandé), au choix.
 
 ## Objectif
 
-Écrire un programme "réaliste" en Haskell, en utilisant les concepts vus en cours.
+Écrire un programme réaliste en Haskell, en utilisant les concepts vus en cours.
 La clarté et la lisibilité du code, la production d'un code correct et l'organisation du projet seront mises en avant dans l'évaluation.
 Il vaut mieux un projet bien organisé et fonctionnel plutôt qu'un projet débordant de fonctionnalités bâclées/buggées.
 
@@ -55,7 +55,7 @@ Pour un texte donné, composé de symboles dans un alphabet donné, chaque symbo
   Cela nous permet de réduire considérablement la taille de la séquence encodée.
 
 Les codes sont déterminés en construisant un arbre binaire dont les feuilles représentent les symboles à encoder.
-Cet arbre (que nous nommerons "arbre de codes" dans la suite) est construit de la manière suivante :
+Cet arbre (appellé "arbre de codes" dans la suite) est construit de la manière suivante :
 1. L'algorithme s'exécute sur une liste d'arbres, que nous fusionnerons petit à petit.
    
    Pour chaque symbole de la séquence en entrée, créer une feuille contenant ce symbole ainsi que la fréquence d'apparition du symbole dans la séquence (son nombre d'occurrences).
@@ -326,9 +326,9 @@ Voici quelques axes d'amélioration/d'extension du projet :
 ## Rendu
 
 Une archive **Zip** ou **Tar GZ** dont le nom respecte le format `<nom1>-[<nom2>-]projet-haskell.(zip|tar.gz)`, qui contient :
-- le code Haskell du projet, dans des dossiers `app/` et `src/` à la racine, et les fichiers générés par `stack`/`cabal` à la racine de l'archive (le projet doit être exécutable) ;
+- le code Haskell du projet, dans des dossiers `app/` et `src/` à la racine, et les fichiers générés par `cabal` à la racine de l'archive (le projet doit être exécutable) ;
 - un fichier `README.md` à la racine de l'archive, décrivant les aspects suivants de votre projet (en français ou en anglais au choix) :
-  - comment le compiler (projet `stack` ou `cabal` ? bibliothèques à installer sur mon système ?) ;
+  - comment le compiler (commande `cabal` ? bibliothèques à installer sur mon système ?) ;
   - comment l'exécuter (en particulier, est-ce que votre exécutable prend un fichier en argument ou du texte sur l'entrée standard) ;
   - les bibliothèques utilisées, et pourquoi ;
   - les potentielles fonctionnalités non implémentées, bug connus ou difficultés rencontrées ;
