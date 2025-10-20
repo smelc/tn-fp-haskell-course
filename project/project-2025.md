@@ -4,7 +4,7 @@
 
 ## Rendu
 
-Rendu par mail avant le ***[[DATE A FIXER]]***, par mail à l'adresse <ghilain.bergeron@inria.fr> avec <clement.hurlin@gmail.com> en CC.
+Rendu par mail jusqu'au ***18 décembre 2025***, par mail à l'adresse <ghilain.bergeron@inria.fr> avec <clement.hurlin@gmail.com> en CC.
 
 Le projet peut être réalisé seul ou en binôme (recommandé), au choix.
 
