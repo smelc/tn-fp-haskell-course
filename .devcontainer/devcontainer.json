@@ -1,0 +1,23 @@
+{
+  "name": "tn-fp-haskell-course",
+  "image": "ghcr.io/smelc/tn-fp-haskell-course:latest",
+  "remoteUser": "vscode",
+  "forwardPorts": [8000, 6419],
+  "portsAttributes": {
+    "8000": { "label": "Slides (python http.server)" },
+    "6419": { "label": "grip (exam.md preview)" }
+  },
+  "postCreateCommand": "cabal build all",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "haskell.haskell",
+        "justusadam.language-haskell"
+      ],
+      "settings": {
+        "haskell.manageHLS": "GHCup",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

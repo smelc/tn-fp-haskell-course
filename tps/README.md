@@ -1,5 +1,24 @@
 # This is the home of the TPs for the functional programming course of Telecom Nancy
 
+## Containerized setup - recommended
+
+The fastest way to get a working environment is to use the docker image
+published by CI. OCaml tooling and this repository's code are included.
+
+In vscode (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)):
+open the repository root, then run **Dev Containers: Reopen in Container**
+from the command palette (`Ctrl/Cmd+Shift+P`).
+vscode reads [`.devcontainer/devcontainer.json`](../.devcontainer/devcontainer.json),
+pulls the image and mounts your clone.
+
+From a terminal inside the container you can then run e.g.:
+
+```shell
+cabal run -v0 TP4.hs
+```
+
+## Manual setup (without Docker)
+
 To reproduce a working environment, from the repository root, do:
 
 * Install the Haskell installer with [ghcup](https://www.haskell.org/ghcup/):

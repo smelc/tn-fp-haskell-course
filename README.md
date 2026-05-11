@@ -1,6 +1,7 @@
 [![Haskell build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml) 
 [![shellcheck](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml) 
 [![actionlint](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml)
+[![Docker](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/docker.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/docker.yml)
 
 ## Course on functional programming - Haskell
 
@@ -33,7 +34,31 @@ as per the instruction on the
 [remark wiki](https://github.com/gnab/remark/wiki#offline-use-without-an-internet-connection).
 But I've never done it.
 
-### Development instruction
+### Containerized development instructions - recommended
+
+For you to do the _travaux pratiques_ smoothly,
+this repository ships a [devcontainer config](.devcontainer/devcontainer.json)
+that points to the docker image published by CI on `main`.
+In vscode (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)):
+open this folder, then run **Dev Containers: Reopen in Container** from the
+command palette (`Ctrl/Cmd+Shift+P`). The first run pulls the image and mounts
+your clone.
+
+Without vscode, you can run the image manually:
+
+```shell
+docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
+docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
+```
+
+To build the image yourself (e.g. to test local changes to the `Dockerfile`),
+tag it with the registry name so the devcontainer picks it up:
+
+```shell
+docker build -f docker/Dockerfile -t ghcr.io/smelc/tn-fp-haskell-course:latest .
+```
+
+### Development instructions without Docker
 
 These instructions are more [hermetic](https://bazel.build/basics/hermeticity) than
 the ones in [tps](./tps/README.md). This is intentional. ⚠️ If you are here to do the _travaux pratiques_,
@@ -50,7 +75,7 @@ mkdir -p bin/{cabal,ghc,hls}
 # Instal cabal, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
 ghcup install cabal --isolate $(pwd)/bin/cabal
 # Populate GHC, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
-# Note that GHC's version number is also in .github/workflows/haskell.yml
+# Note that GHC's version number is also in .github/workflows/haskell.yml and in docker/Dockerfile
 ghcup install ghc 9.4.7 --isolate $(pwd)/bin/ghc
 ghcup install hls --isolate $(pwd)/bin/hls
 ```
