@@ -62,4 +62,4 @@ To validate code snippets within slides, see [slides/README.md](slides/README.md
 
 ---
 
-This course is funded by my employer: <a href="https://tweag.io/">Tweag</a>
+In the past, this course has been funded by <a href="https://tweag.io/">Tweag</a>
