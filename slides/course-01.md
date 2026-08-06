@@ -8,7 +8,7 @@ class: center, middle
 
 <br/>
 
-Clément Hurlin, Director of Engineering, Tweag
+Clément Hurlin, Engineering Lead
 
 [https://github.com/smelc/tn-fp-haskell-course]([https://github.com/smelc/tn-fp-haskell-course)
 
@@ -46,12 +46,12 @@ Why use them:
 - Used in financial institutions: _earn more money_
   - BNP Paribas - Haskell
   - [Standard Chartered](https://www.sc.com/) - Haskell
-  - [Tezos](https://tezos.com/) - OCaml
   - Trading companies:
      - [Morgan Stanley](https://www.morganstanley.com/)
      - [Jane Street](https://www.janestreet.com/) - OCaml
 - _Work on interesting projects_:
   - European Space Agency 🚀
+  - [Stategraph](https://stategraph.com/) - OCaml
   - Tesla - Haskell
   - [Trip Shot](https://www.tripshot.com/) - Haskell
 
@@ -66,10 +66,10 @@ Why use them:
 
 💯 My personal recommendations 😍
 
-- [Cardano](https://cardano.org/), Haskell: [https://apply.workable.com/io-global](https://apply.workable.com/io-global)
+- [Jane Street](https://www.janestreet.com), OCaml: [https://www.janestreet.com/join-jane-street/open-roles/](https://www.janestreet.com/join-jane-street/open-roles/)
 - [Mercury](https://mercury.com/), Haskell: [https://mercury.com/jobs](https://mercury.com/jobs)
 - [Swan](https://fr.swan.io/), Scala: [https://www.welcometothejungle.com/fr/companies/swan/jobs](https://www.welcometothejungle.com/fr/companies/swan/jobs)
-- [Flowie](https://www.get-flowie.com/) - Scala
+- [Yume](https://yume.ag/) - Functional Programming Consulting
 
 </br>
 </br>
@@ -415,6 +415,8 @@ Property-based testing:
 - Generate random data
 - Check that properties hold using this data
 - Super general 💪, reliable 🧱
+
+There are product companies supercharging this: [Antithesis](https://antithesis.com/)
 
 ???
 
