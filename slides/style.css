@@ -1,0 +1,20 @@
+/* Shared styles for all course-NN.html slide decks.
+   Single source of truth: edit here, not in the HTML files. */
+
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { font-family: 'Droid Serif'; }
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+.remark-inline-code { background-color: #F0F0F0; }
+
+/* Two-column layout, used via remark's content classes:
+   .left-column[ ... ] and .right-column[ ... ] */
+.left-column  { width: 52%; float: left; }
+.right-column { width: 44%; float: right; }
+.right-column img { max-width: 100%; }
