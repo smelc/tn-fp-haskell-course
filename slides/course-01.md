@@ -133,6 +133,26 @@ Highlight how things are more complicated in Java:
 
 ---
 
+# We need to talk about AI 🤖
+
+AI writes most code now. Does functional programming still matter?
+
+New needs:
+
+- Goal driven development: testing harness
+- Specification driven development: specs
+
+Functional answers:
+
+- Functional programs are easier to test
+- Strong types are a specification
+
+.right-column[
+![AI, AI everywhere](img/ai-ai-everywhere.png)
+]
+
+---
+
 # Course objective
 
 This course does NOT intend to make you think functional programming
@@ -405,9 +425,10 @@ instance With Person String where
 # Mathematical properties and testing
 
 - Well-designed types and APIs enjoy good properties relating their functions
-- Boolean, lists, sets
-- Arrays: `get`, `set`
-- Maps: `get`, `set`
+- Boolean
+- Containers
+  - Lists, Sets
+  - Arrays and maps (`get`/`set` theory)
 - Orderings
 
 Property-based testing:
@@ -415,8 +436,17 @@ Property-based testing:
 - Generate random data
 - Check that properties hold using this data
 - Super general 💪, reliable 🧱
+- Supercharged test harnesss 🤖
 
-There are product companies supercharging this: [Antithesis](https://antithesis.com/)
+--
+
+<br/>
+
+.center[
+Product company building a property-based system on steroids
+
+<a href="https://antithesis.com/"><img alt="Antithesis" src="img/antithesis-oranger.png" height="32"></a>
+]
 
 ???
 
