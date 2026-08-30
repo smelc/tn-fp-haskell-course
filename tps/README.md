@@ -31,7 +31,7 @@ To reproduce a working environment, from the repository root, do:
 * Install the [System requirements](https://www.haskell.org/ghcup/install/#system-requirements).
   If you are on Linux, this is something like `sudo apt install build-essential curl libffi-dev etc..`
   (see the link for the exact list of packages to install).
-* Run `ghcup install ghc 9.4.7` and then `ghcup set ghc 9.4.7`
+* Run `ghcup install ghc 9.10.3` and then `ghcup set ghc 9.10.3`
   to set the expected compiler version.
 * Run `cabal build all`. This will take a while as this repository depends on a number
   of fat libraries. Brew some coffee meanwhile.

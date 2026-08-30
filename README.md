@@ -76,8 +76,9 @@ mkdir -p bin/{cabal,ghc,hls}
 ghcup install cabal 3.12.1.0 --isolate $(pwd)/bin/cabal
 # Populate GHC, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
 # Note that GHC's version number is also in .github/workflows/haskell.yml and in docker/Dockerfile
-ghcup install ghc 9.4.7 --isolate $(pwd)/bin/ghc
-ghcup install hls --isolate $(pwd)/bin/hls
+ghcup install ghc 9.10.3 --isolate $(pwd)/bin/ghc
+# Note that HLS's version number is also in docker/Dockerfile
+ghcup install hls 2.14.0.0 --isolate $(pwd)/bin/hls
 ```
 
 Because there is a [cabal.project](./cabal.project) file that pins the set of packages to a specific

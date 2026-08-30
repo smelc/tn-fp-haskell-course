@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 
-ARG GHC_VERSION=9.4.7
+ARG GHC_VERSION=9.10.3
 ARG CABAL_VERSION=latest
-ARG HLS_VERSION=latest
+ARG HLS_VERSION=2.14.0.0
 
 # ghcup system requirements: https://www.haskell.org/ghcup/install/#system-requirements
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
