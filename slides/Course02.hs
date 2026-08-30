@@ -102,6 +102,21 @@ instance Collection Interval where
 instance Mappable Interval where
   map _f _ = undefined
 
+data Tx
+
+-- @transactions from to@ returns all transactions if @from@ and @to@ are
+-- @Nothing@. @from@ is a lower-bound on transaction's dates, while
+-- @to@ is an upper-bound.
+transactions :: Maybe String -> Maybe String -> IO [Tx]
+
+transactions = undefined
+
+data OptionalDateInterval = MkOptDateInterval {
+  from :: Maybe String,
+  to   :: Maybe String
+}
+
+
 class Semigroup a where
   -- | Associative binary operation
   (<>) :: a -> a -> a

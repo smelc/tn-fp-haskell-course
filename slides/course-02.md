@@ -336,9 +336,9 @@ safeHead (x : _) = Just x
 - `Just` is a function of type `a -> Maybe a`
 - `Just "foo"` is an expression of type `Maybe String`
 
-<center>
-Data constructors are <b>functions</b>! Constants are parameterless functions.
-</center>
+> Data constructors are **functions**!
+>
+> Constants are parameterless functions.
 
 --
 
@@ -377,11 +377,6 @@ instance Collection Maybe where
 ```
 
 --
-
-<br/>
-
---
-
 
 ```hs
 -- | A new class 'Mappable', which is an extension of 'Collection':
@@ -431,6 +426,23 @@ Left "Prelude.read: no parse"  # Not the best error message
 
 ---
 
+# What's in it for AI 🤖
+
+* All the types give you a _shared vocabulary_ for prompting
+* And actually, also for your squishy human teammates 🤝
+
+.prompt[
+Create a function parsing JSON like the one in _@/tmp/example-data.json_.
+Make it fail on parsing failure, using **Either**.
+]
+
+.prompt[
+I want to support a new kind of data, so add a new constructor to the sum type.
+Make sure all pattern matching on this sum type stay **exhaustive** (i.e. **total**).
+]
+
+---
+
 # Types: records
 
 ```hs
@@ -443,7 +455,7 @@ data Account = MkAccount {
 
 ???
 
-- Distinguish the type (left `Account`) from the value constructor (right `Account`)
+- Distinguish the type (left `Account`) from the value constructor (right `MkAccount`)
 - Talk about field names being functions
 
 --
@@ -487,6 +499,41 @@ instance Mappable Interval where
 
 ---
 
+# AI-powered refactorings 🤖
+
+```hs
+data Tx
+
+-- @transactions from to@ returns all transactions if @from@ and @to@ are
+-- @Nothing@. @from@ is a lower-bound on transaction's dates, while
+-- @to@ is an upper-bound.
+transactions :: Maybe String -> Maybe String -> IO [Tx]
+```
+
+<!--
+For extracted Haskell to compile
+```hs
+transactions = undefined
+```
+-->
+
+.prompt[
+transactions' two arguments have the same type for different behaviors.
+Use a record to name them instead. Adapt all callers.
+]
+
+<!-- exdown-skip 6 -->
+```hs
+data OptionalDateInterval = MkOptDateInterval {
+  from :: Maybe String,
+  to   :: Maybe String
+}
+
+transactions :: OptionalDateInterval -> IO [Tx]
+```
+
+---
+
 # Common abstractions
 
 ```hs
@@ -515,9 +562,6 @@ class Functor f where
 ```
 
 - All usual containers are instances of Functor
-
-<br/>
-
 - What properties have these classes? 🧱
 
 ???
@@ -583,6 +627,7 @@ Define functions on your trees:
 - Literal types: `Bool`, `Int`
 - `[a]`, `Maybe a`, `Either a b`
 - Abstracting over types: typeclasses
+- Types create a vocabulary for prompting. Know them well, master your prompts 🤖
 - All types have properties 🧱
 
 Not done:

@@ -74,13 +74,9 @@ Why use them:
 </br>
 </br>
 
-<center>
-Those teams are at the top of their craft 💪
-</center>
-</br>
-<center>
-You will learn a lot working there
-</center>
+> Those teams are at the top of their craft 💪
+>
+> You will learn a lot working there.
 
 ???
 
@@ -133,33 +129,12 @@ Highlight how things are more complicated in Java:
 
 ---
 
-# We need to talk about AI 🤖
-
-AI writes most code now. Does functional programming still matter?
-
-New needs:
-
-- Goal driven development: testing harness
-- Specification driven development: specs
-
-Functional answers:
-
-- Functional programs are easier to test
-- Strong types are a specification
-
-.right-column[
-![AI, AI everywhere](img/ai-ai-everywhere.png)
-]
-
----
-
 # Course objective
 
-This course does NOT intend to make you think functional programming
-is better. The point is to expand your mind:
+Expand your horizon:
 
-- Imperative programming is about **state**
-- Functional programming is about **values**
+> - Imperative programming is about **state**
+> - Functional programming is about **values**
 
 ???
 
@@ -170,14 +145,12 @@ No "language fud"
 
 
 - There is a lot to learn by thinking in terms of values
-- Passing values around rather than mutating state makes for safer programs,
-  and programs that are easier to test 👍
+- Passing values > mutating state
+  - Safer programs,
+  - Programs that are easier to test 👍
 
-<center>
-<br/>
-Knowing functional programming will make you a better programmer,
-no matter your daily language.
-</center>
+> Knowing functional programming will make you a better programmer,
+> no matter your daily language.
 
 ???
 
@@ -245,6 +218,29 @@ It is a language used both by:
 - Discuss what mocking is
 - Discuss what is a CI. Why it is important it goes fast
   - Feedback loops
+
+---
+
+# We need to talk about AI 🤖
+
+> AI writes most code now. Does functional programming still matter?
+
+.left-column[
+New needs:
+
+- Goal driven development
+  - Testing harness
+- Specification driven development
+  - Specifications
+
+Functional answers:
+
+- Functional programs are easier to test
+- Strong types are a specification
+]
+.right-column[
+<img src="img/ai-ai-everywhere.png" height="196px">
+]
 
 ---
 
