@@ -38,8 +38,8 @@ jobs:
         id: setup
         with:
           ghc-version: ${{ matrix.ghc-version }}
-          # Defaults, added for clarity:
-          cabal-version: '3.6.2.0'
+          cabal-version: '3.12.1.0'
+          # Default, added for clarity:
           cabal-update: true
 
       - name: Configure the build

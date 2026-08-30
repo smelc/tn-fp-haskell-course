@@ -73,7 +73,7 @@ use the instructions in [tps](./tps/README.md) ⬅️
 ```
 mkdir -p bin/{cabal,ghc,hls}
 # Instal cabal, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
-ghcup install cabal --isolate $(pwd)/bin/cabal
+ghcup install cabal 3.12.1.0 --isolate $(pwd)/bin/cabal
 # Populate GHC, this matches PATH_ADD $(pwd)/bin/ghc/bin in .envrc
 # Note that GHC's version number is also in .github/workflows/haskell.yml and in docker/Dockerfile
 ghcup install ghc 9.4.7 --isolate $(pwd)/bin/ghc
