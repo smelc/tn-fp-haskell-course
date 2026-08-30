@@ -18,3 +18,40 @@ h1, h2, h3 {
 .left-column  { width: 52%; float: left; }
 .right-column { width: 44%; float: right; }
 .right-column img { max-width: 100%; }
+
+/* Quotes: plain markdown '>' blockquotes.
+   remark ships no blockquote styling, so it is all defined here. */
+blockquote {
+  margin: 1em 0;
+  padding: 0.4em 1.2em;
+  border-left: 5px solid #8B7EC8;
+  background-color: #F7F6FB;
+  font-style: italic;
+  color: #333;
+}
+blockquote p { margin: 0.4em 0; }
+
+/* AI prompt snippets, used via remark's content class: .prompt[ ... ]
+   'display: block' matters: remark emits a <span> when the content fits on
+   one line, and only a <div> when it spans several. */
+.prompt {
+  display: block;
+  position: relative;
+  margin: 1em 0;
+  padding: 0.6em 1em 0.6em 2.8em;
+  border: 2px dashed #3D9A8B;
+  border-radius: 6px;
+  background-color: #F1FAF8;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 0.95em;
+  color: #234;
+  text-align: left;
+}
+.prompt::before {
+  content: "🤖";
+  position: absolute;
+  left: 0.7em;
+  top: 0.5em;
+  font-size: 1.1em;
+}
+.prompt p { margin: 0.3em 0; }
