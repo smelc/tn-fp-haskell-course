@@ -18,6 +18,21 @@ h1, h2, h3 {
 .left-column  { width: 52%; float: left; }
 .right-column { width: 44%; float: right; }
 .right-column img { max-width: 100%; }
+/* Anything after the columns must clear their floats, otherwise it wraps
+   beside them. Most visible on incremental '--' steps, which remark renders
+   by appending to the previous slide. */
+.left-column + *:not(.right-column),
+.right-column + * { clear: both; }
+/* Opt-in vertical centering: put '.middle' on BOTH columns, i.e.
+   .left-column.middle[ ... ] and .right-column.middle[ ... ].
+   Floats have no vertical alignment, so this swaps them for inline-block,
+   which centres the two boxes against each other. */
+.left-column.middle,
+.right-column.middle {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
 
 /* Quotes: plain markdown '>' blockquotes.
    remark ships no blockquote styling, so it is all defined here. */
