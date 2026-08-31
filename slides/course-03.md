@@ -84,14 +84,17 @@ tupleAdd (x, y) = x + y
 
 # Pattern matching function
 
+.left-column.middle[
 <!-- exdown-skip  -->
 ```hs
 add2 :: Int -> Int -> Int
 add2 0 y = y
 add2 x 0 = x
 ```
-
+]
+.right-column.middle[
 <center>What's the problem?</center>
+]
 
 --
 
@@ -103,21 +106,24 @@ add2 x 0 = x
                       q is not one of {0}
 ```
 
-<center>The function is not <i>total</i></center>
+.center[The function is not _total_]
 
-Totality is the property that, for any input, the function returns
-normally: without returning an exception or crashing the program.
+> Totality is the property that, for any input, the function returns
+> normally: without returning an exception or crashing the program.
 
 --
 
+.left-column.middle[
 ```hs
 add2 :: Int -> Int -> Int
 add2 0 y = y
 add2 x 0 = x
 add2 x y = x + y
 ```
-
+]
+.right-column.middle[
 <center>Order matters!</center>
+]
 
 ???
 
@@ -148,6 +154,10 @@ isSafe (SemVer 1 0 _) = False -- Bug #172, fixed in 1.1.*
 isSafe (SemVer 1 1 2) = False -- Bug #175
 isSafe _              = True
 ```
+
+.center[
+> Mechanical! Our robotic friends love it 🤖
+]
 
 ---
 
@@ -203,6 +213,80 @@ sign 0             = Zero
 sign n | n < 0     = Negative
        | otherwise = Positive
 ```
+
+---
+
+# Use AI to enforce conventions 🤖
+
+Future-proof practice:
+
+.prompt.small[
+$ cat SKILL.md
+
+Make sure that pattern matches are exhaustive. Push back on every occurence of `_` pattern matching.
+]
+
+.prompt.small[
+$ cat HASKELL_CONVENTIONS.md
+
+Ensure that positive cases are treated before negative ones, since
+the positive cases are the interesting ones. I.e. prefer:
+
+<!-- exdown-skip -->
+```hs
+case x of
+  Just y ->
+    happy_path
+  Nothing ->
+    boring
+```
+
+to
+
+<!-- exdown-skip -->
+```hs
+case x of
+  Nothing ->
+    boring
+  Just y ->
+    happy_path
+```
+]
+
+---
+
+# Use AI to enforce conventions 🤖
+
+Ensure code is readable for.. humans:
+
+.prompt.small[
+$ cat HASKELL_CONVENTIONS.md
+
+To maximize code readibility, prefer multi case to contain nesting:
+
+<!-- exdown-skip -->
+```hs
+case (x, y) of
+  (..., ...) | guard ->
+    ...
+  (..., ...) ->
+    ...
+```
+
+to
+
+<!-- exdown-skip -->
+```hs
+case x of
+  ...  ->
+    if guard
+    then
+      case y of
+        ... -> ...
+    else
+      ...
+```
+]
 
 ---
 
@@ -314,6 +398,31 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
 
 ---
 
+# Tool trade-offs
+
+* Recursion consumes stack
+  * `f 999 (f 998 (f 997) ... (f 0 ))`
+* Folding is recursion in disguise: `foldr` builds *exactly* that nesting
+
+<br/>
+
+| Tool                   | Stack    | Thunks  | Early exit |
+| ---------------------- | -------- | ------- | ---------- |
+| Recursion (`treeFind`) | O(depth) | —       | ✅ you write the exit |
+| `foldr`                | O(n)     | —       | ⚠️ only if `f` is lazy in its 2nd argument |
+| `foldl`                | O(1)     | O(n) 💥 | ❌ |
+| `foldl'`               | O(1)     | O(1)    | ❌ |
+
+???
+
+- `treeFind` returns as soon as it finds a match: recursion lets you stop early
+- On a *balanced* tree, O(depth) is O(log n). On a list it degrades to O(n)
+- `foldr (&&) True` stops at the first `False`, and works on infinite lists.
+  `foldl (&&) True` never terminates on one
+- Only `foldl'` is genuinely constant space
+
+---
+
 # Partial application
 
 ```bash
@@ -340,9 +449,8 @@ map2 :: [a] -> (a -> b) -> [b]
 </br>
 
 When writing functions:
-<center>
-- Order arguments so that partial application makes sense
-</center>
+
+> <center> Order arguments so that partial application makes sense </center>
 
 ---
 
@@ -526,6 +634,23 @@ Just "Philippe Katerine"
 > (++) <$> ["Philippe"] <*> [" Katerine"]
 ["Philippe Katerine"]
 ```
+
+---
+
+# Seems tough? Robots to the rescue 🤖
+
+.prompt[
+$ cat HASKELL_CONVENTIONS.md
+
+When chaining functions, use the forward style `&` operator, not the more mathematical `.` one.
+]
+
+.prompt[
+$ cat HASKELL_CONVENTIONS.md
+
+Use applicative style (`<$> ... <*> ...`) only on long (> 3) chains of arguments.
+Use parentheses for shorter calls.
+]
 
 ---
 
