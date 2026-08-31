@@ -51,12 +51,13 @@ docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
 docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
 ```
 
-To build the image yourself (e.g. to test local changes to the `Dockerfile`),
-tag it with the registry name so the devcontainer picks it up:
+If the image is updated, to adopt a new version do:
 
 ```shell
-docker build -f docker/Dockerfile -t ghcr.io/smelc/tn-fp-haskell-course:latest .
+docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
 ```
+
+And the in vscode do **Dev Containers: Rebuild Container**
 
 ### Development instructions without Docker
 
@@ -85,6 +86,15 @@ Because there is a [cabal.project](./cabal.project) file that pins the set of pa
 timestamp, this project is highly reproducible.
 
 To validate code snippets within slides, see [slides/README.md](slides/README.md).
+
+### Development instructions for developing the container itself
+
+To build the image yourself (e.g. to test local changes to the `Dockerfile`),
+tag it with the registry name so the devcontainer picks it up:
+
+```shell
+docker build -f docker/Dockerfile -t ghcr.io/smelc/tn-fp-haskell-course:latest .
+```
 
 ---
 

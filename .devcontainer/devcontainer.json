@@ -1,6 +1,10 @@
 {
   "name": "tn-fp-haskell-course",
   "image": "ghcr.io/smelc/tn-fp-haskell-course:latest",
+  // Refresh the image on every start. Dev Containers resolves ":latest"
+  // locally, so without this it never revisits the registry.
+  // '|| exit 0' keeps startup working offline.
+  "initializeCommand": "docker pull ghcr.io/smelc/tn-fp-haskell-course:latest || exit 0",
   "remoteUser": "vscode",
   "forwardPorts": [8000, 6419],
   "portsAttributes": {
