@@ -70,3 +70,18 @@ blockquote p { margin: 0.4em 0; }
   font-size: 1.1em;
 }
 .prompt p { margin: 0.3em 0; }
+/* Opt-in shrink for one long prompt: .prompt.small[ ... ].
+   'em' keeps it relative to the surrounding text, and the block's
+   padding/gutter scale with it since they are in 'em' too. */
+.prompt.small { font-size: 0.75em; }
+/* remark hard-codes '.remark-code { font-size: 18px }', an absolute size
+   that ignores the prompt's own em sizing. Make code inside a prompt
+   follow the block instead. */
+.prompt .remark-code,
+.prompt pre,
+.prompt code { font-size: inherit; }
+
+/* Tables. remark ships no table styling, so it is all defined here. */
+table { border-collapse: collapse; margin: 0.8em 0; }
+th, td { border: 1px solid #CCC; padding: 0.25em 0.7em; text-align: left; }
+th { background-color: #F0F0F0; font-weight: bold; }
