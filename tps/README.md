@@ -3,7 +3,7 @@
 ## Containerized setup - recommended
 
 The fastest way to get a working environment is to use the docker image
-published by CI. OCaml tooling and this repository's code are included.
+published by CI. Haskell tooling and this repository's code are included.
 
 In vscode (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)):
 open the repository root, then run **Dev Containers: Reopen in Container**
@@ -15,6 +15,12 @@ From a terminal inside the container you can then run e.g.:
 
 ```shell
 cabal run -v0 TP4.hs
+```
+
+You can run the REPL as follows:
+
+```shell
+cabal repl tps:TP1.hs:TP1.hs
 ```
 
 ## Manual setup (without Docker)
