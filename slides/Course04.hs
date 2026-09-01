@@ -1,6 +1,7 @@
 module Course04 where
 
 import Control.Monad.IO.Class
+import qualified Data.Map.Strict as Map
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 
@@ -98,6 +99,12 @@ data Interval a = MkInterval {
     end :: a
   }
   deriving Functor
+
+data Capability = MkCapability {
+  admin :: Bool,
+  tenants :: [String],
+  states :: Map.Map String [String]
+}
 
 -- | @makeURL "http" "google.fr" "search/advanced"@ returns
 -- @"http://www.google.fr/search/advanced"@

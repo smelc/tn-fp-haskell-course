@@ -19,6 +19,7 @@ Clément Hurlin
 module Course04 where
 
 import Control.Monad.IO.Class
+import qualified Data.Map.Strict as Map
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 ```
@@ -432,6 +433,28 @@ frequency :: [(Int, Gen a)] -> Gen a
 
 * Show `class Testable` on Hoogle
 
+---
+
+# What about AI? 🤖
+
+AI is very very good at finding bugs if you give it the tools to do so.
+
+
+```hs
+data Capability = MkCapability {
+  admin :: Bool,
+  tenants :: [String],
+  states :: Map.Map String [String]
+}
+```
+
+.prompt[
+Write a quicheck generator for `Capability` 🧱
+Then use it to test that `<>`
+is commutative and associative.
+
+Don't stop before you've generated at least a million different values.
+]
 
 ---
 
@@ -521,8 +544,6 @@ Typeclasses:
 - https://learnyouahaskell.github.io/types-and-typeclasses.html#typeclasses-101
 - http://book.realworldhaskell.org/read/using-typeclasses.html
 - https://wiki.haskell.org/Typeclassopedia
-
----
 
 <!-- Machinery for making the snippets valid, not shown, only
      used by exdown (see check.sh).
