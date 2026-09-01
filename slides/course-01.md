@@ -432,7 +432,7 @@ Property-based testing:
 - Generate random data
 - Check that properties hold using this data
 - Super general 💪, reliable 🧱
-- Supercharged test harnesss 🤖
+- Perfect test harnesss 🤖
 
 --
 
