@@ -31,7 +31,7 @@ jobs:
       - name: Check versioned Course*.hs files are up to date
         working-directory: slides
         run: |
-          ./check_golden_diff.sh
+          ./check_golden_diff.sh hs
 
       - name: Set up GHC ${{ matrix.ghc-version }}
         uses: haskell-actions/setup@v2

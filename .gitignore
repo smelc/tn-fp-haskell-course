@@ -2,4 +2,3 @@
 .venv
 bin
 dist-newstyle
-slides/*.java
