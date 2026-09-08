@@ -262,7 +262,11 @@ filter p (x : rest) | p x       = x : filter p rest
 
 ---
 
-# Abstracting over types
+# Abstracting:typeclasses
+
+<center>
+⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
+</center>
 
 - Abstracting over types is done with typeclasses
 - When a type implements a class, it provides the class' functions
@@ -297,7 +301,21 @@ printSize t = do
   putStrLn (show (size t))
 ```
 
+<!--
+-- | Generic setter for containers
+class With a b where
+  with :: b -> a -> a
+
+instance With Person String where
+  with firstName (Name _ age) = Name firstName age
+-->
+
 ???
+
+- Explain typeclasses are open abstractions
+  - You can define them far away from the type's definition
+- Ask what's the problem?
+  - Conflicting definitions are possible
 
 Java:
 
@@ -342,10 +360,9 @@ safeHead (x : _) = Just x
 
 --
 
-<center>
-<br/>
-Function searcher: <a href="hoogle.haskell.org">hoogle.haskell.org</a>
-</center>
+.center[
+Function searcher: [hoogle.haskell.org](hoogle.haskell.org)
+]
 
 ???
 

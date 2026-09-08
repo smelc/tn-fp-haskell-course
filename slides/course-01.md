@@ -375,10 +375,6 @@ record SemVer(int x, int y, int z) implements Version { }
 
 # Abstracting: typeclasses
 
-<center>
-⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
-</center>
-
 ```hs
 -- | Generic class of containers
 class Contains a b where
@@ -399,22 +395,6 @@ instance Contains Username String where
 toString :: Contains a String => a -> String
 toString (whatever :: a) = get whatever
 ```
-
-???
-
-- Explain typeclasses are open abstractions
-  - You can define them far away from the type's definition
-- Ask what's the problem?
-  - Conflicting definitions are possible
-
-<!--
--- | Generic setter for containers
-class With a b where
-  with :: b -> a -> a
-
-instance With Person String where
-  with firstName (Name _ age) = Name firstName age
--->
 
 ---
 
