@@ -1,4 +1,5 @@
 [![Haskell build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/haskell.yml) 
+[![Java build](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/java.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/java.yml) 
 [![shellcheck](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/shellcheck.yml) 
 [![actionlint](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/actionlint.yml)
 [![Docker](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/docker.yml/badge.svg)](https://github.com/smelc/tn-fp-haskell-course/actions/workflows/docker.yml)

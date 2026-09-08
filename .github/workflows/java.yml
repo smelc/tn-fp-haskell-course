@@ -1,0 +1,38 @@
+# Verify that the Java snippets of the slides compile.
+
+name: Java build
+on:
+  push:
+    branches: [main, priv]
+  pull_request:
+
+jobs:
+  build:
+    name: Build Java snippets
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      # Snippets use sealed interfaces (Java 17) and records (Java 16),
+      # so a recent JDK is required.
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install exdown
+        working-directory: slides
+        run: |
+          git clone https://github.com/smelc/exdown
+          # build_java.sh calls exdown.py directly, so it must be on the PATH
+          echo "$PWD/exdown" >> "$GITHUB_PATH"
+
+      - name: Extract Java snippets from slides and compile them
+        working-directory: slides
+        run: ./build_java.sh
+
+      - name: Check versioned Course*.java files are up to date
+        working-directory: slides
+        run: ./check_golden_diff.sh java
