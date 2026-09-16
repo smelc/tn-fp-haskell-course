@@ -20,7 +20,7 @@ cabal run -v0 TP4.hs
 You can run the REPL as follows:
 
 ```shell
-cabal repl tps:TP1.hs:TP1.hs
+cabal repl TP1.hs
 ```
 
 ## Manual setup (without Docker)
