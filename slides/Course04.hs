@@ -5,6 +5,8 @@ import qualified Data.Map.Strict as Map
 import Data.Word
 import Prelude hiding ((==), Bounded, Enum, Eq, Ordering, Show)
 
+import Test.QuickCheck
+
 -- | Types whose values can be compared.
 -- Expected to have the following properties:
 -- Reflexivity: @x == x@ is @True@
@@ -101,6 +103,14 @@ data Interval a = MkInterval {
     end :: a
   }
   deriving Functor
+
+instance Arbitrary Version where
+  arbitrary =
+    oneof
+      [ pure Alpha,
+        pure Beta,
+        SemVer <$> arbitrary <*> arbitrary <*> arbitrary
+      ]
 
 data Capability = MkCapability {
   admin :: Bool,
