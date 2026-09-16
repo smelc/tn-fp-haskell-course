@@ -125,16 +125,6 @@ class Semigroup a where
 class Functor f where
   fmap :: (a -> b) -> f a -> f b
 
-class Bank x where
-  -- | Get credit of account
-  getBalance :: x -> String -> Maybe Int
-  -- | Does account exist?
-  isAccount :: x -> String -> Bool
-
-class Bank x => BankAdmin x where
-  -- | Create a new account
-  createAccount :: x -> String -> IO ()
-
 -- http://learnyouahaskell.com/input-and-output
 
 main :: IO () -- The program entry point, always

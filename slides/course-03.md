@@ -635,6 +635,11 @@ Just "Philippe Katerine"
 ["Philippe Katerine"]
 ```
 
+???
+
+> concat3 s1 s2 s3 = s1 ++ s2 ++ s3
+> (++) <$> ["Philippe"] <*> [" Katerine"] <*> [" is a singer"]
+
 ---
 
 # Seems tough? Robots to the rescue 🤖

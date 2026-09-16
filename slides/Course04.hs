@@ -77,13 +77,11 @@ data BankAction =
     -- | Compte cloturé
   | Close
 
-instance Semigroup BankAction where
-  Spend i <> Spend j = Spend (i + j)
-  Spend i <> Earn j  = Spend (i - j)
-  Close   <> _       = Close
-  _       <> Close   = Close
-  Earn i  <> Spend j = Earn (i - j)
-  Earn i  <> Earn j  = Earn (i + j)
+class Bank x where
+  -- | Get credit of account
+  getBalance :: x -> String -> Maybe Int
+  -- | Does account exist?
+  isAccount :: x -> String -> Bool
 
 -- Only >= 0 number of votes makes sense
 type Nat = Word16
@@ -93,6 +91,10 @@ data Reactions = MkReactions {
     thumbsUp :: Nat,
     thumbsDown :: Nat
   }
+
+class Semigroup a where
+  -- | Associative binary operation
+  (<>) :: a -> a -> a
 
 data Interval a = MkInterval {
     start :: a,

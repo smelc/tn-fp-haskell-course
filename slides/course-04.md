@@ -291,6 +291,7 @@ data BankAction =
 
 --
 
+[//]: #exdown-skip
 ```hs
 instance Semigroup BankAction where
   Spend i <> Spend j = Spend (i + j)
@@ -309,6 +310,27 @@ instance Semigroup BankAction where
 
 * `instance Semigroup [a]`
 * `instance Semigroup a => Semigroup (Maybe a)`
+
+---
+
+# Property-based testing
+
+```hs
+class Bank x where
+  -- | Get credit of account
+  getBalance :: x -> String -> Maybe Int
+  -- | Does account exist?
+  isAccount :: x -> String -> Bool
+```
+
+- What property does the `Bank` class have? 🧱
+
+???
+
+- `isJust (getBalance s) ==> isAccount s`
+- Cite a usual combination case in REST APIs
+  - Reader API (`GET`)
+  - Writer API (`POST`)
 
 ---
 
@@ -360,6 +382,25 @@ instance (Monoid a, Monoid b) => Monoid (a,b) where
 
 ---
 
+# Property-based testing once again
+
+```hs
+class Semigroup a where
+  -- | Associative binary operation
+  (<>) :: a -> a -> a
+```
+
+<!-- exdown-skip -->
+```hs
+class Semigroup a => Monoid a where
+  -- | Identity of '<>'
+  mempty :: a
+```
+
+* What properties do `Semigroup` and `Monoid` have? 🧱
+
+---
+
 # Typeclasses: `Functor`
 
 [//]: #exdown-skip
@@ -393,7 +434,7 @@ applyUpper :: Functor f => f String -> f String
 
 ---
 
-# Be lazy, rely on the compiler
+# Be lazy, rely on the compiler (2)
 
 From course 2:
 
