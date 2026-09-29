@@ -117,21 +117,6 @@ monadicParseUrl input = do
   pure (Url host ext)
 ```
 
-Compare with:
-
-<!-- exdown-skip -->
-```hs
-parseUrl :: String -> Either UrlParsingError Url
-parseUrl input =
-  splitUrl input
-  >>= \(hostStr, extStr) ->
-  checkHost hostStr
-  >>= \host ->
-  checkExt extStr
-  >>= \ext ->
-  Right (Url host ext)
-```
-
 ---
 
 # Monads: deciphering
@@ -155,10 +140,9 @@ class Applicative m => Monad m where
 
 --
 
-<br/>
-<center>
-  <b>Generic</b> model of interruptible sequential computation
-</center>
+.highlight[
+  **Generic** model of interruptible sequential computation
+]
 
 ---
 

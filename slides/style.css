@@ -81,6 +81,38 @@ blockquote p { margin: 0.4em 0; }
 .prompt pre,
 .prompt code { font-size: inherit; }
 
+/* Highlight of one important sentence, used via remark's content class:
+   .highlight[ ... ]
+   Centered box that stands out from the surrounding text. Same
+   'display: block' caveat as .prompt: remark emits a <span> for one-line
+   content. */
+.highlight {
+  display: block;
+  position: relative;
+  width: 80%;
+  margin: 1.6em auto;
+  padding: 1em 2.4em;
+  border: 2px solid #8B7EC8;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(94, 79, 168, 0.25);
+  font-style: italic; /* same look as blockquotes */
+  text-align: center;
+  color: #2F2A4A;
+}
+/* Decorative stars on both sides of the sentence. */
+.highlight::before,
+.highlight::after {
+  content: "\2726";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9em;
+  color: #8B7EC8;
+}
+.highlight::before { left: 0.8em; }
+.highlight::after  { right: 0.8em; }
+.highlight p { margin: 0.3em 0; }
+
 /* Tables. remark ships no table styling, so it is all defined here. */
 table { border-collapse: collapse; margin: 0.8em 0; }
 th, td { border: 1px solid #CCC; padding: 0.25em 0.7em; text-align: left; }
