@@ -149,8 +149,9 @@ No "language fud"
   - Safer programs,
   - Programs that are easier to test 👍
 
-> Knowing functional programming will make you a better programmer,
-> no matter your daily language.
+.highlight[
+  Knowing functional programming will make you a better programmer, no matter your daily language.
+]
 
 ???
 

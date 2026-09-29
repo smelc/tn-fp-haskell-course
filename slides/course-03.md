@@ -155,8 +155,8 @@ isSafe (SemVer 1 1 2) = False -- Bug #175
 isSafe _              = True
 ```
 
-.center[
-> Mechanical! Our robotic friends love it 🤖
+.highlight[
+Mechanical! Our robotic friends love it 🤖
 ]
 
 ---
@@ -423,9 +423,7 @@ map2 :: [a] -> (a -> b) -> [b]
 
 </br>
 
-When writing functions:
-
-> <center> Order arguments so that partial application makes sense </center>
+.highlight[Order arguments so that partial application makes sense]
 
 ---
 

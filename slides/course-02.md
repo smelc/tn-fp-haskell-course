@@ -262,11 +262,11 @@ filter p (x : rest) | p x       = x : filter p rest
 
 ---
 
-# Abstracting:typeclasses
+# Abstracting: typeclasses
 
-<center>
-⚠️ The Haskell <code>class</code> keyword  is unrelated to object-oriented classes 💣
-</center>
+.highlight[
+  ⚠️ The Haskell `class` keyword is unrelated to object-oriented classes 💣
+]
 
 - Abstracting over types is done with typeclasses
 - When a type implements a class, it provides the class' functions
@@ -291,7 +291,11 @@ instance Collection [] where
   toList = id
 ```
 
---
+---
+
+# Abstracting: typeclasses 
+
+> Write `=>` to require instances of classes in prototypes: constraints
 
 ```hs
 -- | To require a parameter to implement a class,
@@ -354,14 +358,10 @@ safeHead (x : _) = Just x
 - `Just` is a function of type `a -> Maybe a`
 - `Just "foo"` is an expression of type `Maybe String`
 
-> Data constructors are **functions**!
->
-> Constants are parameterless functions.
+.highlight[
+  Data constructors are **functions**!
 
---
-
-.center[
-Function searcher: [hoogle.haskell.org](hoogle.haskell.org)
+  Constants are parameterless functions.
 ]
 
 ???
