@@ -472,9 +472,27 @@ oneof :: [Gen a] -> Gen a
 frequency :: [(Int, Gen a)] -> Gen a
 ```
 
+--
+
+<hr/>
+
+Tying it all together:
+
+[//]: #exdown-skip
+```hs
+-- Function to call
+quickCheck :: Testable prop => prop -> IO ()
+
+-- Instance to use to build @Testable@
+(Arbitrary a, Show a, Testable prop) => Testable (a -> prop)
+
+-- Base @Testable@ case
+Testable Bool
+```
+
 ---
 
-# Typeclasses for `QuickCheck` testing
+# `QuickCheck` for `Version`
 
 [//]: #exdown-skip
 ```hs
@@ -485,15 +503,28 @@ class Arbitrary a where
 
 -- | Generates using the given generators, picking them at random
 oneof :: [Gen a] -> Gen a
+```
 
-data Gen a
+<hr/>
 
+.left-column[
+[//]: #exdown-skip
+```hs
 instance Arbitrary Int where
   arbitrary :: Gen Int
-
+```
+]
+.right-column[
+[//]: #exdown-skip
+```hs
 instance Applicative Gen where
   pure :: a -> Gen a
 ```
+]
+
+--
+
+<hr/>
 
 ```hs
 instance Arbitrary Version where
