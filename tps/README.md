@@ -1,15 +1,33 @@
 # This is the home of the TPs for the functional programming course of Telecom Nancy
 
-## Containerized setup - recommended
+## Containerized setup (Docker)
 
-The fastest way to get a working environment is to use the docker image
-published by CI. Haskell tooling and this repository's code are included.
+The fastest way to get a working environment is to use the docker image published by CI. Haskell tooling and this repository's code are included.
+
+### vscode
 
 In vscode (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)):
 open the repository root, then run **Dev Containers: Reopen in Container**
 from the command palette (`Ctrl/Cmd+Shift+P`).
 vscode reads [`.devcontainer/devcontainer.json`](../.devcontainer/devcontainer.json),
 pulls the image and mounts your clone.
+
+### Without vscode
+
+Run the image manually:
+
+```bash
+docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
+docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
+```
+
+If the image is updated, to adopt a new version do:
+
+```bash
+docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
+```
+
+### In both cases
 
 From a terminal inside the container you can then run e.g.:
 
@@ -23,7 +41,7 @@ You can run the REPL as follows:
 cabal repl TP1.hs
 ```
 
-## Manual setup (without Docker)
+## Direct setup on your host (Dockerless)
 
 To reproduce a working environment, from the repository root, do:
 

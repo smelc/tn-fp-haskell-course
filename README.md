@@ -20,28 +20,7 @@ Visit [https://smelc.github.io/tn-fp-haskell-course/slides/](https://smelc.githu
 
 ### Development intructions for _TPs_
 
-For you to do the _travaux pratiques_ smoothly,
-this repository ships a [devcontainer config](.devcontainer/devcontainer.json)
-that points to the docker image published by CI on `main`.
-In vscode (with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)):
-open this folder, then run **Dev Containers: Reopen in Container** from the
-command palette (`Ctrl/Cmd+Shift+P`). The first run pulls the image and mounts
-your clone.
-
-Without vscode, you can run the image manually:
-
-```bash
-docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
-docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
-```
-
-If the image is updated, to adopt a new version do:
-
-```bash
-docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
-```
-
-And the in vscode do **Dev Containers: Rebuild Container**
+See [tps/README.md](./tps/README.md).
 
 ## Instructions for TP assistants and @smelc
 
