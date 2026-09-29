@@ -398,31 +398,6 @@ balance' = foldr (\op soFar -> toInt op + soFar) 0
 
 ---
 
-# Tool trade-offs
-
-* Recursion consumes stack
-  * `f 999 (f 998 (f 997) ... (f 0 ))`
-* Folding is recursion in disguise: `foldr` builds *exactly* that nesting
-
-<br/>
-
-| Tool                   | Stack    | Thunks  | Early exit |
-| ---------------------- | -------- | ------- | ---------- |
-| Recursion (`treeFind`) | O(depth) | —       | ✅ you write the exit |
-| `foldr`                | O(n)     | —       | ⚠️ only if `f` is lazy in its 2nd argument |
-| `foldl`                | O(1)     | O(n) 💥 | ❌ |
-| `foldl'`               | O(1)     | O(1)    | ❌ |
-
-???
-
-- `treeFind` returns as soon as it finds a match: recursion lets you stop early
-- On a *balanced* tree, O(depth) is O(log n). On a list it degrades to O(n)
-- `foldr (&&) True` stops at the first `False`, and works on infinite lists.
-  `foldl (&&) True` never terminates on one
-- Only `foldl'` is genuinely constant space
-
----
-
 # Partial application
 
 ```bash
