@@ -539,6 +539,11 @@ instance Arbitrary Version where
 ???
 
 * Show `class Testable` on Hoogle
+* `<$> :: (a -> b) -> f a -> f b`
+* `SemVer :: Int -> Int -> Int -> Version`
+* `arbitrary :: Gen Int`
+* `a ~ (Int -> Int)` and `b ~ Version`
+* `SemVer <$> arbitrary :: Gen (Int -> Int -> Version)`
 
 ---
 

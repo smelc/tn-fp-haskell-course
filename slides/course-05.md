@@ -232,11 +232,9 @@ data Expr a b =
 eval :: Expr a b -> ?
 ```
 
-<center>
-🤮
-</center>
-
 --
+
+<hr/>
 
 GADTs to the rescue!
 
@@ -250,10 +248,6 @@ data Expr t where
 
 eval :: Expr a -> a
 ```
-
-<center>
-😎
-</center>
 
 ---
 
@@ -286,9 +280,10 @@ type family DataKind a where
 -- | @getData m r@ can return either a value of type @FilePath@
 --   or a value of type @Int@!
 getData :: Mix -> Role a -> DataKind a
-getData mix = \case
-  FileRole -> mix.file
-  HashRole -> mix.hash
+getData mix r =
+  case r of
+    FileRole -> mix.file
+    HashRole -> mix.hash
 ```
 
 ---

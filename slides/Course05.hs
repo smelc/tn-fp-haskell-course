@@ -80,9 +80,10 @@ type family DataKind a where
 -- | @getData m r@ can return either a value of type @FilePath@
 --   or a value of type @Int@!
 getData :: Mix -> Role a -> DataKind a
-getData mix = \case
-  FileRole -> mix.file
-  HashRole -> mix.hash
+getData mix r =
+  case r of
+    FileRole -> mix.file
+    HashRole -> mix.hash
 
 class Monad m => MonadState s m | m -> s where
   -- | Return the state
