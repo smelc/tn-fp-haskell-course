@@ -2,7 +2,7 @@
 
 ## Containerized setup (Docker)
 
-The fastest way to get a working environment is to use the docker image published by CI. Haskell tooling and this repository's code are included.
+The fastest way to get a working environment is to use the docker image published by CI. Haskell tooling and this project's dependencies are included; your clone of the repository is mounted at `/workspaces/tn-fp-haskell-course`.
 
 ### vscode
 

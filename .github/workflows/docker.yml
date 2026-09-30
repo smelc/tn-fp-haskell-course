@@ -3,7 +3,13 @@ name: Docker
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'slides/**'
+      - 'tps/**'
   pull_request:
+    paths-ignore:
+      - 'slides/**'
+      - 'tps/**'
 
 jobs:
   build:
@@ -38,5 +44,8 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ steps.sha.outputs.short }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # Registry-backed cache: unlike the GitHub Actions cache, it is not
+          # evicted after 7 days, so layer digests stay stable across rebuilds.
+          # Only main pushes are logged in, hence the conditional cache-to.
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
+          cache-to: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && format('type=registry,ref=ghcr.io/{0}:buildcache,mode=max', github.repository) || '' }}

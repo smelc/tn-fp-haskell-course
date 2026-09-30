@@ -37,14 +37,12 @@ ENV BOOTSTRAP_HASKELL_NONINTERACTIVE=1 \
     GHCUP_INSTALL_BASE_PREFIX=/home/vscode \
     PATH=/home/vscode/.cabal/bin:/home/vscode/.ghcup/bin:${PATH}
 
+# Install the expected ghcup and cabal globally
 RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh \
     && ghcup set ghc ${GHC_VERSION} \
     && cabal update
 
 COPY --chown=vscode:vscode cabal.project tn-fp-course.cabal /home/vscode/
+# And build dependencies of the project, so that the only thing to compile upon starting
+# is the project's code bind-mounted in /workspaces
 RUN cabal build --only-dependencies all
-
-COPY --chown=vscode:vscode slides /home/vscode/slides/
-COPY --chown=vscode:vscode tps /home/vscode/tps/
-
-RUN cabal build all

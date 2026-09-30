@@ -9,7 +9,9 @@
 
 bin
 dist-newstyle
-slides/*.java
+# The repository is bind-mounted at /workspaces, only cabal files are copied
+slides
+tps
 
 rendus
 foo.md
