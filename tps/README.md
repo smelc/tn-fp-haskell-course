@@ -18,7 +18,7 @@ Run the image manually:
 
 ```bash
 docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
-docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
+docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -w /workspaces/tn-fp-haskell-course -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
 ```
 
 ### In both cases
