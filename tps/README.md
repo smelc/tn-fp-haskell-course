@@ -21,13 +21,15 @@ docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
 docker run -it --rm -v "$(pwd):/workspaces/tn-fp-haskell-course" -p 8000:8000 -p 6419:6419 ghcr.io/smelc/tn-fp-haskell-course:latest bash
 ```
 
-If the image is updated, to adopt a new version do:
+### In both cases
+
+The image is not refreshed automatically. When told to adopt a new version, do:
 
 ```bash
 docker pull ghcr.io/smelc/tn-fp-haskell-course:latest
 ```
 
-### In both cases
+then, in vscode, run **Dev Containers: Rebuild Container** from the command palette.
 
 From a terminal inside the container you can then run e.g.:
 
