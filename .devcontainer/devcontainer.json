@@ -8,6 +8,20 @@
     "6419": { "label": "grip (exam.md preview)" }
   },
   "postCreateCommand": "cabal build all",
+  // X11/GUI forwarding, needed by TP6.hs which opens an OpenGL/gloss window.
+  // On WSL this works out of the box through WSLg. On a NATIVE Linux host you must:
+  //   1. share the host's X socket + DISPLAY with the container (the two entries below), and
+  //   2. authorize the container on the X server, by running ON THE HOST *before* opening
+  //      the devcontainer:
+  //        xhost +local:
+  //      Revoke it afterwards with:  xhost -local:
+  // Wayland-only desktops need XWayland running (it usually is, exposing DISPLAY=:0).
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}"
+  },
+  "mounts": [
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
