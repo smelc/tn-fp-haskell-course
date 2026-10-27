@@ -4,8 +4,10 @@ ARG GHC_VERSION=9.10.3
 ARG CABAL_VERSION=latest
 ARG HLS_VERSION=2.14.0.0
 
+RUN apt-get update
+
 # ghcup system requirements: https://www.haskell.org/ghcup/install/#system-requirements
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         build-essential \
         curl \
         libffi-dev \
@@ -19,8 +21,16 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
         zlib1g-dev \
         python3 \
         python3-pip \
-        python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+        python3-venv
+
+# Install dependencies for TP6
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    libgl1-mesa-dev \
+    freeglut3 \
+    freeglut3-dev
+
+# Clean up apt cache to reduce image size
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install grip (used to render exam.md to PDF, see README.md)
 RUN pip3 install --no-cache-dir grip
