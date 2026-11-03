@@ -368,6 +368,12 @@ final class Beta  implements Version { }
 record SemVer(int x, int y, int z) implements Version { }
 ```
 
+--
+
+.highlight[
+  Closed abstractions
+]
+
 ???
 
 - Also called _sum_ types
@@ -396,6 +402,10 @@ instance Contains Username String where
 toString :: Contains a String => a -> String
 toString (whatever :: a) = get whatever
 ```
+
+.highlight[
+  Open abstraction
+]
 
 ---
 
